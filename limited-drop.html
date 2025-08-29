@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Limited Drop - IC3</title>
+  <link rel="icon" type="image/png" href="Loga.png">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Barlow+Condensed:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    nav {
+      background-color: #111;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 2rem;
+      border-bottom: 1px solid #333;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    
+    .cart-badge {
+      position: absolute;
+      top: 50%;
+      right: 0;
+      transform: translateY(-50%) translateX(100%);
+      background: #99dffb;
+      color: #000;
+      border-radius: 4px;
+      padding: 2px 6px;
+      font-size: 12px;
+      font-weight: bold;
+      line-height: 1;
+    }
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex: 1;
+      gap: 4rem;
+      position: relative;
+    }
+    .logo-container {
+      flex: 0 0 auto;
+    }
+    .logo-text {
+      height: 200px;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      justify-content: flex-end;
+      margin-left: auto;
+    }
+    .logo-icon-container {
+      position: absolute;
+      right: 50%;
+      transform: translateX(50%);
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .logo img {
+      height: 150px;
+    }
+    .logo-icon {
+      height: 60px;
+      width: auto;
+    }
+    .logo .logo-image {
+      height: 60px;
+    }
+    .nav-links a {
+      color: #99dffb;
+      font-weight: bold;
+      text-decoration: none;
+      font-size: 1.1rem;
+    }
+    a {
+      color: #99dffb;
+      text-decoration: none;
+    }
+    
+    /* Product Section Styles */
+    .product-section {
+      padding: 4rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: flex-start;
+    }
+    
+    .product-image {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+    
+    .carousel {
+      width: 100%;
+      height: 100%;
+      max-height: 400px;
+    }
+    
+    .carousel-images {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+      height: 100%;
+    }
+    
+    .carousel-image {
+      min-width: 100%;
+      height: 100%;
+      flex: 0 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .carousel-image img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      border-radius: 12px;
+    }
+    
+    .control-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.8);
+      border: none;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 20px;
+      font-weight: bold;
+      color: #000;
+      transition: background 0.3s ease;
+      z-index: 100;
+    }
+
+    .control-btn.prev {
+      left: 20px;
+    }
+
+    .control-btn.next {
+      right: 20px;
+    }
+
+    .control-btn:hover {
+      background: rgba(255, 255, 255, 1);
+    }
+    
+    .carousel-controls {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      gap: 0;
+      z-index: 100;
+      pointer-events: none;
+    }
+    
+    .carousel-control {
+      width: 30px;
+      height: 30px;
+      background: rgba(255, 255, 255, 0.7);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      pointer-events: auto;
+      border: 2px solid rgba(255, 255, 255, 0.8);
+    }
+    
+    .carousel-control svg {
+      width: 14px;
+      height: 14px;
+      fill: #000;
+    }
+    
+    .carousel-control:hover {
+      background: rgba(255, 255, 255, 0.25);
+    }
+    
+    .carousel {
+      position: relative;
+      width: 100%;
+    }
+    
+    .carousel-images {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+    
+    .carousel-image {
+      min-width: 100%;
+      height: auto;
+      flex: 0 0 auto;
+    }
+    
+    .carousel-image img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    }
+    
+    .carousel-controls {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 40px;
+      z-index: 10;
+    }
+    
+    .carousel-control {
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    
+    .carousel-control:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+    
+    .carousel-control svg {
+      width: 20px;
+      height: 20px;
+      fill: #fff;
+    }
+    
+    .product-info {
+      padding: 2rem;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      backdrop-filter: blur(10px);
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      text-align: left;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    
+    .product-info h1 {
+      margin: 0 0 1rem 0;
+      font-size: 2rem;
+      font-weight: 700;
+    }
+    
+    .product-info h2 {
+      margin: 0 0 1rem 0;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #99dffb;
+    }
+    
+    .exclusive-tag {
+      margin: 0 0 1rem 0;
+      font-size: 1.2rem;
+      color: #99dffb;
+      font-weight: 600;
+    }
+    
+    .price {
+      margin: 0 0 1rem 0;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #99dffb;
+    }
+    
+    .product-info p {
+      margin: 0 0 1rem 0;
+    }
+    
+    .buy-button {
+      margin-top: auto;
+      padding: 1rem 2rem;
+      background: #99dffb;
+      color: #000;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      width: fit-content;
+    }
+    
+    .add-to-cart {
+      margin-top: 1rem;
+      padding: 1rem 2rem;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid #99dffb;
+      color: #99dffb;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      width: fit-content;
+    }
+
+    .add-to-cart:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+    
+    .buy-button:hover {
+      background: #73c7ff;
+    }
+    
+    .buy-button:disabled {
+      background: #666;
+      cursor: not-allowed;
+    }
+    
+    .product-info h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+      color: #99dffb;
+    }
+    
+    .product-info h2 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: #fff;
+    }
+    
+    .exclusive-tag {
+      background: #99dffb;
+      color: #000;
+      padding: 0.5rem 1.5rem;
+      border-radius: 20px;
+      font-weight: bold;
+      margin-bottom: 2rem;
+      display: inline-block;
+    }
+    
+    .price {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #99dffb;
+      margin-bottom: 2rem;
+    }
+    
+    .buy-button {
+      background: #99dffb;
+      color: #000;
+      border: none;
+      padding: 1rem 2rem;
+      font-size: 1.1rem;
+      font-weight: bold;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 2rem;
+    }
+    
+    .buy-button:hover {
+      background: #77c6e8;
+      transform: translateY(-2px);
+    }
+    
+    .buy-button:disabled {
+      background: #666;
+      cursor: not-allowed;
+    }
+    
+    .countdown-section {
+      text-align: center;
+      margin: 4rem 0;
+    }
+    
+    .countdown-title {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      color: #99dffb;
+    }
+    
+    #timer {
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: #fff;
+    }
+    
+    @media (max-width: 768px) {
+      .product-section {
+        grid-template-columns: 1fr;
+      }
+      
+      .product-info {
+        text-align: center;
+      }
+      
+      .countdown-section {
+        margin: 2rem 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-container">
+      <div class="logo-container">
+        <div class="logo">
+          <img src="Ic3.png" alt="IC3 text logo" class="logo-text">
+        </div>
+      </div>
+      <div class="logo-icon-container">
+        <img src="logaic3.png" alt="IC3 logo" class="logo-icon">
+      </div>
+      <div class="nav-links">
+        <a href="index.html">Hem</a>
+        <a href="limited-drop.html">Limited Drop</a>
+        <a href="om-oss.html">Om oss</a>
+        <a href="kontakt.html">Kontakt</a>
+        <a href="cart.html" class="cart-link">
+          <img src="målbur.png" alt="Shopping Cart" width="24" height="24" style="filter: brightness(0) invert(1);">
+          <span class="cart-badge" id="cart-badge">0</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="countdown-section">
+    <h2 class="countdown-title">Drop starts in...</h2>
+    <div id="timer">Laddar nedräkning...</div>
+  </section>
+
+  <section class="product-section">
+    <div class="product-image">
+      <div class="carousel">
+        <div class="carousel-images" id="carouselImages">
+          <div class="carousel-image">
+            <button class="control-btn prev" id="prevButton">←</button>
+            <img src="keps1.png" alt="IC3 Limited Drop Cap - Front View">
+            <button class="control-btn next" id="nextButton">→</button>
+          </div>
+          <div class="carousel-image">
+            <button class="control-btn prev" id="prevButton">←</button>
+            <img src="keps2.png" alt="IC3 Limited Drop Cap - Side View">
+            <button class="control-btn next" id="nextButton">→</button>
+          </div>
+          <div class="carousel-image">
+            <button class="control-btn prev" id="prevButton">←</button>
+            <img src="keps3.png" alt="IC3 Limited Drop Cap - Back View">
+            <button class="control-btn next" id="nextButton">→</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="product-info">
+      <h1>IC3 DROP 01 – Face-Off Cap</h1>
+      <h2>"Cold days. Hot drops."</h2>  
+      <div class="exclusive-tag">Endast 200 exemplar</div>
+      <p class="price">Pris: 399 SEK</p>
+      <p>
+        Den icke-officiella, officiella kepsen för hockeykulturen. 
+        Skapad för dig som lever för hockeylivet – även utan hjälm.
+        Stilren, självsäker och full av attityd, precis som communityn bakom märket.
+      </p>
+      <div class="buy-options">
+        <button class="buy-button" id="buyButton" disabled>Köp nu</button>
+        <button class="add-to-cart" onclick="addToCart()">Lägg i varukorg</button>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Update cart badge when page loads
+    updateCartBadge();
+
+    // Carousel functionality
+    const carouselImages = document.getElementById('carouselImages');
+    const prevButtons = document.querySelectorAll('.control-btn.prev');
+    const nextButtons = document.querySelectorAll('.control-btn.next');
+    let currentImage = 0;
+    const totalImages = carouselImages.children.length;
+
+    const updateCarousel = (newIndex) => {
+      currentImage = newIndex;
+      const translateX = -currentImage * 100;
+      carouselImages.style.transform = `translateX(${translateX}%)`;
+    };
+
+    const nextImage = () => {
+      currentImage = (currentImage + 1) % totalImages;
+      updateCarousel(currentImage);
+    };
+
+    const prevImage = () => {
+      currentImage = (currentImage - 1 + totalImages) % totalImages;
+      updateCarousel(currentImage);
+    };
+
+    // Add event listeners to all buttons
+    nextButtons.forEach(button => {
+      button.addEventListener('click', nextImage);
+    });
+
+    prevButtons.forEach(button => {
+      button.addEventListener('click', prevImage);
+    });
+
+    // Auto-advance every 5 seconds
+    setInterval(nextImage, 5000);
+
+    // Countdown functionality
+    const countdown = () => {
+      const now = new Date().getTime();
+      const dropDate = new Date('2025-06-07T12:00:00+02:00').getTime();
+      
+      const distance = dropDate - now;
+      
+      if (distance < 0) {
+        clearInterval(timer);
+        document.getElementById('timer').innerHTML = 'Drop är nu aktivt!';
+        document.getElementById('buyButton').disabled = false;
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById('timer').innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    };
+    
+    // Initialize countdown
+    countdown();
+    setInterval(countdown, 1000);
+
+    // Add event listeners to all buttons
+    nextButtons.forEach(button => {
+      button.addEventListener('click', nextImage);
+    });
+
+    prevButtons.forEach(button => {
+      button.addEventListener('click', prevImage);
+    });
+
+    // Update cart badge function
+    function updateCartBadge() {
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+      const badge = document.getElementById('cart-badge');
+      if (badge) {
+        badge.textContent = totalItems;
+      }
+    }
+
+    // Add to Cart functionality
+    function addToCart() {
+      const product = {
+        id: 'ic3-drop-01',
+        name: 'IC3 DROP 01 – Face-Off Cap',
+        price: 399,
+        image: 'keps1.png',
+        quantity: 1
+      };
+
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      
+      // Check if product already exists in cart
+      const existingItem = cart.find(item => item.id === product.id);
+      if (existingItem) {
+        existingItem.quantity += 1;
+      } else {
+        cart.push(product);
+      }
+      localStorage.setItem('cart', JSON.stringify(cart));
+      updateCartBadge();
+      alert('Produkt har lagts till i varukorgen!');
+    }
+
+    // Add click handler for buy button
+    document.getElementById('buyButton').addEventListener('click', () => {
+      window.location.href = 'https://checkout.ic3.se/products/drop-01-face-off-cap'; // Updated checkout URL
+    });
+  </script>
+</body>
+</html>

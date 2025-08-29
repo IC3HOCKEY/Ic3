@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vilka är vi? - IC3</title>
+  <link rel="icon" type="image/png" href="Loga.png">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Barlow+Condensed:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+
+    .cart-badge {
+      position: absolute;
+      top: 50%;
+      right: 0;
+      transform: translateY(-50%) translateX(100%);
+      background: #99dffb;
+      color: #000;
+      border-radius: 4px;
+      padding: 2px 6px;
+      font-size: 12px;
+      font-weight: bold;
+      line-height: 1;
+    }
+
+    .main-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    h1 {
+      font-size: 3rem;
+      text-align: center;
+      margin-bottom: 3rem;
+      color: #99dffb;
+    }
+
+    .section {
+      margin-bottom: 4rem;
+    }
+
+    .section h2 {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      color: #99dffb;
+    }
+
+    .section-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .section-text {
+      max-width: 600px;
+    }
+
+    .section-image {
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .section-image img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+    }
+
+    @media (max-width: 768px) {
+      .section-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+    }
+
+    .story {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .founders {
+      margin-top: 3rem;
+    }
+
+    .founder-heading {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .founder-heading h2 {
+      font-size: 2rem;
+      color: #99dffb;
+      margin: 0;
+    }
+
+    .founder-cards {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      padding: 0 2rem;
+    }
+
+    .founder-cards {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      padding: 0 2rem;
+    }
+
+    .founder-card {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      padding: 1.5rem;
+      text-align: center;
+      width: 30%;
+      max-width: 300px;
+    }
+
+    .founder-card img {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      border: 2px solid white;
+      margin-bottom: 1rem;
+    }
+
+    .founder-card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+      color: #99dffb;
+    }
+
+    .hero {
+      position: relative;
+      height: 600px;
+      overflow: hidden;
+      margin-bottom: 4rem;
+    }
+
+    .hero img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-content {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translate(-50%, 0);
+      text-align: center;
+      color: white;
+      z-index: 10;
+      width: 80%;
+      max-width: 800px;
+    }
+
+    .hero-content .story {
+      margin-top: 0.5rem;
+      font-size: 1.2rem;
+      line-height: 1.8;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 1rem;
+      border-radius: 12px;
+    }
+
+    .hero-content .story p {
+      margin-bottom: 1.5rem;
+      color: #99dffb;
+    }
+
+    .hero-content h1 {
+      font-size: 4rem;
+      margin: 0;
+      color: #99dffb;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        height: 400px;
+      }
+
+      .hero-content h1 {
+        font-size: 3rem;
+      }
+    }
+
+    nav {
+      background-color: #111;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 2rem;
+      border-bottom: 1px solid #333;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex: 1;
+      gap: 4rem;
+      position: relative;
+    }
+
+    .logo-container {
+      flex: 0 0 auto;
+    }
+
+    .logo-text {
+      height: 200px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      justify-content: flex-end;
+      margin-left: auto;
+    }
+
+    .logo-icon-container {
+      position: absolute;
+      right: 50%;
+      transform: translateX(50%);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .logo img {
+      height: 150px;
+    }
+
+    .logo-icon {
+      height: 60px;
+      width: auto;
+    }
+
+    .logo .logo-image {
+      height: 60px;
+    }
+
+    .nav-links a {
+      color: #99dffb;
+      font-weight: bold;
+      text-decoration: none;
+      font-size: 1.1rem;
+    }
+
+    a {
+      color: #99dffb;
+      text-decoration: none;
+    }
+  </style>
+  <script>
+    // Update cart badge function
+    function updateCartBadge() {
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+      const badge = document.getElementById('cart-badge');
+      if (badge) {
+        badge.textContent = totalItems;
+      }
+    }
+
+    // Initialize cart badge when page loads
+    document.addEventListener('DOMContentLoaded', () => {
+      updateCartBadge();
+    });
+  </script>
+</head>
+<body>
+  <nav>
+    <div class="nav-container">
+      <div class="logo-container">
+        <div class="logo">
+          <img src="Ic3.png" alt="IC3 text logo" class="logo-text">
+        </div>
+      </div>
+      <div class="logo-icon-container">
+        <img src="logaic3.png" alt="IC3 logo" class="logo-icon">
+      </div>
+      <div class="nav-links">
+        <a href="index.html">Hem</a>
+        <a href="limited-drop.html">Limited Drop</a>
+        <a href="om-oss.html">Om oss</a>
+        <a href="kontakt.html">Kontakt</a>
+        <a href="cart.html" class="cart-link">
+          <img src="målbur.png" alt="Shopping Cart" width="24" height="24" style="filter: brightness(0) invert(1);">
+          <span class="cart-badge" id="cart-badge">0</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="main-content">
+    <section class="hero">
+      <img src="om.oss.png" alt="IC3 founders">
+      <div class="hero-content">
+        <h1>Vilka är vi?</h1>
+        <div class="story">
+          <p>IC3 föddes ur kylan, skratten och slitna skridskor.</p>
+          <p>Vi är tre barndomsvänner som växte upp med hockey som vårt språk. Vi delade allt – sena kvällar i ishallar, bussresor till bortamatcher och timmar i omklädningsrum som luktade både tejp och framtidsdrömmar. På isen lärde vi oss inte bara att täcka skott och sätta passningar, utan också vad lojalitet, disciplin och gemenskap verkligen betyder.</p>
+          <p>Men när vi klev av isen saknade vi något.</p>
+          <p>Vi såg ett hål i garderoben – bokstavligt talat. Det fanns tröjor med klubbmärken, jackor med sponsorer, men inget som verkligen speglade känslan av att tillhöra hockeykulturen på ett stilrent, urbant sätt. Inget som sa: "Jag är hockey – även när jag går genom stan."</p>
+          <p>Så vi skapade IC3.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-content">
+        <div class="section-text">
+          <h2>Bakgrund</h2>
+          <p>IC3 står för tre grundare, tre personligheter – men en gemensam passion. Vi har olika roller idag – design, marknadsföring, vision – men vi har alltid varit ett lag.</p>
+          <p>Vi kommer från olika städer, men har delat samma kalla morgnar, samma slit och samma dröm: att skapa något som lever längre än sista perioden. Med IC3 vill vi fånga känslan av hockeylivet – den intensitet, råhet och gemenskap som genomsyrar sporten – och översätta den till plagg som känns lika rätt på läktaren som på gatan.</p>
+        </div>
+        <div class="section-image">
+          <img src="bakgrundsbild.png" alt="Bakgrundsbild" loading="lazy">
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-content">
+        <div class="section-image">
+          <img src="missionbild.png" alt="Missionbild" loading="lazy">
+        </div>
+        <div class="section-text">
+          <h2>Mission</h2>
+          <p>Att bygga ett community och en stil för nästa generation hockeyälskare.</p>
+          <p>IC3 är mer än kläder – det är en identitet.</p>
+          <p>Vi vill förena hockeyns rötter med en modern, streetwear-inspirerad estetik. Varje plagg vi släppt är designat för att du ska kunna bära ditt hockeyhjärta med stolthet, oavsett om du är på väg till match eller på väg hem från skolan.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-content">
+        <div class="section-text">
+          <h2>Vision</h2>
+          <p>IC3 ska bli det självklara valet för den urbana hockeygenerationen.</p>
+          <p>Vi vill inte bara klä spelare – vi vill klä kulturen.</p>
+          <p>Vår vision är att bygga ett internationellt varumärke där unga människor känner sig sedda, inspirerade och representerade. Vi tror på gemenskap, stil och ett jävlar anamma som aldrig viker ner sig.</p>
+        </div>
+        <div class="section-image">
+          <img src="visionbild.png" alt="Visionbild" loading="lazy">
+        </div>
+      </div>
+    </section>
+
+    <section class="founders">
+      <div class="founder-heading">
+        <h2>Grundare</h2>
+      </div>
+      <div class="founder-cards">
+        <div class="founder-card">
+          <img src="grundare1.jpg" alt="Erik - forwarden som blev formgivare">
+          <h3>Erik</h3>
+          <p>forwarden som blev formgivare</p>
+        </div>
+        <div class="founder-card">
+          <img src="grundare2.jpg" alt="Carl - från is till idéer">
+          <h3>Carl</h3>
+          <p>från is till idéer</p>
+        </div>
+        <div class="founder-card">
+          <img src="grundare3.jpg" alt="Riccardo - från idé till verklighet">
+          <h3>Riccardo</h3>
+          <p>från idé till verklighet</p>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
