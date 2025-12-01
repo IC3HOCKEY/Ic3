@@ -84,6 +84,19 @@ a {
   text-decoration: none;
 }
 
+/* Legal modal content uses white background; force black text for readability */
+.legal-modal .modal-content {
+  color: #000;
+}
+
+.legal-modal h1,
+.legal-modal h2,
+.legal-modal h3,
+.legal-modal p,
+.legal-modal li {
+  color: #000;
+}
+
 @media (max-width: 768px) {
   nav {
     flex-direction: column;
