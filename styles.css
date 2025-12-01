@@ -1,7 +1,15 @@
 /* Global Styles */
+@font-face {
+  font-family: 'IC3Font';
+  src: url('IC3font-Regular.otf') format('opentype'),
+       url('IC3font-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 body {
   margin: 0;
-  font-family: 'Barlow Condensed', sans-serif;
+  font-family: 'IC3Font', 'Barlow Condensed', sans-serif;
   background-color: #0a1c2c;
   color: white;
   line-height: 1.6;
