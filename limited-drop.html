@@ -98,160 +98,75 @@
     .product-image {
       position: relative;
       width: 100%;
-      height: 100%;
-      overflow: hidden;
-    }
-    
-    .carousel {
-      width: 100%;
-      height: 100%;
-      max-height: 400px;
-    }
-    
-    .carousel-images {
       display: flex;
-      transition: transform 0.5s ease-in-out;
-      height: 100%;
-    }
-    
-    .carousel-image {
-      min-width: 100%;
-      height: 100%;
-      flex: 0 0 auto;
-      display: flex;
-      align-items: center;
       justify-content: center;
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .carousel-image img {
-      max-width: 100%;
-      max-height: 100%;
-      object-fit: contain;
-      border-radius: 12px;
-    }
-    
-    .control-btn {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 40px;
-      height: 40px;
-      background: rgba(255, 255, 255, 0.8);
-      border: none;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      font-size: 20px;
-      font-weight: bold;
-      color: #000;
-      transition: background 0.3s ease;
-      z-index: 100;
     }
 
-    .control-btn.prev {
-      left: 20px;
-    }
-
-    .control-btn.next {
-      right: 20px;
-    }
-
-    .control-btn:hover {
-      background: rgba(255, 255, 255, 1);
-    }
-    
-    .carousel-controls {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      display: flex;
-      gap: 0;
-      z-index: 100;
-      pointer-events: none;
-    }
-    
-    .carousel-control {
-      width: 30px;
-      height: 30px;
-      background: rgba(255, 255, 255, 0.7);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: background 0.3s ease;
-      pointer-events: auto;
-      border: 2px solid rgba(255, 255, 255, 0.8);
-    }
-    
-    .carousel-control svg {
-      width: 14px;
-      height: 14px;
-      fill: #000;
-    }
-    
-    .carousel-control:hover {
-      background: rgba(255, 255, 255, 0.25);
-    }
-    
     .carousel {
       position: relative;
       width: 100%;
+      max-width: 540px;
+      overflow: hidden;
+      border-radius: 12px;
+      background: #081225;
+      min-height: 400px;
     }
-    
+
     .carousel-images {
       display: flex;
-      transition: transform 0.5s ease-in-out;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.4s ease-in-out;
     }
-    
+
     .carousel-image {
       min-width: 100%;
-      height: auto;
-      flex: 0 0 auto;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px;
     }
-    
+
     .carousel-image img {
       width: 100%;
-      height: auto;
+      height: 100%;
+      object-fit: cover;
       border-radius: 12px;
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.35);
     }
-    
+
     .carousel-controls {
       position: absolute;
       top: 50%;
-      transform: translateY(-50%);
-      width: 100%;
+      left: 0;
+      right: 0;
       display: flex;
       justify-content: space-between;
-      padding: 0 40px;
-      z-index: 10;
+      padding: 0 15px;
+      transform: translateY(-50%);
+      pointer-events: none;
     }
-    
+
     .carousel-control {
-      width: 40px;
-      height: 40px;
-      background: rgba(255, 255, 255, 0.1);
+      width: 44px;
+      height: 44px;
       border-radius: 50%;
+      border: none;
+      background: rgba(255, 255, 255, 0.2);
+      color: #fff;
+      font-size: 24px;
+      cursor: pointer;
+      pointer-events: auto;
       display: flex;
       align-items: center;
       justify-content: center;
-      cursor: pointer;
       transition: background 0.3s ease;
+      backdrop-filter: blur(8px);
     }
-    
+
     .carousel-control:hover {
-      background: rgba(255, 255, 255, 0.2);
-    }
-    
-    .carousel-control svg {
-      width: 20px;
-      height: 20px;
-      fill: #fff;
+      background: rgba(255, 255, 255, 0.35);
     }
     
     .product-info {
@@ -629,8 +544,8 @@
           </div>
         </div>
         <div class="carousel-controls">
-          <button class="carousel-control prev" onclick="prevImage()">❮</button>
-          <button class="carousel-control next" onclick="nextImage()">❯</button>
+          <button class="carousel-control prev" type="button" aria-label="Föregående bild">❮</button>
+          <button class="carousel-control next" type="button" aria-label="Nästa bild">❯</button>
         </div>
       </div>
     </div>
@@ -651,62 +566,80 @@
   </section>
 
   <script>
-    // Update cart badge when page loads
-    updateCartBadge();
+    document.addEventListener('DOMContentLoaded', () => {
+      const track = document.querySelector('.carousel-images');
+      const slides = Array.from(document.querySelectorAll('.carousel-image'));
+      const prevBtn = document.querySelector('.carousel-control.prev');
+      const nextBtn = document.querySelector('.carousel-control.next');
+      const autoAdvanceMs = 4000;
+      let currentIndex = 0;
+      let autoAdvance;
+      let touchStartX = null;
 
-    // Carousel functionality
-    document.addEventListener('DOMContentLoaded', function() {
-      const carousel = document.querySelector('.carousel-images');
-      const images = document.querySelectorAll('.carousel-image');
-      let currentImageIndex = 0;
-      let slideInterval;
-
-      function updateCarousel() {
-        carousel.style.transform = `translateX(-${currentImageIndex * 100}%)`;
-      }
-
-      window.nextImage = function() {
-        currentImageIndex = (currentImageIndex + 1) % images.length;
-        updateCarousel();
-        resetInterval();
+      const goToSlide = (index) => {
+        currentIndex = (index + slides.length) % slides.length;
+        track.style.transform = `translateX(-${currentIndex * 100}%)`;
       };
 
-      window.prevImage = function() {
-        currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
-        updateCarousel();
-        resetInterval();
+      const showNext = () => goToSlide(currentIndex + 1);
+      const showPrev = () => goToSlide(currentIndex - 1);
+
+      const startAutoAdvance = () => {
+        autoAdvance = setInterval(showNext, autoAdvanceMs);
       };
 
-      function resetInterval() {
-        clearInterval(slideInterval);
-        slideInterval = setInterval(nextImage, 5000);
+      const resetAutoAdvance = () => {
+        clearInterval(autoAdvance);
+        startAutoAdvance();
+      };
+
+      const handleTouchStart = (event) => {
+        if (!event.touches || !event.touches.length) return;
+        touchStartX = event.touches[0].clientX;
+        clearInterval(autoAdvance);
+      };
+
+      const handleTouchEnd = (event) => {
+        if (touchStartX === null || !event.changedTouches || !event.changedTouches.length) return;
+        const deltaX = event.changedTouches[0].clientX - touchStartX;
+        if (Math.abs(deltaX) > 40) {
+          deltaX < 0 ? showNext() : showPrev();
+        }
+        touchStartX = null;
+        resetAutoAdvance();
+      };
+
+      if (track && slides.length) {
+        goToSlide(0);
+        startAutoAdvance();
+
+        prevBtn?.addEventListener('click', () => {
+          showPrev();
+          resetAutoAdvance();
+        });
+
+        nextBtn?.addEventListener('click', () => {
+          showNext();
+          resetAutoAdvance();
+        });
+
+        track.addEventListener('mouseenter', () => clearInterval(autoAdvance));
+        track.addEventListener('mouseleave', resetAutoAdvance);
+        track.addEventListener('touchstart', handleTouchStart, { passive: true });
+        track.addEventListener('touchend', handleTouchEnd, { passive: true });
       }
 
-      // Initialize carousel
-      if (carousel && images.length > 0) {
-        updateCarousel();
-        slideInterval = setInterval(nextImage, 5000);
-        
-        // Pause on hover
-        carousel.addEventListener('mouseenter', () => clearInterval(slideInterval));
-        carousel.addEventListener('mouseleave', () => slideInterval = setInterval(nextImage, 5000));
-      }
+      updateCartBadge();
     });
 
-    // Auto-advance every 5 seconds
-    setInterval(nextImage, 5000);
-
     // Countdown functionality
+    const dropTarget = new Date('December 15, 2025 09:00:00 GMT+01:00').getTime();
     const countdown = () => {
       const now = new Date().getTime();
-      const dropDate = new Date('December 1, 2025 00:00:00').getTime();
-      
-      const distance = dropDate - now;
-      
-      if (distance < 0) {
-        clearInterval(timer);
-        document.getElementById('timer').innerHTML = 'Drop är nu aktivt!';
-        document.getElementById('buyButton').disabled = false;
+      const distance = dropTarget - now;
+
+      if (distance <= 0) {
+        document.getElementById('timer').textContent = 'Drop är nu aktivt!';
         return;
       }
 
@@ -715,23 +648,12 @@
       const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-      document.getElementById('timer').innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+      document.getElementById('timer').textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
     };
-    
-    // Initialize countdown
+
     countdown();
     setInterval(countdown, 1000);
 
-    // Add event listeners to all buttons
-    nextButtons.forEach(button => {
-      button.addEventListener('click', nextImage);
-    });
-
-    prevButtons.forEach(button => {
-      button.addEventListener('click', prevImage);
-    });
-
-    // Update cart badge function
     function updateCartBadge() {
       const cart = JSON.parse(localStorage.getItem('cart')) || [];
       const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);

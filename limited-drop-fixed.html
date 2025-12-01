@@ -27,26 +27,36 @@
     .carousel {
       position: relative;
       width: 100%;
+      max-width: 540px;
+      margin: 0 auto;
       overflow: hidden;
       border-radius: 12px;
+      background: #081225;
+      min-height: 400px;
     }
 
     .carousel-images {
       display: flex;
-      transition: transform 0.3s ease-in-out;
+      transition: transform 0.4s ease-in-out;
       width: 100%;
+      height: 100%;
     }
 
     .carousel-image {
       min-width: 100%;
-      transition: opacity 0.3s ease-in-out;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px;
     }
 
     .carousel-image img {
       width: 100%;
-      height: auto;
-      display: block;
+      height: 100%;
+      object-fit: cover;
       border-radius: 12px;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.35);
     }
 
     .carousel-controls {
@@ -81,44 +91,71 @@
   <script>
     // Wait for DOM to be fully loaded
     document.addEventListener('DOMContentLoaded', function() {
-      let currentImageIndex = 0;
-      const carousel = document.querySelector('.carousel-images');
-      const images = document.querySelectorAll('.carousel-image');
-      const totalImages = images.length;
-      let slideInterval;
+      const track = document.querySelector('.carousel-images');
+      const slides = Array.from(document.querySelectorAll('.carousel-image'));
+      const prevBtn = document.querySelector('.carousel-control.prev');
+      const nextBtn = document.querySelector('.carousel-control.next');
+      const autoAdvanceMs = 4000;
+      let currentIndex = 0;
+      let autoAdvance;
+      let touchStartX = null;
 
-      function updateCarousel() {
-        carousel.style.transform = `translateX(-${currentImageIndex * 100}%)`;
-      }
+      const goToSlide = (index) => {
+        currentIndex = (index + slides.length) % slides.length;
+        track.style.transform = `translateX(-${currentIndex * 100}%)`;
+      };
 
-      function nextImage() {
-        currentImageIndex = (currentImageIndex + 1) % totalImages;
-        updateCarousel();
-        resetInterval();
-      }
+      const showNext = () => {
+        goToSlide(currentIndex + 1);
+      };
 
-      function prevImage() {
-        currentImageIndex = (currentImageIndex - 1 + totalImages) % totalImages;
-        updateCarousel();
-        resetInterval();
-      }
+      const showPrev = () => {
+        goToSlide(currentIndex - 1);
+      };
 
-      function resetInterval() {
-        clearInterval(slideInterval);
-        slideInterval = setInterval(nextImage, 5000);
-      }
+      const startAutoAdvance = () => {
+        autoAdvance = setInterval(showNext, autoAdvanceMs);
+      };
 
-      // Initialize carousel
-      if (carousel && totalImages > 0) {
-        // Set initial position
-        updateCarousel();
-        
-        // Start auto-advancing
-        slideInterval = setInterval(nextImage, 5000);
-        
-        // Pause on hover
-        carousel.addEventListener('mouseenter', () => clearInterval(slideInterval));
-        carousel.addEventListener('mouseleave', () => slideInterval = setInterval(nextImage, 5000));
+      const resetAutoAdvance = () => {
+        clearInterval(autoAdvance);
+        startAutoAdvance();
+      };
+
+      const handleTouchStart = (event) => {
+        if (!event.touches || !event.touches.length) return;
+        touchStartX = event.touches[0].clientX;
+        clearInterval(autoAdvance);
+      };
+
+      const handleTouchEnd = (event) => {
+        if (touchStartX === null || !event.changedTouches || !event.changedTouches.length) return;
+        const deltaX = event.changedTouches[0].clientX - touchStartX;
+        if (Math.abs(deltaX) > 40) {
+          deltaX < 0 ? showNext() : showPrev();
+        }
+        touchStartX = null;
+        resetAutoAdvance();
+      };
+
+      if (track && slides.length) {
+        goToSlide(0);
+        startAutoAdvance();
+
+        prevBtn?.addEventListener('click', () => {
+          showPrev();
+          resetAutoAdvance();
+        });
+
+        nextBtn?.addEventListener('click', () => {
+          showNext();
+          resetAutoAdvance();
+        });
+
+        track.addEventListener('mouseenter', () => clearInterval(autoAdvance));
+        track.addEventListener('mouseleave', resetAutoAdvance);
+        track.addEventListener('touchstart', handleTouchStart, { passive: true });
+        track.addEventListener('touchend', handleTouchEnd, { passive: true });
       }
     });
   </script>
@@ -171,8 +208,8 @@
           </div>
         </div>
         <div class="carousel-controls">
-          <button class="carousel-control prev" onclick="prevImage()">❮</button>
-          <button class="carousel-control next" onclick="nextImage()">❯</button>
+          <button class="carousel-control prev" type="button" aria-label="Föregående bild">❮</button>
+          <button class="carousel-control next" type="button" aria-label="Nästa bild">❯</button>
         </div>
       </div>
     </div>
