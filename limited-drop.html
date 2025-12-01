@@ -106,10 +106,12 @@
       position: relative;
       width: 100%;
       max-width: 540px;
+      height: 440px;
       overflow: hidden;
-      border-radius: 12px;
-      background: #081225;
-      min-height: 400px;
+      border-radius: 18px;
+      background: #051024;
+      padding: 6px;
+      box-shadow: 0 25px 45px rgba(0, 0, 0, 0.35);
     }
 
     .carousel-images {
@@ -125,15 +127,16 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 10px;
+      padding: 12px;
     }
 
     .carousel-image img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      border-radius: 12px;
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.35);
+      border-radius: 16px;
+      background: #000;
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
     }
 
     .carousel-controls {
@@ -152,21 +155,29 @@
       width: 44px;
       height: 44px;
       border-radius: 50%;
-      border: none;
-      background: rgba(255, 255, 255, 0.2);
-      color: #fff;
+      border: 2px solid rgba(0, 0, 0, 0.25);
+      background: rgba(255, 255, 255, 0.95);
+      color: #000;
       font-size: 24px;
       cursor: pointer;
       pointer-events: auto;
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: background 0.3s ease;
-      backdrop-filter: blur(8px);
+      transition: background 0.3s ease, transform 0.2s;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
     }
 
     .carousel-control:hover {
-      background: rgba(255, 255, 255, 0.35);
+      background: #fff;
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 768px) {
+      .carousel {
+        height: 320px;
+        padding: 4px;
+      }
     }
     
     .product-info {
@@ -552,7 +563,7 @@
     <div class="product-info">
       <h1>IC3 DROP 01 – Face-Off Cap</h1>
       <h2>"Cold days. Hot drops."</h2>  
-      <div class="exclusive-tag">Endast 200 exemplar</div>
+      <div class="exclusive-tag">Endast 250 exemplar</div>
       <p class="price">Pris: 399 SEK</p>
       <p>
         Den icke-officiella, officiella kepsen för hockeykulturen. 

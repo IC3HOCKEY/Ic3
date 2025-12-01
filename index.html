@@ -457,7 +457,7 @@
     <div class="hero-bottom-content">
       <p class="hero-text">
         Vi presenterar DROP 01 – en limiterad IC3-keps designad för dig som lever hockeylivet, även utan hjälm. Stilren, självsäker och full av attityd – precis som communityn bakom märket.<br><br>
-        Endast 200 exemplar. Aldrig mer.
+        Endast 250 exemplar.
       </p>
     </div>
     <div class="video-container">
@@ -473,7 +473,7 @@
       <strong>Produktnamn:</strong> IC3 DROP 01 – "Face-Off Cap"
     </div>
     <div class="hat-image">
-      <img src="wetransfer_ic3-bilder_2025-11-14_1223%202/KepsD1.jpeg" alt="IC3 DROP 01 – Face-Off Cap" class="hat-img" style="max-width: 100%; height: auto; border-radius: 8px;">
+      <img src="assets/limited-drop/KepsD1.jpeg" alt="IC3 DROP 01 – Face-Off Cap" class="hat-img" style="max-width: 100%; height: auto; border-radius: 8px;">
     </div>
     <div class="countdown">
       <h2>Släpps om:</h2>
@@ -507,8 +507,8 @@
 
     updateCartBadge();
 
+    const dropDate = new Date('December 15, 2025 09:00:00 GMT+01:00').getTime();
     const countdown = () => {
-      const dropDate = new Date('December 1, 2025 00:00:00').getTime();
       const now = new Date().getTime();
       const timeLeft = dropDate - now;
       if (timeLeft < 0) {
@@ -521,6 +521,7 @@
       const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
       document.getElementById("timer").innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
     }
+    countdown();
     setInterval(countdown, 1000);
   </script>
 
