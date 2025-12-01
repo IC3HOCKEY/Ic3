@@ -1,50 +1,42 @@
-const express = require('express');
-const nodemailer = require('nodemailer');
-const cors = require('cors');
-const app = express();
+const http = require("http");
+const fs = require("fs");
+const path = require("path");
 
-app.use(cors());
-app.use(express.json());
-app.use(express.static(__dirname));
+const server = http.createServer((req, res) => {
+  let filePath = "." + req.url;
+  if (filePath === "./") filePath = "./limited-drop.html";
 
-// Create a transporter using Outlook
-const transporter = nodemailer.createTransport({
-    host: 'smtp.office365.com',
-    port: 587,
-    secure: false, // true for 465, false for other ports
-    auth: {
-        user: 'ic3.kontakt@outlook.com',
-        pass: 'YOUR_PASSWORD' // You'll need to set this in an environment variable
-    },
-    tls: {
-        ciphers: 'SSLv3',
-        rejectUnauthorized: false
+  const extname = String(path.extname(filePath)).toLowerCase();
+  const mimeTypes = {
+    ".html": "text/html",
+    ".js": "text/javascript",
+    ".css": "text/css",
+    ".json": "application/json",
+    ".png": "image/png",
+    ".jpg": "image/jpg",
+    ".gif": "image/gif",
+    ".svg": "image/svg+xml",
+  };
+
+  const contentType = mimeTypes[extname] || "application/octet-stream";
+
+  fs.readFile(filePath, (error, content) => {
+    if (error) {
+      if (error.code === "ENOENT") {
+        res.writeHead(404);
+        res.end("404 Not Found");
+      } else {
+        res.writeHead(500);
+        res.end("Error loading " + filePath);
+      }
+    } else {
+      res.writeHead(200, { "Content-Type": contentType });
+      res.end(content, "utf-8");
     }
+  });
 });
 
-app.post('/send-email', async (req, res) => {
-    try {
-        const { name, email, message } = req.body;
-        
-        // Email content
-        const mailOptions = {
-            from: '"IC3 Contact Form" <ic3.kontakt@outlook.com>',
-            to: 'ic3.kontakt@outlook.com',
-            subject: 'Fråga från IC3 webbplats',
-            text: `Namn: ${name}\n\nE-post: ${email}\n\nMeddelande:\n${message}`
-        };
-
-        // Send email
-        await transporter.sendMail(mailOptions);
-        
-        res.json({ success: true, message: 'E-posten har skickats!' });
-    } catch (error) {
-        console.error('Error sending email:', error);
-        res.status(500).json({ success: false, message: 'Fel vid skickandet av e-post.' });
-    }
-});
-
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
+const port = 8080;
+server.listen(port, () => {
+  console.log(`Server running at http://localhost:${port}/`);
 });

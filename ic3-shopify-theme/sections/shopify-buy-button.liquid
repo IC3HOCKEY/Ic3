@@ -1,0 +1,124 @@
+{% comment %}
+  Shopify Buy Button Section
+  
+  This section allows you to add the Shopify Buy Button to any page in your theme.
+  
+  Available settings:
+  - Collection ID (optional)
+  - Custom CSS (optional)
+{% endcomment %}
+
+{%- style -%}
+  .shopify-buy-button-section {
+    padding: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px 0 {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    margin: 0 auto;
+    max-width: {{ settings.page_width }}px;
+    width: 100%;
+  }
+  
+  @media screen and (min-width: 750px) {
+    .shopify-buy-button-section {
+      padding: {{ section.settings.padding_top }}px 0 {{ section.settings.padding_bottom }}px;
+    }
+  }
+  
+  {{ section.settings.custom_css }}
+{%- endstyle -%}
+
+<div class="shopify-buy-button-section page-width">
+  <div class="shopify-buy-button-container">
+    {% if section.settings.title != blank %}
+      <h2 class="h1" style="text-align: {{ section.settings.heading_align }}; margin-bottom: 30px;">
+        {{ section.settings.title | escape }}
+      </h2>
+    {% endif %}
+    
+    {% if section.settings.collection_id != blank %}
+      <div id='collection-component-{{ section.id }}' data-collection-id="{{ section.settings.collection_id }}"></div>
+    {% else %}
+      {% include 'shopify-buy-button' %}
+    {% endif %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Shopify Buy Button",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Shop Our Collection"
+    },
+    {
+      "type": "select",
+      "id": "heading_align",
+      "label": "Heading alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "text",
+      "id": "collection_id",
+      "label": "Collection ID (optional)",
+      "info": "Leave blank to use the default collection ID from the snippet"
+    },
+    {
+      "type": "header",
+      "content": "Section padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 36
+    },
+    {
+      "type": "header",
+      "content": "Advanced"
+    },
+    {
+      "type": "liquid",
+      "id": "custom_css",
+      "label": "Custom CSS",
+      "info": "Add custom CSS here. Use the .shopify-buy-button-section selector to target this section."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Shopify Buy Button",
+      "category": "Collection"
+    }
+  ]
+}
+{% endschema %}

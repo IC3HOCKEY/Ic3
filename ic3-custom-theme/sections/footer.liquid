@@ -1,0 +1,198 @@
+<footer class="footer">
+  <div class="footer__content">
+    <div class="footer__top">
+      <div class="footer__logo">
+        <a href="/" class="footer__logo-link">
+          {% if section.settings.logo != blank %}
+            <img src="{{ section.settings.logo | img_url: 'x100' }}" alt="{{ shop.name }}">
+          {% else %}
+            <span class="footer__logo-text">{{ shop.name }}</span>
+          {% endif %}
+        </a>
+      </div>
+      
+      <div class="footer__menus">
+        {% for block in section.blocks %}
+          {% if block.type == 'menu' %}
+            <div class="footer__menu">
+              <h3 class="footer__heading">{{ block.settings.title }}</h3>
+              <ul class="footer__menu-list">
+                {% for link in linklists[block.settings.menu].links %}
+                  <li class="footer__menu-item">
+                    <a href="{{ link.url }}" class="footer__menu-link">{{ link.title }}</a>
+                  </li>
+                {% endfor %}
+              </ul>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+    
+    <div class="footer__bottom">
+      <p class="footer__copyright">&copy; {{ 'now' | date: "%Y" }} {{ shop.name }}. {{ section.settings.copyright_text }}</p>
+      
+      {% if section.settings.show_social_icons %}
+        <div class="footer__social">
+          {% if settings.social_facebook_link != blank %}
+            <a href="{{ settings.social_facebook_link }}" target="_blank" class="footer__social-link">FB</a>
+          {% endif %}
+          {% if settings.social_instagram_link != blank %}
+            <a href="{{ settings.social_instagram_link }}" target="_blank" class="footer__social-link">IG</a>
+          {% endif %}
+          {% if settings.social_twitter_link != blank %}
+            <a href="{{ settings.social_twitter_link }}" target="_blank" class="footer__social-link">TW</a>
+          {% endif %}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo"
+    },
+    {
+      "type": "text",
+      "id": "copyright_text",
+      "label": "Copyright text",
+      "default": "All rights reserved."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_social_icons",
+      "label": "Show social icons",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "menu",
+      "name": "Menu",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Quick Links"
+        },
+        {
+          "type": "link_list",
+          "id": "menu",
+          "label": "Menu",
+          "default": "footer"
+        }
+      ]
+    }
+  ],
+  "default": {
+    "blocks": [
+      {
+        "type": "menu"
+      }
+    ]
+  }
+}
+{% endschema %}
+
+<style>
+  .footer {
+    background: #1a1a1a;
+    color: #fff;
+    padding: 3rem 0 0;
+  }
+  
+  .footer__content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+  
+  .footer__top {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  .footer__logo img {
+    max-height: 40px;
+    width: auto;
+  }
+  
+  .footer__logo-text {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #fff;
+  }
+  
+  .footer__heading {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0 0 1rem;
+    color: #fff;
+  }
+  
+  .footer__menu-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .footer__menu-item {
+    margin-bottom: 0.5rem;
+  }
+  
+  .footer__menu-link {
+    color: #bbb;
+    text-decoration: none;
+    font-size: 0.95rem;
+  }
+  
+  .footer__menu-link:hover {
+    color: #fff;
+  }
+  
+  .footer__bottom {
+    border-top: 1px solid #333;
+    padding: 1.5rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  
+  .footer__copyright {
+    color: #777;
+    font-size: 0.85rem;
+    margin: 0;
+  }
+  
+  .footer__social {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .footer__social-link {
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  @media (max-width: 768px) {
+    .footer__top {
+      grid-template-columns: 1fr;
+    }
+    
+    .footer__bottom {
+      flex-direction: column;
+      text-align: center;
+      gap: 1rem;
+    }
+  }
+</style>

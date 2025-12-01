@@ -1,0 +1,26 @@
+node_modules/
+dist/
+.cache/
+.env
+.env.*
+
+# macOS cruft
+.DS_Store
+
+# Python
+__pycache__/
+*.pyc
+
+# Archives and artifacts
+*.zip
+*.tar
+*.tar.gz
+*.log
+
+# Design exports
+*.ai
+*.psd
+
+# Generated media
+*.mp4
+*.mov

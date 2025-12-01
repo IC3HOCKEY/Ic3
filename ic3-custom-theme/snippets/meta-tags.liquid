@@ -1,0 +1,84 @@
+{%- if template == 'index' -%}
+  <title>{{ shop.name }} | {{ page_title }}</title>
+{%- elsif template == '404' -%}
+  <title>{{ 'general.404.title' | t }} | {{ shop.name }}</title>
+{%- else -%}
+  <title>{{ page_title }} | {{ shop.name }}</title>
+{%- endif -%}
+
+{%- if page_description -%}
+  <meta name="description" content="{{ page_description | escape }}">
+{%- endif -%}
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<!-- Social Meta Tags -->
+<meta property="og:site_name" content="{{ shop.name }}">
+<meta property="og:url" content="{{ canonical_url }}">
+<meta property="og:title" content="{{ page_title }}">
+{% if template == 'product' %}
+  <meta property="og:type" content="product">
+  <meta property="og:price:amount" content="{{ product.price | money_without_currency | strip_html }}">
+  <meta property="og:price:currency" content="{{ shop.currency }}">
+  {% if product.featured_image %}
+    <meta property="og:image" content="http:{{ product.featured_image | img_url: 'master' }}">
+    <meta property="og:image:secure_url" content="https:{{ product.featured_image | img_url: 'master' }}">
+  {% endif %}
+{% elsif template == 'article' %}
+  <meta property="og:type" content="article">
+  {% if article.image %}
+    <meta property="og:image" content="http:{{ article.image | img_url: 'master' }}">
+    <meta property="og:image:secure_url" content="https:{{ article.image | img_url: 'master' }}">
+  {% endif %}
+{% else %}
+  <meta property="og:type" content="website">
+  {% if settings.share_image %}
+    <meta property="og:image" content="http:{{ settings.share_image | img_url: 'master' }}">
+    <meta property="og:image:secure_url" content="https:{{ settings.share_image | img_url: 'master' }}">
+  {% endif %}
+{% endif %}
+
+{% if template == 'product' and product.description %}
+  <meta property="og:description" content="{{ product.description | strip_html | escape }}">
+{% elsif template == 'article' and article.excerpt != blank %}
+  <meta property="og:description" content="{{ article.excerpt | strip_html | escape }}">
+{% elsif page_description %}
+  <meta property="og:description" content="{{ page_description | escape }}">
+{% endif %}
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ page_title }}">
+{% if template == 'product' and product.description %}
+  <meta name="twitter:description" content="{{ product.description | strip_html | truncate: 200, '' | escape }}">
+{% elsif template == 'article' and article.excerpt != blank %}
+  <meta name="twitter:description" content="{{ article.excerpt | strip_html | truncate: 200, '' | escape }}">
+{% elsif page_description %}
+  <meta name="twitter:description" content="{{ page_description | escape }}">
+{% endif %}
+
+{% if template == 'product' and product.featured_image %}
+  <meta name="twitter:image" content="https:{{ product.featured_image | img_url: '1024x1024' }}">
+{% elsif template == 'article' and article.image %}
+  <meta name="twitter:image" content="https:{{ article.image | img_url: '1024x1024' }}">
+{% elsif settings.share_image %}
+  <meta name="twitter:image" content="https:{{ settings.share_image | img_url: '1024x1024' }}">
+{% endif %}
+
+<!-- Canonical URL -->
+<link rel="canonical" href="{{ canonical_url }}">
+
+<!-- Favicon -->
+{% if settings.favicon != blank %}
+  <link rel="shortcut icon" href="{{ settings.favicon | img_url: '32x32' }}" type="image/png">
+{% endif %}
+
+<!-- RSS Feed -->
+{% if template contains 'blog' %}
+  <link rel="alternate" type="application/rss+xml" title="{{ shop.name }} - {{ blog.title }}" href="{{ blog.url }}.atom">
+{% endif %}
+
+<!-- Theme CSS -->
+{{ 'theme.css' | asset_url | stylesheet_tag }}

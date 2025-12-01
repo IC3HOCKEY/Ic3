@@ -1,0 +1,61 @@
+{% section 'product-template' %}
+
+{% section 'related-products' %}
+
+<script>
+  // Shopify required scripts
+  document.addEventListener('DOMContentLoaded', function() {
+    // Initialize quantity selectors
+    document.querySelectorAll('.quantity-selector button').forEach(button => {
+      button.addEventListener('click', function() {
+        const input = this.parentNode.querySelector('input');
+        let value = parseInt(input.value);
+        
+        if (this.classList.contains('plus')) {
+          value++;
+        } else if (this.classList.contains('minus') && value > 1) {
+          value--;
+        }
+        
+        input.value = value;
+      });
+    });
+
+    // Add to cart functionality
+    document.querySelectorAll('.add-to-cart').forEach(button => {
+      button.addEventListener('click', function() {
+        const productId = this.dataset.id;
+        const quantity = parseInt(document.querySelector('.quantity-selector input').value);
+        
+        fetch('/cart/add.js', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify({
+            items: [{
+              id: productId,
+              quantity: quantity
+            }]
+          })
+        })
+        .then(response => response.json())
+        .then(data => {
+          // Update cart count
+          const cartCount = document.querySelector('.cart-count');
+          if (cartCount) {
+            cartCount.textContent = data.item_count;
+          }
+          
+          // Show success message
+          alert('Product added to cart!');
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          alert('Error adding product to cart');
+        });
+      });
+    });
+  });
+</script>

@@ -1,0 +1,85 @@
+{% if section.settings.show_announcement %}
+<div class="announcement-bar" role="region" aria-label="Announcement">
+  <div class="announcement-bar__content">
+    {% if section.settings.announcement_link != blank %}
+      <a href="{{ section.settings.announcement_link }}" class="announcement-bar__link">
+    {% endif %}
+      <p class="announcement-bar__message">{{ section.settings.announcement_text | escape }}</p>
+    {% if section.settings.announcement_link != blank %}
+      </a>
+    {% endif %}
+  </div>
+</div>
+
+<style>
+  .announcement-bar {
+    background-color: #111;
+    color: #fff;
+    text-align: center;
+    padding: 0.8rem 1.5rem;
+    position: relative;
+    z-index: 100;
+    border-bottom: 1px solid #333;
+  }
+  
+  .announcement-bar__content {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  
+  .announcement-bar__message {
+    margin: 0;
+    font-size: 1.4rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    font-family: 'Barlow Condensed', sans-serif;
+  }
+  
+  .announcement-bar__link {
+    color: #fff;
+    text-decoration: none;
+    transition: opacity 0.3s ease;
+  }
+  
+  .announcement-bar__link:hover {
+    color: #99dffb;
+    text-decoration: none;
+  }
+  
+  @media screen and (max-width: 768px) {
+    .announcement-bar {
+      padding: 0.6rem 1rem;
+    }
+    
+    .announcement-bar__message {
+      font-size: 1.2rem;
+    }
+  }
+</style>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Announcement bar",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_announcement",
+      "label": "Show announcement",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "announcement_text",
+      "label": "Announcement text",
+      "default": "Free shipping on all orders over 500 SEK"
+    },
+    {
+      "type": "url",
+      "id": "announcement_link",
+      "label": "Announcement link"
+    }
+  ]
+}
+{% endschema %}

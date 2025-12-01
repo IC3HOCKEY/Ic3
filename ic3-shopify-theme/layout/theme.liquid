@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0a1c2c">
+  <meta name="description" content="{{ page_description | default: shop.description | escape }}">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  
+  <!-- Canonical URL -->
+  <link rel="canonical" href="{{ canonical_url }}">
+  
+  <!-- Preload critical assets -->
+  <link rel="preload" href="{{ 'theme.css.liquid' | asset_url }}" as="style">
+  <link rel="preload" href="{{ 'theme.js' | asset_url }}" as="script">
+  
+  <title>{% if template == 'index' %}{{ shop.name }}{% else %}{{ page_title }} | {{ shop.name }}{% endif %}</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" href="{{ 'logaic3.png' | asset_img_url: '32x32' }}" type="image/png">
+  
+  <!-- Preconnect to external domains -->
+  <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Barlow+Condensed:wght@400;700&display=swap" rel="stylesheet">
+  
+  <!-- Theme CSS -->
+  {{ 'theme-settings.css.liquid' | asset_url | stylesheet_tag }}
+  {{ 'theme.css.liquid' | asset_url | stylesheet_tag }}
+  
+  <!-- Shopify required scripts -->
+  {{ content_for_header }}
+  
+  <!-- Theme settings -->
+  <script>
+    window.theme = {
+      strings: {
+        addToCart: '{{ 'products.product.add_to_cart' | t }}',
+        soldOut: '{{ 'products.product.sold_out' | t }}',
+        unavailable: '{{ 'products.product.unavailable' | t }}'
+      },
+      moneyFormat: {{ shop.money_format | json }}
+    };
+  </script>
+</head>
+
+<body class="template-{{ template | split: '.' | first }} {{ template | handleize }}" id="{{ page_title | handle }}">
+  {% section 'announcement-bar' %}
+  {% section 'header' %}
+  
+  <main role="main" id="MainContent" class="main-content">
+    {{ content_for_layout }}
+  </main>
+  
+  {% section 'footer' %}
+  
+  <!-- Theme JavaScript -->
+  {{ 'theme.js' | asset_url | script_tag | defer: true }}
+  
+  <!-- jQuery (required by some Shopify features) -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  
+  <!-- Shopify scripts -->
+  {{ 'option_selection.js' | shopify_asset_url | script_tag | defer: true }}
+  {{ 'api.jquery.js' | shopify_asset_url | script_tag | defer: true }}
+  
+  <!-- Initialize theme -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Initialize any theme-wide JavaScript here
+      if (typeof jQuery !== 'undefined') {
+        // Initialize any jQuery plugins here
+      }
+      
+      // Initialize any theme-specific functionality
+      if (typeof window.theme === 'undefined') {
+        window.theme = {};
+      }
+      
+      // Add any global theme settings
+      window.theme = Object.assign({
+        strings: {
+          addToCart: '{{ 'products.product.add_to_cart' | t }}',
+          soldOut: '{{ 'products.product.sold_out' | t }}',
+          unavailable: '{{ 'products.product.unavailable' | t }}',
+          addToCartSuccess: '{{ 'products.product.added_to_cart' | t }}',
+          cartError: '{{ 'cart.general.error' | t }}',
+          quantityTooHigh: '{{ 'cart.general.quantity_too_high' | t }}',
+          cartEmpty: '{{ 'cart.general.empty' | t }}',
+          cartItemsOne: '{{ 'cart.general.items_with_count.one' | t }}',
+          cartItemsOther: '{{ 'cart.general.items_with_count.other' | t }}',
+          continueShopping: '{{ 'cart.general.continue_shopping' | t }}',
+          cartTitle: '{{ 'cart.general.title' | t }}',
+          cartTotal: '{{ 'cart.general.total' | t }}',
+          cartCheckout: '{{ 'cart.general.checkout' | t }}',
+          cartViewCart: '{{ 'cart.general.view_cart' | t }}',
+          cartContinueShopping: '{{ 'cart.general.continue_shopping' | t }}',
+          cartRemove: '{{ 'cart.general.remove' | t }}',
+          cartQuantity: '{{ 'cart.label.quantity' | t }}',
+          cartPrice: '{{ 'cart.label.price' | t }}',
+          cartTotal: '{{ 'cart.label.total' | t }}',
+          cartNoItems: '{{ 'cart.general.empty' | t }}',
+          cartTermsAndConditions: '{{ 'cart.general.terms_and_conditions' | t }}',
+          cartShippingPolicy: '{{ 'cart.general.shipping_policy_html' | t }}',
+          cartRefundPolicy: '{{ 'cart.general.refund_policy_html' | t }}',
+          cartPrivacyPolicy: '{{ 'cart.general.privacy_policy_html' | t }}',
+          cartTermsOfService: '{{ 'cart.general.terms_of_service_html' | t }}',
+          cartContinueShopping: '{{ 'cart.general.continue_shopping' | t }}',
+          cartUpdate: '{{ 'cart.general.update' | t }}',
+          cartSubtotal: '{{ 'cart.general.subtotal' | t }}',
+          cartTaxesAndShippingAtCheckout: '{{ 'cart.general.taxes_and_shipping_at_checkout' | t }}',
+          cartTaxesAndShippingPolicy: '{{ 'cart.general.taxes_and_shipping_policy_at_checkout_html' | t }}',
+          cartTaxesIncludedAndShippingAtCheckout: '{{ 'cart.general.taxes_included_and_shipping_at_checkout' | t }}',
+          cartTaxesIncludedAndShippingPolicy: '{{ 'cart.general.taxes_included_and_shipping_policy_at_checkout_html' | t }}',
+          cartTaxesAndShippingAtCheckoutOrCalculatedAtCheckout: '{{ 'cart.general.taxes_and_shipping_at_checkout_or_calculated_at_checkout' | t }}',
+          cartTaxesAndShippingPolicyAtCheckoutOrCalculatedAtCheckout: '{{ 'cart.general.taxes_and_shipping_policy_at_checkout_or_calculated_at_checkout_html' | t }}',
+          cartTaxesIncludedAndShippingAtCheckoutOrCalculatedAtCheckout: '{{ 'cart.general.taxes_included_and_shipping_at_checkout_or_calculated_at_checkout' | t }}',
+          cartTaxesIncludedAndShippingPolicyAtCheckoutOrCalculatedAtCheckout: '{{ 'cart.general.taxes_included_and_shipping_policy_at_checkout_or_calculated_at_checkout_html' | t }}',
+          cartTaxesAndShippingCalculatedAtCheckout: '{{ 'cart.general.taxes_and_shipping_calculated_at_checkout' | t }}',
+          cartTaxesAndShippingPolicyCalculatedAtCheckout: '{{ 'cart.general.taxes_and_shipping_policy_calculated_at_checkout_html' | t }}',
+          cartTaxesIncludedAndShippingCalculatedAtCheckout: '{{ 'cart.general.taxes_included_and_shipping_calculated_at_checkout' | t }}',
+          cartTaxesIncludedAndShippingPolicyCalculatedAtCheckout: '{{ 'cart.general.taxes_included_and_shipping_policy_calculated_at_checkout_html' | t }}',
+          cartTaxesAndShippingAtCheckoutOrCalculatedAtCheckout: '{{ 'cart.general.taxes_and_shipping_at_checkout_or_calculated_at_checkout' | t }}',
+          cartTaxesAndShippingPolicyAtCheckoutOrCalculatedAtCheckout: '{{ 'cart.general.taxes_and_shipping_policy_at_checkout_or_calculated_at_checkout_html' | t }}',
+          cartTaxesIncludedAndShippingAtCheckoutOrCalculatedAtCheckout: '{{ 'cart.general.taxes_included_and_shipping_at_checkout_or_calculated_at_checkout' | t }}',
+          cartTaxesIncludedAndShippingPolicyAtCheckoutOrCalculatedAtCheckout: '{{ 'cart.general.taxes_included_and_shipping_policy_at_checkout_or_calculated_at_checkout_html' | t }}',
+          cartTaxesAndShippingCalculatedAtCheckout: '{{ 'cart.general.taxes_and_shipping_calculated_at_checkout' | t }}',
+          cartTaxesAndShippingPolicyCalculatedAtCheckout: '{{ 'cart.general.taxes_and_shipping_policy_calculated_at_checkout_html' | t }}',
+          cartTaxesIncludedAndShippingCalculatedAtCheckout: '{{ 'cart.general.taxes_included_and_shipping_calculated_at_checkout' | t }}',
+          cartTaxesIncludedAndShippingPolicyCalculatedAtCheckout: '{{ 'cart.general.taxes_included_and_shipping_policy_calculated_at_checkout_html' | t }}'
+        },
+        moneyFormat: {{ shop.money_format | json }},
+        moneyWithCurrencyFormat: {{ shop.money_with_currency_format | json }},
+        cart: {{ cart | json }},
+        routes: {
+          cart: '{{ routes.cart_url }}',
+          cartAdd: '{{ routes.cart_add_url }}',
+          cartChange: '{{ routes.cart_change_url }}',
+          cartUpdate: '{{ routes.cart_update_url }}',
+          cartClear: '{{ routes.cart_clear_url }}',
+          predictiveSearch: '{{ routes.predictive_search_url }}',
+          productRecommendations: '{{ routes.product_recommendations_url }}',
+          search: '{{ routes.search_url }}',
+          account: '{{ routes.account_url }}',
+          accountLogin: '{{ routes.account_login_url }}',
+          accountRegister: '{{ routes.account_register_url }}',
+          accountAddresses: '{{ routes.account_addresses_url }}',
+          accountLogout: '{{ routes.account_logout_url }}',
+          accountRecover: '{{ routes.account_recover_url }}',
+          accountActivate: '{{ routes.account_activate_url }}',
+          accountReset: '{{ routes.account_reset_url }}',
+          accountOrders: '{{ routes.account_orders_url }}',
+          accountOrder: '{{ routes.account_order_url }}',
+          accountOrderCancel: '{{ routes.account_order_cancel_url }}',
+          accountOrderAddress: '{{ routes.account_order_address_url }}',
+          accountOrderPayment: '{{ routes.account_order_payment_url }}',
+          accountOrderShipping: '{{ routes.account_order_shipping_url }}',
+          accountOrderStatus: '{{ routes.account_order_status_url }}',
+          accountOrderTrack: '{{ routes.account_order_track_url }}',
+          accountOrderReturn: '{{ routes.account_order_return_url }}',
+          accountOrderExchange: '{{ routes.account_order_exchange_url }}',
+          accountOrderRefund: '{{ routes.account_order_refund_url }}',
+          accountOrderInvoice: '{{ routes.account_order_invoice_url }}',
+          accountOrderReceipt: '{{ routes.account_order_receipt_url }}',
+          accountOrderInvoicePdf: '{{ routes.account_order_invoice_pdf_url }}',
+          accountOrderReceiptPdf: '{{ routes.account_order_receipt_pdf_url }}',
+          accountOrderInvoicePrint: '{{ routes.account_order_invoice_print_url }}',
+          accountOrderReceiptPrint: '{{ routes.account_order_receipt_print_url }}',
+          accountOrderInvoiceEmail: '{{ routes.account_order_invoice_email_url }}',
+          accountOrderReceiptEmail: '{{ routes.account_order_receipt_email_url }}',
+          accountOrderInvoiceSms: '{{ routes.account_order_invoice_sms_url }}',
+          accountOrderReceiptSms: '{{ routes.account_order_receipt_sms_url }}',
+          accountOrderInvoiceDownload: '{{ routes.account_order_invoice_download_url }}',
+          accountOrderReceiptDownload: '{{ routes.account_order_receipt_download_url }}',
+          accountOrderInvoiceView: '{{ routes.account_order_invoice_view_url }}',
+          accountOrderReceiptView: '{{ routes.account_order_receipt_view_url }}',
+          accountOrderInvoicePrintView: '{{ routes.account_order_invoice_print_view_url }}',
+          accountOrderReceiptPrintView: '{{ routes.account_order_receipt_print_view_url }}',
+          accountOrderInvoiceEmailView: '{{ routes.account_order_invoice_email_view_url }}',
+          accountOrderReceiptEmailView: '{{ routes.account_order_receipt_email_view_url }}',
+          accountOrderInvoiceSmsView: '{{ routes.account_order_invoice_sms_view_url }}',
+          accountOrderReceiptSmsView: '{{ routes.account_order_receipt_sms_view_url }}',
+          accountOrderInvoiceDownloadView: '{{ routes.account_order_invoice_download_view_url }}',
+          accountOrderReceiptDownloadView: '{{ routes.account_order_receipt_download_view_url }}',
+          accountOrderInvoicePdfView: '{{ routes.account_order_invoice_pdf_view_url }}',
+          accountOrderReceiptPdfView: '{{ routes.account_order_receipt_pdf_view_url }}',
+          accountOrderInvoicePrintView: '{{ routes.account_order_invoice_print_view_url }}',
+          accountOrderReceiptPrintView: '{{ routes.account_order_receipt_print_view_url }}',
+          accountOrderInvoiceEmailView: '{{ routes.account_order_invoice_email_view_url }}',
+          accountOrderReceiptEmailView: '{{ routes.account_order_receipt_email_view_url }}',
+          accountOrderInvoiceSmsView: '{{ routes.account_order_invoice_sms_view_url }}',
+          accountOrderReceiptSmsView: '{{ routes.account_order_receipt_sms_view_url }}',
+          accountOrderInvoiceDownloadView: '{{ routes.account_order_invoice_download_view_url }}',
+          accountOrderReceiptDownloadView: '{{ routes.account_order_receipt_download_view_url }}',
+          accountOrderInvoicePdfView: '{{ routes.account_order_invoice_pdf_view_url }}',
+          accountOrderReceiptPdfView: '{{ routes.account_order_receipt_pdf_view_url }}',
+          accountOrderInvoicePrintView: '{{ routes.account_order_invoice_print_view_url }}',
+          accountOrderReceiptPrintView: '{{ routes.account_order_receipt_print_view_url }}',
+          accountOrderInvoiceEmailView: '{{ routes.account_order_invoice_email_view_url }}',
+          accountOrderReceiptEmailView: '{{ routes.account_order_receipt_email_view_url }}',
+          accountOrderInvoiceSmsView: '{{ routes.account_order_invoice_sms_view_url }}',
+          accountOrderReceiptSmsView: '{{ routes.account_order_receipt_sms_view_url }}',
+          accountOrderInvoiceDownloadView: '{{ routes.account_order_invoice_download_view_url }}',
+          accountOrderReceiptDownloadView: '{{ routes.account_order_receipt_download_view_url }}',
+          accountOrderInvoicePdfView: '{{ routes.account_order_invoice_pdf_view_url }}',
+          accountOrderReceiptPdfView: '{{ routes.account_order_receipt_pdf_view_url }}',
+          accountOrderInvoicePrintView: '{{ routes.account_order_invoice_print_view_url }}',
+          accountOrderReceiptPrintView: '{{ routes.account_order_receipt_print_view_url }}',
+          accountOrderInvoiceEmailView: '{{ routes.account_order_invoice_email_view_url }}',
+          accountOrderReceiptEmailView: '{{ routes.account_order_receipt_email_view_url }}',
+          accountOrderInvoiceSmsView: '{{ routes.account_order_invoice_sms_view_url }}',
+          accountOrderReceiptSmsView: '{{ routes.account_order_receipt_sms_view_url }}',
+          accountOrderInvoiceDownloadView: '{{ routes.account_order_invoice_download_view_url }}',
+          accountOrderReceiptDownloadView: '{{ routes.account_order_receipt_download_view_url }}',
+          accountOrderInvoicePdfView: '{{ routes.account_order_invoice_pdf_view_url }}',
+          accountOrderReceiptPdfView: '{{ routes.account_order_receipt_pdf_view_url }}',
+          accountOrderInvoicePrintView: '{{ routes.account_order_invoice_print_view_url }}',
+          accountOrderReceiptPrintView: '{{ routes.account_order_receipt_print_view_url }}',
+          accountOrderInvoiceEmailView: '{{ routes.account_order_invoice_email_view_url }}',
+          accountOrderReceiptEmailView: '{{ routes.account_order_receipt_email_view_url }}',
+          accountOrderInvoiceSmsView: '{{ routes.account_order_invoice_sms_view_url }}',
+          accountOrderReceiptSmsView: '{{ routes.account_order_receipt_sms_view_url }}',
+          accountOrderInvoiceDownloadView: '{{ routes.account_order_invoice_download_view_url }}',
+          accountOrderReceiptDownloadView: '{{ routes.account_order_receipt_download_view_url }}',
+          accountOrderInvoicePdfView: '{{ routes.account_order_invoice_pdf_view_url }}',
+          accountOrderReceiptPdfView: '{{ routes.account_order_receipt_pdf_view_url }}'
+        },
+        locale: {
+          primary: {{ request.locale.primary | json }},
+          rootUrl: {{ request.locale.root_url | json }},
+          primaryLocaleRootUrl: {{ request.locale.primary_locale_root_url | json }},
+          isoCode: {{ request.locale.iso_code | json }},
+          name: {{ request.locale.name | json }},
+          endonymName: {{ request.locale.endonym_name | json }},
+          primary: {{ request.locale.primary | json }},
+          direction: {{ request.locale.direction | json }},
+          rootUrl: {{ request.locale.root_url | json }},
+          primaryLocaleRootUrl: {{ request.locale.primary_locale_root_url | json }},
+          isoCode: {{ request.locale.iso_code | json }},
+          name: {{ request.locale.name | json }},
+          endonymName: {{ request.locale.endonym_name | json }},
+          primary: {{ request.locale.primary | json }},
+          direction: {{ request.locale.direction | json }},
+          rootUrl: {{ request.locale.root_url | json }},
+          primaryLocaleRootUrl: {{ request.locale.primary_locale_root_url | json }},
+          isoCode: {{ request.locale.iso_code | json }},
+          name: {{ request.locale.name | json }},
+          endonymName: {{ request.locale.endonym_name | json }},
+          primary: {{ request.locale.primary | json }},
+          direction: {{ request.locale.direction | json }}
+        },
+        shop: {
+          name: {{ shop.name | json }},
+          url: {{ shop.url | json }},
+          domain: {{ shop.domain | json }},
+          permanent_domain: {{ shop.permanent_domain | json }},
+          email: {{ shop.email | json }},
+          customer_accounts_enabled: {{ shop.customer_accounts_enabled | json }},
+          customer_accounts_optional: {{ shop.customer_accounts_optional | json }},
+          checkout_url: {{ shop.checkout_url | json }},
+          secure_url: {{ shop.secure_url | json }},
+          currency: {{ shop.currency | json }},
+          money_format: {{ shop.money_format | json }},
+          money_with_currency_format: {{ shop.money_with_currency_format | json }},
+          currency_code: {{ shop.currency_code | json }},
+          published_locales: {{ shop.published_locales | json }},
+          published_locales_primary: {{ shop.published_locales_primary | json }},
+          published_locales_alternate: {{ shop.published_locales_alternate | json }},
+          published_locales_available: {{ shop.published_locales_available | json }},
+          published_locales_unavailable: {{ shop.published_locales_unavailable | json }},
+          published_locales: {{ shop.published_locales | json }},
+          published_locales_primary: {{ shop.published_locales_primary | json }},
+          published_locales_alternate: {{ shop.published_locales_alternate | json }},
+          published_locales_available: {{ shop.published_locales_available | json }},
+          published_locales_unavailable: {{ shop.published_locales_unavailable | json }},
+          published_locales: {{ shop.published_locales | json }},
+          published_locales_primary: {{ shop.published_locales_primary | json }},
+          published_locales_alternate: {{ shop.published_locales_alternate | json }},
+          published_locales_available: {{ shop.published_locales_available | json }},
+          published_locales_unavailable: {{ shop.published_locales_unavailable | json }}
+        },
+        template: '{{ template | split: "." | first }}',
+        template_suffix: '{{ template.suffix }}',
+        page_title: '{{ page_title | escape }}',
+        page_description: '{{ page_description | escape }}',
+        page_author: '{{ shop.name | escape }}',
+        page_image: '{{ page_image | img_url: "1024x" | default: "" }}',
+        page_url: '{{ canonical_url }}',
+        page_type: '{{ request.page_type }}',
+        page_handle: '{{ page.handle | default: "" }}',
+        page_id: '{{ page.id | default: "" }}',
+        page_title_handle: '{{ page_title | handle }}',
+        page_description_handle: '{{ page_description | handle }}',
+        page_author_handle: '{{ shop.name | handle }}',
+        page_image_handle: '{{ page_image | img_url: "1024x" | default: "" | handle }}',
+        page_url_handle: '{{ canonical_url | handle }}',
+        page_type_handle: '{{ request.page_type | handle }}',
+        page_handle_handle: '{{ page.handle | default: "" | handle }}',
+        page_id_handle: '{{ page.id | default: "" | handle }}'
+      }, window.theme || {});
+      
+      // Initialize any theme functionality that needs to run after the DOM is loaded
+      document.dispatchEvent(new Event('theme:initialized'));
+    });
+  </script>
+</body>
+</html>

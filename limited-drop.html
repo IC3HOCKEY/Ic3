@@ -424,6 +424,153 @@
         margin: 2rem 0;
       }
     }
+
+    /* Footer and Cookie Banner Styles */
+    .footer {
+      background-color: #1f2839;
+      color: white;
+      text-align: center;
+      padding: 2rem 0;
+      border-top: 3px solid #99dffb;
+    }
+    .footer a {
+      color: white;
+    }
+    .footer .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+    .footer-links {
+      display: flex;
+      gap: 2rem;
+    }
+    .cookie-banner {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: #253042;
+      color: white;
+      padding: 1rem;
+      z-index: 1000;
+      display: none;
+      border-top: 3px solid #99dffb;
+    }
+    .cookie-banner .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .cookie-banner button {
+      background: #1f2839;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .cookie-banner .primary {
+      background: #99dffb;
+      color: #000;
+    }
+    .cookie-settings {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 2000;
+      display: none;
+    }
+    .cookie-settings.show {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .cookie-settings .modal {
+      background: white;
+      padding: 2rem;
+      border-radius: 8px;
+      max-width: 600px;
+      width: 90%;
+    }
+    .cookie-settings h2 {
+      margin-top: 0;
+    }
+    .cookie-settings .category {
+      margin: 1rem 0;
+    }
+    .cookie-settings label {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    /* Legal Modal Styles */
+    .legal-modal {
+      display: none;
+      position: fixed;
+      z-index: 3000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+    .legal-modal.show {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-content {
+      background-color: #fefefe;
+      margin: 5% auto;
+      padding: 2rem;
+      padding-top: 3rem;
+      border: 1px solid #888;
+      width: 80%;
+      max-width: 800px;
+      position: relative;
+      border-radius: 8px;
+      max-height: 80vh;
+      overflow-y: auto;
+    }
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      position: absolute;
+      top: 0;
+      right: 0;
+      cursor: pointer;
+      padding: 1rem;
+    }
+    .close:hover,
+    .close:focus {
+      color: black;
+      text-decoration: none;
+    }
+    #modal-body h1 {
+      color: #253042;
+      margin-bottom: 1rem;
+    }
+    #modal-body h2 {
+      color: #253042;
+      margin-top: 1.5rem;
+    }
+    #modal-body p {
+      margin-bottom: 1rem;
+    }
   </style>
 </head>
 <body>
@@ -443,7 +590,7 @@
         <a href="om-oss.html">Om oss</a>
         <a href="kontakt.html">Kontakt</a>
         <a href="cart.html" class="cart-link">
-          <img src="målbur.png" alt="Shopping Cart" width="24" height="24" style="filter: brightness(0) invert(1);">
+          <img src="hockey-goal.png" alt="Shopping Cart" width="24" height="24" style="filter: brightness(0) invert(1);">
           <span class="cart-badge" id="cart-badge">0</span>
         </a>
       </div>
@@ -460,20 +607,30 @@
       <div class="carousel">
         <div class="carousel-images" id="carouselImages">
           <div class="carousel-image">
-            <button class="control-btn prev" id="prevButton">←</button>
-            <img src="keps1.png" alt="IC3 Limited Drop Cap - Front View">
-            <button class="control-btn next" id="nextButton">→</button>
+            <img src="wetransfer_ic3-bilder_2025-11-14_1223%202/KepsD1.jpeg" alt="IC3 DROP 01 – Face-Off Cap Front View" class="product-img">
           </div>
           <div class="carousel-image">
-            <button class="control-btn prev" id="prevButton">←</button>
-            <img src="keps2.png" alt="IC3 Limited Drop Cap - Side View">
-            <button class="control-btn next" id="nextButton">→</button>
+            <img src="wetransfer_ic3-bilder_2025-11-14_1223%202/KepsD2.jpeg" alt="IC3 DROP 01 – Face-Off Cap Side View" class="product-img">
           </div>
           <div class="carousel-image">
-            <button class="control-btn prev" id="prevButton">←</button>
-            <img src="keps3.png" alt="IC3 Limited Drop Cap - Back View">
-            <button class="control-btn next" id="nextButton">→</button>
+            <img src="wetransfer_ic3-bilder_2025-11-14_1223%202/KepsD3.jpeg" alt="IC3 DROP 01 – Face-Off Cap Detail View" class="product-img">
           </div>
+          <div class="carousel-image">
+            <img src="wetransfer_ic3-bilder_2025-11-14_1223%202/KepsD4.jpeg" alt="IC3 DROP 01 – Face-Off Cap Back View" class="product-img">
+          </div>
+          <div class="carousel-image">
+            <img src="wetransfer_ic3-bilder_2025-11-14_1223%202/KepsD5.jpeg" alt="IC3 DROP 01 – Face-Off Cap Worn View" class="product-img">
+          </div>
+          <div class="carousel-image">
+            <img src="wetransfer_ic3-bilder_2025-11-14_1223%202/KepsD6.jpeg" alt="IC3 DROP 01 – Face-Off Cap Side Profile" class="product-img">
+          </div>
+          <div class="carousel-image">
+            <img src="wetransfer_ic3-bilder_2025-11-14_1223%202/KepsD7.jpeg" alt="IC3 DROP 01 – Face-Off Cap Logo Detail" class="product-img">
+          </div>
+        </div>
+        <div class="carousel-controls">
+          <button class="carousel-control prev" onclick="prevImage()">❮</button>
+          <button class="carousel-control next" onclick="nextImage()">❯</button>
         </div>
       </div>
     </div>
@@ -488,8 +645,7 @@
         Stilren, självsäker och full av attityd, precis som communityn bakom märket.
       </p>
       <div class="buy-options">
-        <button class="buy-button" id="buyButton" disabled>Köp nu</button>
-        <button class="add-to-cart" onclick="addToCart()">Lägg i varukorg</button>
+        <button class="add-to-cart" onclick="addToCartLimited()">Lägg i varukorg</button>
       </div>
     </div>
   </section>
@@ -499,35 +655,42 @@
     updateCartBadge();
 
     // Carousel functionality
-    const carouselImages = document.getElementById('carouselImages');
-    const prevButtons = document.querySelectorAll('.control-btn.prev');
-    const nextButtons = document.querySelectorAll('.control-btn.next');
-    let currentImage = 0;
-    const totalImages = carouselImages.children.length;
+    document.addEventListener('DOMContentLoaded', function() {
+      const carousel = document.querySelector('.carousel-images');
+      const images = document.querySelectorAll('.carousel-image');
+      let currentImageIndex = 0;
+      let slideInterval;
 
-    const updateCarousel = (newIndex) => {
-      currentImage = newIndex;
-      const translateX = -currentImage * 100;
-      carouselImages.style.transform = `translateX(${translateX}%)`;
-    };
+      function updateCarousel() {
+        carousel.style.transform = `translateX(-${currentImageIndex * 100}%)`;
+      }
 
-    const nextImage = () => {
-      currentImage = (currentImage + 1) % totalImages;
-      updateCarousel(currentImage);
-    };
+      window.nextImage = function() {
+        currentImageIndex = (currentImageIndex + 1) % images.length;
+        updateCarousel();
+        resetInterval();
+      };
 
-    const prevImage = () => {
-      currentImage = (currentImage - 1 + totalImages) % totalImages;
-      updateCarousel(currentImage);
-    };
+      window.prevImage = function() {
+        currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+        updateCarousel();
+        resetInterval();
+      };
 
-    // Add event listeners to all buttons
-    nextButtons.forEach(button => {
-      button.addEventListener('click', nextImage);
-    });
+      function resetInterval() {
+        clearInterval(slideInterval);
+        slideInterval = setInterval(nextImage, 5000);
+      }
 
-    prevButtons.forEach(button => {
-      button.addEventListener('click', prevImage);
+      // Initialize carousel
+      if (carousel && images.length > 0) {
+        updateCarousel();
+        slideInterval = setInterval(nextImage, 5000);
+        
+        // Pause on hover
+        carousel.addEventListener('mouseenter', () => clearInterval(slideInterval));
+        carousel.addEventListener('mouseleave', () => slideInterval = setInterval(nextImage, 5000));
+      }
     });
 
     // Auto-advance every 5 seconds
@@ -536,7 +699,7 @@
     // Countdown functionality
     const countdown = () => {
       const now = new Date().getTime();
-      const dropDate = new Date('2025-06-07T12:00:00+02:00').getTime();
+      const dropDate = new Date('December 1, 2025 00:00:00').getTime();
       
       const distance = dropDate - now;
       
@@ -578,8 +741,8 @@
       }
     }
 
-    // Add to Cart functionality
-    function addToCart() {
+    // Add to Cart functionality - limited to one product
+    function addToCartLimited() {
       const product = {
         id: 'ic3-drop-01',
         name: 'IC3 DROP 01 – Face-Off Cap',
@@ -590,22 +753,197 @@
 
       let cart = JSON.parse(localStorage.getItem('cart')) || [];
       
-      // Check if product already exists in cart
-      const existingItem = cart.find(item => item.id === product.id);
-      if (existingItem) {
-        existingItem.quantity += 1;
-      } else {
-        cart.push(product);
-      }
+      // Remove any existing items with the same ID and add only one
+      cart = cart.filter(item => item.id !== product.id);
+      cart.push(product);
+      
       localStorage.setItem('cart', JSON.stringify(cart));
       updateCartBadge();
       alert('Produkt har lagts till i varukorgen!');
     }
+  </script>
 
-    // Add click handler for buy button
-    document.getElementById('buyButton').addEventListener('click', () => {
-      window.location.href = 'https://checkout.ic3.se/products/drop-01-face-off-cap'; // Updated checkout URL
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-links">
+        <a href="#" onclick="openModal('terms')">Terms</a>
+        <a href="#" onclick="openModal('privacy')">Integritet</a>
+        <a href="#" onclick="openModal('cookies')">Cookies</a>
+      </div>
+      <div>
+        <p>Contact: kontakt@ic3brand.se</p>
+        <p>© IC3 "Cold days. Hot drops."</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Legal Content Modal -->
+  <div id="legal-modal" class="legal-modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <div id="modal-body">
+        <!-- Content will be inserted here -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Cookie Consent Banner -->
+  <div id="cookie-banner" class="cookie-banner">
+    <div class="container">
+      <span>Vi använder cookies för att förbättra din upplevelse. Välj vad som passar dig.</span>
+      <div>
+        <button onclick="acceptAllCookies()">Acceptera alla</button>
+        <button onclick="acceptNecessaryCookies()">Endast nödvändiga</button>
+        <button onclick="openCookieSettings()">Inställningar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cookie Settings Modal -->
+  <div id="cookie-settings" class="cookie-settings">
+    <div class="modal">
+      <h2>Cookieinställningar</h2>
+      <div class="category">
+        <label>
+          <input type="checkbox" id="necessary" checked disabled /> Nödvändiga cookies
+        </label>
+        <p>Nödvändiga för att webbplatsen ska fungera.</p>
+      </div>
+      <div class="category">
+        <label>
+          <input type="checkbox" id="analytics" /> Analyscookies
+        </label>
+        <p>Hjälper oss att förstå hur besökare använder webbplatsen.</p>
+      </div>
+      <div class="category">
+        <label>
+          <input type="checkbox" id="marketing" /> Marknadsföringscookies
+        </label>
+        <p>Används för att visa relevanta annonser.</p>
+      </div>
+      <button onclick="saveCookieSettings()">Spara inställningar</button>
+    </div>
+  </div>
+
+  <script>
+    // Cookie consent logic
+    document.addEventListener('DOMContentLoaded', () => {
+      const consent = localStorage.getItem('ic3.cookies');
+      if (!consent) {
+        document.getElementById('cookie-banner').style.display = 'block';
+      }
     });
+
+    function acceptAllCookies() {
+      const prefs = { necessary: true, analytics: true, marketing: true };
+      localStorage.setItem('ic3.cookies', JSON.stringify(prefs));
+      document.getElementById('cookie-banner').style.display = 'none';
+    }
+
+    function acceptNecessaryCookies() {
+      const prefs = { necessary: true, analytics: false, marketing: false };
+      localStorage.setItem('ic3.cookies', JSON.stringify(prefs));
+      document.getElementById('cookie-banner').style.display = 'none';
+    }
+
+    function openCookieSettings() {
+      document.getElementById('cookie-banner').style.display = 'none';
+      document.getElementById('cookie-settings').style.display = 'flex';
+    }
+
+    function saveCookieSettings() {
+      const prefs = {
+        necessary: true,
+        analytics: document.getElementById('analytics').checked,
+        marketing: document.getElementById('marketing').checked,
+      };
+      localStorage.setItem('ic3.cookies', JSON.stringify(prefs));
+      document.getElementById('cookie-settings').style.display = 'none';
+    }
+  </script>
+
+  <script>
+    // Legal Modal Functions
+    function openModal(type) {
+      const modal = document.getElementById('legal-modal');
+      const body = document.getElementById('modal-body');
+      
+      let content = '';
+      if (type === 'terms') {
+        content = `
+          <h1>Användarvillkor – IC3</h1>
+          <p>Senast uppdaterad: 2025-10-13</p>
+          <h2>1. Allmänna villkor</h2>
+          <p>Välkommen till IC3. Genom att använda vår webbplats och våra tjänster accepterar du dessa användarvillkor.</p>
+          <h2>2. Användning av tjänster</h2>
+          <p>Du får använda våra produkter och tjänster enligt dessa villkor. Alla rättigheter förbehålls IC3.</p>
+          <h2>3. Begränsningar</h2>
+          <p>Du får inte missbruka våra tjänster eller bryta mot gällande lagar.</p>
+          <h2>4. Ansvar</h2>
+          <p>IC3 ansvarar inte för indirekta skador som uppstår genom användning av våra produkter.</p>
+        `;
+      } else if (type === 'privacy') {
+        content = `
+          <h1>Integritetspolicy – IC3</h1>
+          <p>Denna integritetspolicy förklarar hur IC3 samlar in, använder och skyddar din personliga information enligt GDPR.</p>
+          <h2>1. Insamling av information</h2>
+          <p>Vi samlar in information som du ger oss när du använder våra tjänster.</p>
+          <h2>2. Användning av information</h2>
+          <p>Vi använder informationen för att förbättra våra tjänster och kommunicera med dig.</p>
+          <h2>3. Delning av information</h2>
+          <p>Vi delar inte din information med tredje part utan ditt samtycke.</p>
+          <h2>4. Dina rättigheter</h2>
+          <p>Du har rätt att begära åtkomst, korrigering eller radering av din information.</p>
+          <h3>Kontakta oss om integritet</h3>
+          <p>Om du har frågor om integritet, kontakta oss på privacy@ic3brand.se.</p>
+        `;
+      } else if (type === 'cookies') {
+        content = `
+          <h1>Cookiepolicy – IC3</h1>
+          <p>Denna cookiepolicy förklarar hur vi använder cookies på vår webbplats.</p>
+          <h2>Kategorier av cookies</h2>
+          <h3>Nödvändiga cookies</h3>
+          <p>Dessa är nödvändiga för att webbplatsen ska fungera korrekt. De kan inte stängas av.</p>
+          <h3>Analyscookies</h3>
+          <p>Dessa hjälper oss att förstå hur besökare använder webbplatsen för att förbättra upplevelsen.</p>
+          <h3>Marknadsföringscookies</h3>
+          <p>Dessa används för att visa relevanta annonser baserat på dina intressen.</p>
+          <h2>Hur du ändrar inställningar</h2>
+          <p>Du kan ändra dina cookieinställningar genom att klicka på "Inställningar" i cookiebannern eller besöka /cookies.</p>
+        `;
+      }
+      
+      body.innerHTML = content;
+      modal.classList.add('show');
+      
+      // Ensure close button works
+      const closeBtn = modal.querySelector('.close');
+      if (closeBtn) {
+        closeBtn.addEventListener('click', closeModal);
+      }
+      
+      // Add event listeners for closing
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+          closeModal();
+        }
+      });
+      
+      // Close on escape key
+      const escapeHandler = (e) => {
+        if (e.key === 'Escape') {
+          closeModal();
+          document.removeEventListener('keydown', escapeHandler);
+        }
+      };
+      document.addEventListener('keydown', escapeHandler);
+    }
+
+    function closeModal() {
+      const modal = document.getElementById('legal-modal');
+      modal.classList.remove('show');
+    }
   </script>
 </body>
 </html>

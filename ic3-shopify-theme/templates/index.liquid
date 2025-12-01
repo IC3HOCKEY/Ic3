@@ -1,0 +1,375 @@
+{% section 'announcement-bar' %}
+{% section 'hero' %}
+
+<main class="main-content">
+  <!-- Featured Collections -->
+  <section class="section section--collections">
+    <div class="container">
+      <h2 class="section-title">VÅRA KOLLEKTIONER</h2>
+      <div class="collections-grid">
+        {% for collection in collections limit: 3 %}
+          <a href="{{ collection.url }}" class="collection-card">
+            <div class="collection-card__image">
+              {% if collection.image %}
+                {{ collection.image | img_url: '600x' | img_tag: collection.title }}
+              {% else %}
+                {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+              {% endif %}
+            </div>
+            <div class="collection-card__content">
+              <h3 class="collection-card__title">{{ collection.title }}</h3>
+              <span class="collection-card__count">{{ collection.all_products_count }} produkter</span>
+            </div>
+          </a>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Products -->
+  <section class="section section--featured">
+    <div class="container">
+      <h2 class="section-title">UTVALDA PRODUKTER</h2>
+      <div class="products-grid">
+        {% assign featured_collection = collections['frontpage'] %}
+        {% if featured_collection.products.size > 0 %}
+          {% for product in collections['frontpage'].products limit: 4 %}
+            {% render 'product-card', product: product %}
+          {% endfor %}
+        {% else %}
+          {% for i in (1..4) %}
+            <div class="product-card">
+              <div class="product-card__image">
+                {{ 'product-' | append: i | placeholder_svg_tag: 'placeholder-svg' }}
+              </div>
+              <div class="product-card__content">
+                <h3 class="product-card__title">Produktnamn</h3>
+                <div class="product-card__price">
+                  <span class="price">299 kr</span>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        {% endif %}
+      </div>
+      <div class="text-center" style="margin-top: 4rem;">
+        <a href="/collections/all" class="btn btn-primary">SE ALLA PRODUKTER</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="section section--about" style="background-image: url('{{ 'missionbild.png' | asset_img_url: '2000x' }}');">
+    <div class="container">
+      <div class="about-content">
+        <h2 class="section-title">VÅRT UPPDRAG</h2>
+        <p class="about-text">
+          IC3 är mer än bara ett märke - det är en livsstil. Vårt mål är att leverera högkvalitativa hockeysmartakläder som kombinerar funktionalitet med stil. 
+          Vi tror på att varje spelare ska kunna uttrycka sin unika personlighet på och utanför isen.
+        </p>
+        <a href="/pages/om-oss" class="btn btn-outline">LÄS MER OM OSS</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Instagram Feed -->
+  <section class="section section--instagram">
+    <div class="container">
+      <h2 class="section-title">FÖLJ OSS PÅ INSTAGRAM</h2>
+      <p class="instagram-handle">@ic3hockey</p>
+      <div class="instagram-feed">
+        <!-- Instagram feed will be loaded via JavaScript -->
+        <div class="instagram-placeholder">
+          {% for i in (1..6) %}
+            <div class="instagram-item">
+              {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<style>
+  /* Base Styles */
+  .container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+  
+  .section {
+    padding: 6rem 0;
+  }
+  
+  .section-title {
+    font-size: 3rem;
+    text-align: center;
+    margin-bottom: 4rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 1px;
+    font-family: 'Barlow Condensed', sans-serif;
+    color: #333;
+  }
+  
+  /* Collections Grid */
+  .collections-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 4rem;
+  }
+  
+  .collection-card {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    text-decoration: none;
+    color: #333;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .collection-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  }
+  
+  .collection-card__image {
+    position: relative;
+    padding-top: 100%;
+    overflow: hidden;
+  }
+  
+  .collection-card__image img,
+  .collection-card__image .placeholder-svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  
+  .collection-card:hover .collection-card__image img {
+    transform: scale(1.05);
+  }
+  
+  .collection-card__content {
+    padding: 2rem;
+    background: #fff;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .collection-card__title {
+    font-size: 2rem;
+    margin: 0 0 0.5rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  .collection-card__count {
+    color: #777;
+    font-size: 1.4rem;
+  }
+  
+  /* Products Grid */
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 3rem 2rem;
+    margin-bottom: 4rem;
+  }
+  
+  .product-card {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #fff;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  }
+  
+  .product-card__image {
+    position: relative;
+    padding-top: 125%;
+    overflow: hidden;
+  }
+  
+  .product-card__image img,
+  .product-card__image .placeholder-svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  
+  .product-card:hover .product-card__image img {
+    transform: scale(1.05);
+  }
+  
+  .product-card__content {
+    padding: 1.5rem;
+  }
+  
+  .product-card__title {
+    font-size: 1.6rem;
+    margin: 0 0 0.5rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  
+  .product-card__price {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #333;
+  }
+  
+  /* About Section */
+  .section--about {
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: white;
+    text-align: center;
+    padding: 8rem 0;
+  }
+  
+  .section--about::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1;
+  }
+  
+  .about-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .about-text {
+    font-size: 1.8rem;
+    line-height: 1.6;
+    margin-bottom: 3rem;
+  }
+  
+  /* Instagram Section */
+  .instagram-handle {
+    text-align: center;
+    font-size: 1.8rem;
+    color: #333;
+    margin-bottom: 3rem;
+    font-weight: 500;
+  }
+  
+  .instagram-feed {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .instagram-item {
+    position: relative;
+    padding-top: 100%;
+    overflow: hidden;
+    border-radius: 8px;
+  }
+  
+  .instagram-item .placeholder-svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 1024px) {
+    .section {
+      padding: 5rem 0;
+    }
+    
+    .section-title {
+      font-size: 2.8rem;
+      margin-bottom: 3.5rem;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .section {
+      padding: 4rem 0;
+    }
+    
+    .section-title {
+      font-size: 2.4rem;
+      margin-bottom: 3rem;
+    }
+    
+    .products-grid {
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 2rem 1.5rem;
+    }
+    
+    .about-text {
+      font-size: 1.6rem;
+    }
+    
+    .instagram-feed {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .container {
+      padding: 0 1.5rem;
+    }
+    
+    .section {
+      padding: 3rem 0;
+    }
+    
+    .section-title {
+      font-size: 2.2rem;
+      margin-bottom: 2.5rem;
+    }
+    
+    .collections-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .products-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem 1rem;
+    }
+    
+    .instagram-feed {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>

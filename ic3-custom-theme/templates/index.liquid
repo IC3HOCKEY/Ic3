@@ -1,0 +1,25 @@
+{% section 'header' %}
+
+<main class="main-content">
+  <div class="container">
+    <h1>Welcome to {{ shop.name }}</h1>
+    <p>Your store is ready! Start customizing your theme.</p>
+  </div>
+</main>
+
+{% section 'footer' %}
+
+<style>
+  .main-content {
+    min-height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 4rem 0;
+  }
+  
+  h1 {
+    margin-bottom: 2rem;
+  }
+</style>

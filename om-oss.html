@@ -263,6 +263,156 @@
       text-decoration: none;
     }
   </style>
+
+  <!-- Footer and Cookie Banner Styles -->
+  <style>
+    .footer {
+      background-color: #1f2839;
+      color: white;
+      text-align: center;
+      padding: 2rem 0;
+      border-top: 3px solid #99dffb;
+    }
+    .footer a {
+      color: white;
+    }
+    .footer .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+    .footer-links {
+      display: flex;
+      gap: 2rem;
+    }
+    .cookie-banner {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: #253042;
+      color: white;
+      padding: 1rem;
+      z-index: 1000;
+      display: none;
+      border-top: 3px solid #99dffb;
+    }
+    .cookie-banner .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .cookie-banner button {
+      background: #1f2839;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .cookie-banner .primary {
+      background: #99dffb;
+      color: #000;
+    }
+    .cookie-settings {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 2000;
+      display: none;
+    }
+    .cookie-settings.show {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .cookie-settings .modal {
+      background: white;
+      padding: 2rem;
+      border-radius: 8px;
+      max-width: 600px;
+      width: 90%;
+    }
+    .cookie-settings h2 {
+      margin-top: 0;
+    }
+    .cookie-settings .category {
+      margin: 1rem 0;
+    }
+    .cookie-settings label {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    /* Legal Modal Styles */
+    .legal-modal {
+      display: none;
+      position: fixed;
+      z-index: 3000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+    .legal-modal.show {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-content {
+      background-color: #fefefe;
+      margin: 5% auto;
+      padding: 2rem;
+      padding-top: 3rem;
+      border: 1px solid #888;
+      width: 80%;
+      max-width: 800px;
+      position: relative;
+      border-radius: 8px;
+      max-height: 80vh;
+      overflow-y: auto;
+    }
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      position: absolute;
+      top: 0;
+      right: 0;
+      cursor: pointer;
+      padding: 1rem;
+    }
+    .close:hover,
+    .close:focus {
+      color: black;
+      text-decoration: none;
+    }
+    #modal-body h1 {
+      color: #253042;
+      margin-bottom: 1rem;
+    }
+    #modal-body h2 {
+      color: #253042;
+      margin-top: 1.5rem;
+    }
+    #modal-body p {
+      margin-bottom: 1rem;
+    }
+  </style>
+</head>
   <script>
     // Update cart badge function
     function updateCartBadge() {
@@ -297,7 +447,7 @@
         <a href="om-oss.html">Om oss</a>
         <a href="kontakt.html">Kontakt</a>
         <a href="cart.html" class="cart-link">
-          <img src="målbur.png" alt="Shopping Cart" width="24" height="24" style="filter: brightness(0) invert(1);">
+          <img src="hockey-goal.png" alt="Shopping Cart" width="24" height="24" style="filter: brightness(0) invert(1);">
           <span class="cart-badge" id="cart-badge">0</span>
         </a>
       </div>
@@ -310,11 +460,13 @@
       <div class="hero-content">
         <h1>Vilka är vi?</h1>
         <div class="story">
-          <p>IC3 föddes ur kylan, skratten och slitna skridskor.</p>
-          <p>Vi är tre barndomsvänner som växte upp med hockey som vårt språk. Vi delade allt – sena kvällar i ishallar, bussresor till bortamatcher och timmar i omklädningsrum som luktade både tejp och framtidsdrömmar. På isen lärde vi oss inte bara att täcka skott och sätta passningar, utan också vad lojalitet, disciplin och gemenskap verkligen betyder.</p>
-          <p>Men när vi klev av isen saknade vi något.</p>
-          <p>Vi såg ett hål i garderoben – bokstavligt talat. Det fanns tröjor med klubbmärken, jackor med sponsorer, men inget som verkligen speglade känslan av att tillhöra hockeykulturen på ett stilrent, urbant sätt. Inget som sa: "Jag är hockey – även när jag går genom stan."</p>
+          <p>IC3 föddes ur kalla hallar, sena kvällar och slitna skridskor.</p>
+          <p>Vi är tre barndomsvänner som växte upp med hockey som vår gemensamma drivkraft. Vi delade allt – morgonpass på frusna isar, bussresor till bortamatcher och timmar i omklädningsrum som luktade tejp, svett och framtidsdrömmar. Där lärde vi oss vad lojalitet, disciplin och gemenskap verkligen betyder.</p>
+          <p>Men när vi klev av isen saknades något.</p>
+          <p>Det fanns tröjor med klubbmärken och jackor med sponsorer – men inget som speglade hockeylivet på riktigt.</p>
+          <p>Inget som fångade känslan av att vara en del av kulturen, utan att stå på isen.</p>
           <p>Så vi skapade IC3.</p>
+          <p>Ett varumärke byggt på vår bakgrund, men riktat mot framtiden. Där hockeyns själ möter en modern, urban estetik.</p>
         </div>
       </div>
     </section>
@@ -323,8 +475,11 @@
       <div class="section-content">
         <div class="section-text">
           <h2>Bakgrund</h2>
-          <p>IC3 står för tre grundare, tre personligheter – men en gemensam passion. Vi har olika roller idag – design, marknadsföring, vision – men vi har alltid varit ett lag.</p>
-          <p>Vi kommer från olika städer, men har delat samma kalla morgnar, samma slit och samma dröm: att skapa något som lever längre än sista perioden. Med IC3 vill vi fånga känslan av hockeylivet – den intensitet, råhet och gemenskap som genomsyrar sporten – och översätta den till plagg som känns lika rätt på läktaren som på gatan.</p>
+          <p>Namnet IC3 står för tre grundare – tre personligheter, ett gemensamt mål.</p>
+          <p>Vi har olika roller i dag – design, marknadsföring och vision – men vi har alltid varit ett lag.</p>
+          <p>Vi kommer från olika bakgrunder men delar samma minnen: kalla morgnar, slitna handskar och drömmen om att skapa något som lever längre än sista perioden.</p>
+          <p>Med IC3 vill vi översätta känslan av hockeylivet – intensiteten, gemenskapen och karaktären – till kläder som bärs med samma stolthet utanför isen.</p>
+          <p>Plagg som känns lika rätt på läktaren som på gatan.</p>
         </div>
         <div class="section-image">
           <img src="bakgrundsbild.png" alt="Bakgrundsbild" loading="lazy">
@@ -339,9 +494,11 @@
         </div>
         <div class="section-text">
           <h2>Mission</h2>
-          <p>Att bygga ett community och en stil för nästa generation hockeyälskare.</p>
-          <p>IC3 är mer än kläder – det är en identitet.</p>
-          <p>Vi vill förena hockeyns rötter med en modern, streetwear-inspirerad estetik. Varje plagg vi släppt är designat för att du ska kunna bära ditt hockeyhjärta med stolthet, oavsett om du är på väg till match eller på väg hem från skolan.</p>
+          <p>Vi bygger inte bara kläder – vi bygger en kultur.</p>
+          <p>IC3 är mer än ett varumärke, det är en identitet för nästa generations hockeyälskare.</p>
+          <p>Vi vill förena hockeyns rötter med ett modernt uttryck – där varje plagg bär på känslan av att tillhöra något större.</p>
+          <p>Vår mission är att skapa en stil och ett community för dem som lever hockey, även när de inte har skridskorna på sig.</p>
+          <p>Kläder som låter dig bära ditt hockeyhjärta med stolthet – oavsett om du är på väg till match, träning eller stan.</p>
         </div>
       </div>
     </section>
@@ -350,9 +507,11 @@
       <div class="section-content">
         <div class="section-text">
           <h2>Vision</h2>
-          <p>IC3 ska bli det självklara valet för den urbana hockeygenerationen.</p>
+          <p>IC3 ska vara det självklara valet för den urbana hockeygenerationen.</p>
           <p>Vi vill inte bara klä spelare – vi vill klä kulturen.</p>
-          <p>Vår vision är att bygga ett internationellt varumärke där unga människor känner sig sedda, inspirerade och representerade. Vi tror på gemenskap, stil och ett jävlar anamma som aldrig viker ner sig.</p>
+          <p>Vår vision är att bygga ett internationellt varumärke där unga människor känner sig sedda, inspirerade och representerade.</p>
+          <p>För oss handlar det om gemenskap, stil och att aldrig vika sig.</p>
+          <p>IC3 är för dem som förstår att hockey inte bara är en sport – det är ett sätt att leva.</p>
         </div>
         <div class="section-image">
           <img src="visionbild.png" alt="Visionbild" loading="lazy">
@@ -383,5 +542,188 @@
       </div>
     </section>
   </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-links">
+        <a href="#" onclick="openModal('terms')">Terms</a>
+        <a href="#" onclick="openModal('privacy')">Integritet</a>
+        <a href="#" onclick="openModal('cookies')">Cookies</a>
+      </div>
+      <div>
+        <p>Contact: kontakt@ic3brand.se</p>
+        <p>© IC3 "Cold days. Hot drops."</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Legal Content Modal -->
+  <div id="legal-modal" class="legal-modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <div id="modal-body">
+        <!-- Content will be inserted here -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Cookie Consent Banner -->
+  <div id="cookie-banner" class="cookie-banner">
+    <div class="container">
+      <span>Vi använder cookies för att förbättra din upplevelse. Välj vad som passar dig.</span>
+      <div>
+        <button onclick="acceptAllCookies()">Acceptera alla</button>
+        <button onclick="acceptNecessaryCookies()">Endast nödvändiga</button>
+        <button onclick="openCookieSettings()">Inställningar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cookie Settings Modal -->
+  <div id="cookie-settings" class="cookie-settings">
+    <div class="modal">
+      <h2>Cookieinställningar</h2>
+      <div class="category">
+        <label>
+          <input type="checkbox" id="necessary" checked disabled /> Nödvändiga cookies
+        </label>
+        <p>Nödvändiga för att webbplatsen ska fungera.</p>
+      </div>
+      <div class="category">
+        <label>
+          <input type="checkbox" id="analytics" /> Analyscookies
+        </label>
+        <p>Hjälper oss att förstå hur besökare använder webbplatsen.</p>
+      </div>
+      <div class="category">
+        <label>
+          <input type="checkbox" id="marketing" /> Marknadsföringscookies
+        </label>
+        <p>Används för att visa relevanta annonser.</p>
+      </div>
+      <button onclick="saveCookieSettings()">Spara inställningar</button>
+    </div>
+  </div>
+
+  <script>
+    // Cookie consent logic
+    document.addEventListener('DOMContentLoaded', () => {
+      const consent = localStorage.getItem('ic3.cookies');
+      if (!consent) {
+        document.getElementById('cookie-banner').style.display = 'block';
+      }
+    });
+
+    function acceptAllCookies() {
+      const prefs = { necessary: true, analytics: true, marketing: true };
+      localStorage.setItem('ic3.cookies', JSON.stringify(prefs));
+      document.getElementById('cookie-banner').style.display = 'none';
+    }
+
+    function acceptNecessaryCookies() {
+      const prefs = { necessary: true, analytics: false, marketing: false };
+      localStorage.setItem('ic3.cookies', JSON.stringify(prefs));
+      document.getElementById('cookie-banner').style.display = 'none';
+    }
+
+    function openCookieSettings() {
+      document.getElementById('cookie-banner').style.display = 'none';
+      document.getElementById('cookie-settings').style.display = 'flex';
+    }
+
+    function saveCookieSettings() {
+      const prefs = {
+        necessary: true,
+        analytics: document.getElementById('analytics').checked,
+        marketing: document.getElementById('marketing').checked,
+      };
+      localStorage.setItem('ic3.cookies', JSON.stringify(prefs));
+      document.getElementById('cookie-settings').style.display = 'none';
+    }
+  </script>
+
+  <script>
+    // Legal Modal Functions
+    function openModal(type) {
+      const modal = document.getElementById('legal-modal');
+      const body = document.getElementById('modal-body');
+      
+      let content = '';
+      if (type === 'terms') {
+        content = `
+          <h1>Användarvillkor – IC3</h1>
+          <p>Senast uppdaterad: 2025-10-13</p>
+          <h2>1. Allmänna villkor</h2>
+          <p>Välkommen till IC3. Genom att använda vår webbplats och våra tjänster accepterar du dessa användarvillkor.</p>
+          <h2>2. Användning av tjänster</h2>
+          <p>Du får använda våra produkter och tjänster enligt dessa villkor. Alla rättigheter förbehålls IC3.</p>
+          <h2>3. Begränsningar</h2>
+          <p>Du får inte missbruka våra tjänster eller bryta mot gällande lagar.</p>
+          <h2>4. Ansvar</h2>
+          <p>IC3 ansvarar inte för indirekta skador som uppstår genom användning av våra produkter.</p>
+        `;
+      } else if (type === 'privacy') {
+        content = `
+          <h1>Integritetspolicy – IC3</h1>
+          <p>Denna integritetspolicy förklarar hur IC3 samlar in, använder och skyddar din personliga information enligt GDPR.</p>
+          <h2>1. Insamling av information</h2>
+          <p>Vi samlar in information som du ger oss när du använder våra tjänster.</p>
+          <h2>2. Användning av information</h2>
+          <p>Vi använder informationen för att förbättra våra tjänster och kommunicera med dig.</p>
+          <h2>3. Delning av information</h2>
+          <p>Vi delar inte din information med tredje part utan ditt samtycke.</p>
+          <h2>4. Dina rättigheter</h2>
+          <p>Du har rätt att begära åtkomst, korrigering eller radering av din information.</p>
+          <h3>Kontakta oss om integritet</h3>
+          <p>Om du har frågor om integritet, kontakta oss på privacy@ic3brand.se.</p>
+        `;
+      } else if (type === 'cookies') {
+        content = `
+          <h1>Cookiepolicy – IC3</h1>
+          <p>Denna cookiepolicy förklarar hur vi använder cookies på vår webbplats.</p>
+          <h2>Kategorier av cookies</h2>
+          <h3>Nödvändiga cookies</h3>
+          <p>Dessa är nödvändiga för att webbplatsen ska fungera korrekt. De kan inte stängas av.</p>
+          <h3>Analyscookies</h3>
+          <p>Dessa hjälper oss att förstå hur besökare använder webbplatsen för att förbättra upplevelsen.</p>
+          <h3>Marknadsföringscookies</h3>
+          <p>Dessa används för att visa relevanta annonser baserat på dina intressen.</p>
+          <h2>Hur du ändrar inställningar</h2>
+          <p>Du kan ändra dina cookieinställningar genom att klicka på "Inställningar" i cookiebannern eller besöka /cookies.</p>
+        `;
+      }
+      
+      body.innerHTML = content;
+      modal.classList.add('show');
+      
+      // Ensure close button works
+      const closeBtn = modal.querySelector('.close');
+      if (closeBtn) {
+        closeBtn.addEventListener('click', closeModal);
+      }
+      
+      // Add event listeners for closing
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+          closeModal();
+        }
+      });
+      
+      // Close on escape key
+      const escapeHandler = (e) => {
+        if (e.key === 'Escape') {
+          closeModal();
+          document.removeEventListener('keydown', escapeHandler);
+        }
+      };
+      document.addEventListener('keydown', escapeHandler);
+    }
+
+    function closeModal() {
+      const modal = document.getElementById('legal-modal');
+      modal.classList.remove('show');
+    }
+  </script>
 </body>
 </html>

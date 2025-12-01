@@ -1,0 +1,220 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "IC3 Theme",
+    "theme_version": "1.0.0",
+    "theme_author": "IC3",
+    "theme_documentation_url": "https://help.shopify.com/manual/online-store/themes",
+    "theme_support_url": "https://support.shopify.com/"
+  },
+  {
+    "name": "Färger",
+    "settings": [
+      {
+        "type": "color",
+        "id": "primary_color",
+        "label": "Primärfärg",
+        "default": "#99dffb"
+      },
+      {
+        "type": "color",
+        "id": "secondary_color",
+        "label": "Sekundärfärg",
+        "default": "#000000"
+      },
+      {
+        "type": "color",
+        "id": "text_color",
+        "label": "Textfärg",
+        "default": "#333333"
+      },
+      {
+        "type": "color",
+        "id": "background_color",
+        "label": "Bakgrundsfärg",
+        "default": "#ffffff"
+      }
+    ]
+  },
+  {
+    "name": "Header",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "show_search",
+        "label": "Visa sökfält",
+        "default": true
+      },
+      {
+        "type": "link_list",
+        "id": "main_linklist",
+        "label": "Meny",
+        "default": "main-menu"
+      },
+      {
+        "type": "checkbox",
+        "id": "sticky_header",
+        "label": "Fast header vid scrollning",
+        "default": true
+      }
+    ]
+  },
+  {
+    "name": "Produktkort",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "show_vendor",
+        "label": "Visa tillverkare",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "show_quick_view",
+        "label": "Aktivera snabbvisning",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "show_color_swatches",
+        "label": "Visa färgväljare",
+        "default": true
+      }
+    ]
+  },
+  {
+    "name": "Sidfot",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "show_newsletter",
+        "label": "Visa nyhetsbrevsprenumeration",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "newsletter_heading",
+        "label": "Rubrik för nyhetsbrev",
+        "default": "Prenumerera på vårt nyhetsbrev"
+      },
+      {
+        "type": "richtext",
+        "id": "newsletter_text",
+        "label": "Text till nyhetsbrev",
+        "default": "<p>Få de senaste nyheterna, erbjudandena och kampanjerna direkt till din inkorg.</p>"
+      },
+      {
+        "type": "link_list",
+        "id": "footer_linklist_1",
+        "label": "Länkmeny 1",
+        "default": "footer"
+      },
+      {
+        "type": "link_list",
+        "id": "footer_linklist_2",
+        "label": "Länkmeny 2"
+      },
+      {
+        "type": "text",
+        "id": "copyright_text",
+        "label": "Copyright-text",
+        "default": "© 2025 IC3 Hockey. Alla rättigheter förbehållna."
+      }
+    ]
+  },
+  {
+    "name": "Sociala medier",
+    "settings": [
+      {
+        "type": "text",
+        "id": "social_facebook_link",
+        "label": "Facebook",
+        "info": "https://facebook.com/dinbutik"
+      },
+      {
+        "type": "text",
+        "id": "social_instagram_link",
+        "label": "Instagram",
+        "info": "https://instagram.com/dinbutik"
+      },
+      {
+        "type": "text",
+        "id": "social_twitter_link",
+        "label": "Twitter",
+        "info": "https://twitter.com/dinbutik"
+      },
+      {
+        "type": "text",
+        "id": "social_tiktok_link",
+        "label": "TikTok",
+        "info": "https://tiktok.com/@dinbutik"
+      },
+      {
+        "type": "text",
+        "id": "social_youtube_link",
+        "label": "YouTube",
+        "info": "https://youtube.com/c/dinbutik"
+      }
+    ]
+  },
+  {
+    "name": "Kassa",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "show_dynamic_checkout",
+        "label": "Visa dynamiska knappar i kassan",
+        "default": true,
+        "info": "Visa betalningsknappar som PayPal och Apple Pay"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_quantity_selector",
+        "label": "Visa antalsväljare på produktsidor",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "show_payment_icons",
+        "label": "Visa betalningsikoner i sidfoten",
+        "default": true
+      }
+    ]
+  },
+  {
+    "name": "Sök",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "predictive_search_enabled",
+        "label": "Aktivera prediktiv sökning",
+        "default": true,
+        "info": "Visa förslag när kunder söker"
+      },
+      {
+        "type": "select",
+        "id": "search_results_per_page",
+        "label": "Resultat per sida",
+        "options": [
+          {
+            "value": "12",
+            "label": "12"
+          },
+          {
+            "value": "24",
+            "label": "24"
+          },
+          {
+            "value": "36",
+            "label": "36"
+          },
+          {
+            "value": "48",
+            "label": "48"
+          }
+        ],
+        "default": "12"
+      }
+    ]
+  }
+]

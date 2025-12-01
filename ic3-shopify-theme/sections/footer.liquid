@@ -1,0 +1,362 @@
+<footer class="site-footer">
+  <div class="footer-container">
+    <!-- Logo and Social Media -->
+    <div class="footer-section footer-logo-section">
+      <div class="footer-logo">
+        <a href="/" class="footer-logo-link">
+          <img src="{{ 'logaic3.png' | asset_img_url: 'x100' }}" alt="{{ shop.name }}" class="footer-logo-image">
+        </a>
+      </div>
+      
+      <div class="footer-social">
+        {% if settings.social_facebook_link != blank %}
+          <a href="{{ settings.social_facebook_link }}" target="_blank" rel="noopener" aria-label="Facebook">
+            <span class="icon-facebook">FB</span>
+          </a>
+        {% endif %}
+        
+        {% if settings.social_instagram_link != blank %}
+          <a href="{{ settings.social_instagram_link }}" target="_blank" rel="noopener" aria-label="Instagram">
+            <span class="icon-instagram">IG</span>
+          </a>
+        {% endif %}
+      </div>
+    </div>
+    
+    <!-- Navigation Links -->
+    <div class="footer-section">
+      <h3 class="footer-heading">SHOP</h3>
+      <ul class="footer-links">
+        {% for link in linklists.footer.links %}
+          <li class="footer-link-item">
+            <a href="{{ link.url }}" class="footer-link">{{ link.title }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+    
+    <!-- Contact Information -->
+    <div class="footer-section">
+      <h3 class="footer-heading">KONTAKT</h3>
+      <div class="footer-contact">
+        {% if shop.email %}
+          <p class="footer-contact-item">
+            <span class="footer-contact-icon">✉️</span>
+            <a href="mailto:{{ shop.email }}" class="footer-contact-link">{{ shop.email }}</a>
+          </p>
+        {% endif %}
+        
+        {% if shop.phone %}
+          <p class="footer-contact-item">
+            <span class="footer-contact-icon">📞</span>
+            <a href="tel:{{ shop.phone }}" class="footer-contact-link">{{ shop.phone }}</a>
+          </p>
+        {% endif %}
+      </div>
+    </div>
+    
+    <!-- Newsletter Signup -->
+    <div class="footer-section">
+      <h3 class="footer-heading">NYHETSBREV</h3>
+      <p class="footer-newsletter-text">Prenumerera på vårt nyhetsbrev för erbjudanden och nyheter.</p>
+      
+      {% form 'customer', class: 'newsletter-form' %}
+        <input type="hidden" name="contact[tags]" value="newsletter">
+        <div class="newsletter-form-group">
+          <input type="email" 
+                 name="contact[email]" 
+                 class="newsletter-input" 
+                 value="" 
+                 placeholder="Din e-postadress"
+                 aria-label="Din e-postadress"
+                 required>
+          <button type="submit" class="newsletter-button" name="commit">
+            <span>Prenumerera</span>
+          </button>
+        </div>
+        {% if form.errors %}
+          <div class="newsletter-message newsletter-message--error">
+            {{ form.errors | default_errors }}
+          </div>
+        {% elsif form.posted_successfully? %}
+          <div class="newsletter-message newsletter-message--success">
+            Tack för din prenumeration!
+          </div>
+        {% endif %}
+      {% endform %}
+    </div>
+  </div>
+  
+  <!-- Copyright -->
+  <div class="footer-bottom">
+    <div class="footer-bottom-container">
+      <p class="footer-copyright">&copy; {{ 'now' | date: "%Y" }} {{ shop.name }}. Alla rättigheter förbehållna.</p>
+      
+      <div class="footer-payment-icons">
+        <span class="payment-icon">💳</span>
+        <span class="payment-icon">📱</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  /* Footer Base Styles */
+  .site-footer {
+    background-color: #111;
+    color: #fff;
+    padding: 4rem 0 0;
+    border-top: 1px solid #333;
+    font-family: 'Barlow Condensed', sans-serif;
+  }
+  
+  .footer-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 4rem;
+    margin-bottom: 4rem;
+  }
+  
+  .footer-section {
+    margin-bottom: 2rem;
+  }
+  
+  .footer-heading {
+    color: #fff;
+    font-size: 1.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 2rem;
+    position: relative;
+    padding-bottom: 1rem;
+  }
+  
+  .footer-heading::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 2px;
+    background-color: #99dffb;
+  }
+  /* Logo Section */
+  .footer-logo-section {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .footer-logo-image {
+    height: 80px;
+    width: auto;
+    margin-bottom: 2rem;
+  }
+  
+  .footer-social {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: auto;
+  }
+  
+  .footer-social a {
+    color: #fff;
+    font-size: 1.6rem;
+    transition: color 0.3s ease;
+    text-decoration: none;
+  }
+  
+  .footer-social a:hover {
+    color: #99dffb;
+  }
+  
+  /* Links */
+  .footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .footer-link-item {
+    margin-bottom: 1rem;
+  }
+  
+  .footer-link {
+    color: #ccc;
+    text-decoration: none;
+    font-size: 1.6rem;
+    transition: color 0.3s ease;
+  }
+  
+  .footer-link:hover {
+    color: #99dffb;
+  }
+  /* Contact Section */
+  .footer-contact {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .footer-contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin: 0;
+    font-size: 1.4rem;
+    color: #ccc;
+  }
+  
+  .footer-contact-link {
+    color: #ccc;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .footer-contact-link:hover {
+    color: #99dffb;
+  }
+  
+  /* Newsletter */
+  .footer-newsletter-text {
+    color: #ccc;
+    font-size: 1.4rem;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+  }
+  
+  .newsletter-form-group {
+    display: flex;
+    max-width: 100%;
+  }
+  
+  .newsletter-input {
+    flex: 1;
+    padding: 1rem 1.5rem;
+    border: 1px solid #333;
+    background-color: #222;
+    color: #fff;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.4rem;
+    border-radius: 4px 0 0 4px;
+  }
+  
+  .newsletter-button {
+    background-color: #99dffb;
+    color: #000;
+    border: none;
+    padding: 0 2rem;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 1.4rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 0 4px 4px 0;
+  }
+  
+  .newsletter-button:hover {
+    background-color: #7ec9e6;
+  }
+  
+  .newsletter-message {
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-size: 1.2rem;
+  }
+  
+  .newsletter-message--error {
+    background-color: rgba(255, 0, 0, 0.1);
+    color: #ff6b6b;
+  }
+  
+  .newsletter-message--success {
+    background-color: rgba(0, 255, 0, 0.1);
+    color: #6bff6b;
+  }
+  
+  /* Footer Bottom */
+  .footer-bottom {
+    background-color: #000;
+    padding: 1.5rem 0;
+    border-top: 1px solid #333;
+  }
+  
+  .footer-bottom-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .footer-copyright {
+    color: #777;
+    font-size: 1.2rem;
+    margin: 0;
+  }
+  
+  .footer-payment-icons {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .payment-icon {
+    font-size: 2rem;
+    opacity: 0.7;
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 1024px) {
+    .footer-container {
+      gap: 3rem;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .footer-container {
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem 2rem;
+    }
+    
+    .footer-logo-section {
+      grid-column: 1 / -1;
+      text-align: center;
+      align-items: center;
+    }
+    
+    .footer-social {
+      justify-content: center;
+    }
+    
+    .footer-bottom-container {
+      flex-direction: column;
+      gap: 1rem;
+      text-align: center;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .footer-container {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+    
+    .footer-logo-image {
+      height: 60px;
+    }
+    
+    .footer-heading {
+      font-size: 1.6rem;
+    }
+    
+    .footer-link {
+      font-size: 1.4rem;
+    }
+  }
+</style>

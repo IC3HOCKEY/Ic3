@@ -1,0 +1,169 @@
+{% comment %}
+  Hero Section
+  This is the main hero banner for the homepage
+{% endcomment %}
+
+<div class="hero-section" style="background-image: url('{{ 'bakgrundsbild.png' | asset_img_url: '2000x' }}');">
+  <div class="hero-content">
+    <h1 class="hero-title">VÄLKOMMEN TILL IC3</h1>
+    <p class="hero-subtitle">Hockeykläder som skiljer sig från mängden</p>
+    <div class="hero-buttons">
+      <a href="/collections/all" class="btn btn-primary">SHOPPA NU</a>
+      <a href="/pages/om-oss" class="btn btn-outline">LÄR KÄNNA OSS</a>
+    </div>
+  </div>
+</div>
+
+<style>
+  .hero-section {
+    position: relative;
+    height: 80vh;
+    min-height: 600px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    padding: 2rem;
+    margin-bottom: 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+  }
+  
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    width: 100%;
+    padding: 0 2rem;
+    animation: fadeInUp 1s ease-out;
+  }
+  
+  .hero-title {
+    font-size: 5rem;
+    font-weight: 900;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    font-family: 'Barlow Condensed', sans-serif;
+  }
+  
+  .hero-subtitle {
+    font-size: 2.2rem;
+    margin-bottom: 3rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    font-weight: 400;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.4;
+  }
+  
+  .hero-buttons {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .btn {
+    display: inline-block;
+    padding: 1.2rem 3rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.6rem;
+    border: 2px solid transparent;
+  }
+  
+  .btn-primary {
+    background-color: #99dffb;
+    color: #000;
+  }
+  
+  .btn-primary:hover {
+    background-color: #7ec9e6;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  .btn-outline {
+    background-color: transparent;
+    border: 2px solid #fff;
+    color: #fff;
+  }
+  
+  .btn-outline:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 768px) {
+    .hero-section {
+      height: 70vh;
+      min-height: 500px;
+    }
+    
+    .hero-title {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+    }
+    
+    .hero-subtitle {
+      font-size: 1.8rem;
+      margin-bottom: 2.5rem;
+    }
+    
+    .hero-buttons {
+      flex-direction: column;
+      gap: 1rem;
+    }
+    
+    .btn {
+      width: 100%;
+      max-width: 250px;
+      margin: 0 auto;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .hero-title {
+      font-size: 2.8rem;
+    }
+    
+    .hero-subtitle {
+      font-size: 1.6rem;
+    }
+  }
+</style>

@@ -1,0 +1,640 @@
+{% comment %}
+  Header Section
+  This is the main header section with logo, navigation and cart
+{% endcomment %}
+
+<header class="site-header">
+  <div class="header-container">
+    <!-- Left Navigation -->
+    <nav class="main-nav left-nav">
+      <ul class="nav-list">
+        <li><a href="/collections/all" class="nav-link">SHOP</a></li>
+        <li><a href="/pages/limited-drop" class="nav-link">LIMITED DROP</a></li>
+      </ul>
+    </nav>
+    
+    <!-- Logo -->
+    <div class="logo-container">
+      <a href="/" class="logo-link">
+        <img src="{{ 'logaic3.png' | asset_url }}" alt="{{ shop.name }}" class="logo-image">
+      </a>
+    </div>
+    
+    <!-- Right Navigation -->
+    <nav class="main-nav right-nav">
+      <ul class="nav-list">
+        <li><a href="/pages/om-oss" class="nav-link">OM OSS</a></li>
+        <li><a href="/pages/kontakt" class="nav-link">KONTAKT</a></li>
+      </ul>
+    </nav>
+    
+    <!-- Cart -->
+    <div class="cart-container">
+      <a href="/cart" class="cart-link" aria-label="Shopping Cart">
+        <span class="cart-icon">🛒</span>
+        {% if cart.item_count > 0 %}
+          <span class="cart-badge">{{ cart.item_count }}</span>
+        {% endif %}
+      </a>
+    </div>
+    
+    <!-- Mobile Menu Toggle -->
+    <button class="mobile-menu-toggle" aria-label="Toggle Menu">
+      <span class="hamburger"></span>
+    </button>
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo"
+    },
+    {
+      "type": "link_list",
+      "id": "main_menu",
+      "label": "Main Menu",
+      "default": "main-menu"
+    }
+  ]
+}
+{% endschema %}
+
+<style>
+/* ==========================================================================
+   #HEADER STYLES
+   ========================================================================== */
+
+.site-header {
+  background-color: #111;
+  border-bottom: 1px solid #333;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+}
+
+.header-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+
+/* Logo */
+.logo-container {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+}
+
+.logo-image {
+  height: 80px;
+  width: auto;
+  transition: transform 0.3s ease;
+  display: block;
+}
+
+.logo-link:hover .logo-image {
+  transform: scale(1.05);
+}
+
+/* Navigation */
+.main-nav {
+  display: flex;
+  align-items: center;
+}
+
+.nav-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 2.5rem;
+}
+
+.nav-link {
+  color: white;
+  text-decoration: none;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: color 0.3s ease;
+  position: relative;
+  padding: 0.5rem 0;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #99dffb;
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover,
+.nav-link:focus {
+  color: #99dffb;
+  text-decoration: none;
+}
+
+.nav-link:hover::after,
+.nav-link:focus::after {
+  width: 100%;
+}
+
+/* Cart */
+.cart-container {
+  margin-left: auto;
+}
+
+.cart-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  color: white;
+  text-decoration: none;
+  width: 40px;
+  height: 40px;
+  transition: transform 0.3s ease;
+}
+
+.cart-link:hover {
+  transform: scale(1.1);
+}
+
+.cart-icon {
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.cart-badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: #99dffb;
+  color: #000;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  font-weight: 700;
+  font-family: var(--font-body);
+}
+
+/* Mobile Menu Toggle */
+.mobile-menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  width: 30px;
+  height: 24px;
+  position: relative;
+  cursor: pointer;
+  padding: 0;
+  z-index: 1001;
+}
+
+.hamburger,
+.hamburger::before,
+.hamburger::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background-color: white;
+  transition: all 0.3s ease;
+  left: 0;
+}
+
+.hamburger {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.hamburger::before {
+  top: -8px;
+}
+
+.hamburger::after {
+  bottom: -8px;
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+  .header-container {
+    padding: 1rem;
+  }
+  
+  .nav-list {
+    gap: 1.5rem;
+  }
+  
+  .nav-link {
+    font-size: 1.6rem;
+  }
+  
+  .logo-image {
+    height: 70px;
+  }
+}
+
+@media (max-width: 768px) {
+  .main-nav {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(17, 17, 17, 0.98);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+  
+  .main-nav.active {
+    display: flex;
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  .nav-list {
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+  }
+  
+  .nav-link {
+    font-size: 2.2rem;
+  }
+  
+  .mobile-menu-toggle {
+    display: block;
+  }
+  
+  .logo-container {
+    position: static;
+    transform: none;
+    margin-right: auto;
+  }
+  
+  .logo-image {
+    height: 60px;
+  }
+  
+  .cart-container {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo-image {
+    height: 50px;
+  }
+  
+  .nav-link {
+    font-size: 1.8rem;
+  }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const menuToggle = document.querySelector('.mobile-menu-toggle');
+  const nav = document.querySelector('.main-nav');
+  const hamburger = document.querySelector('.hamburger');
+  
+  if (menuToggle && nav) {
+    menuToggle.addEventListener('click', function() {
+      nav.classList.toggle('active');
+      menuToggle.classList.toggle('active');
+      document.body.classList.toggle('menu-open');
+    });
+  }
+  
+  // Close menu when clicking on a nav link
+  const navLinks = document.querySelectorAll('.nav-link');
+  navLinks.forEach(link => {
+    link.addEventListener('click', function() {
+      nav.classList.remove('active');
+      menuToggle.classList.remove('active');
+      document.body.classList.remove('menu-open');
+    });
+  });
+});
+</script>
+  
+  .nav-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  
+  .logo-link {
+    display: block;
+    line-height: 0;
+  }
+  
+  .logo-image {
+    height: 50px;
+    width: auto;
+  }
+  
+  .nav-links {
+    display: flex;
+    gap: 4rem;
+  }
+  
+  .nav-link {
+    color: #fff;
+    text-decoration: none;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: color 0.3s ease;
+  }
+  
+  .nav-link:hover {
+    color: #99dffb;
+  }
+  
+  .cart-link {
+    position: relative;
+    display: block;
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  .cart-badge {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%) translateX(100%);
+    background: #99dffb;
+    color: #000;
+    border-radius: 4px;
+    padding: 2px 6px;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 1;
+    font-family: 'Montserrat', sans-serif;
+  }
+  
+  @media (max-width: 768px) {
+    .nav-links {
+      display: none;
+    }
+    
+    .nav-container {
+      justify-content: center;
+      position: relative;
+    }
+    
+    .cart-link {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #000;
+    transition: width 0.3s ease;
+  }
+  
+  .header__nav-link:hover::after {
+    width: 100%;
+  }
+  
+  .header__dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #fff;
+    min-width: 200px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+    z-index: 10;
+  }
+  
+  .header__nav-item:hover .header__dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  
+  .header__dropdown-link {
+    display: block;
+    padding: 0.75rem 1.5rem;
+    color: #333;
+    text-decoration: none;
+    transition: background 0.2s ease;
+  }
+  
+  .header__dropdown-link:hover {
+    background: #f5f5f5;
+  }
+  
+  .header__logo-link {
+    display: inline-block;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-decoration: none;
+    color: #000;
+  }
+  
+  .header__logo-image {
+    max-height: 50px;
+    width: auto;
+  }
+  
+  .header__right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex: 1;
+  }
+  
+  .header__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    margin-left: 1rem;
+    color: #000;
+    text-decoration: none;
+    position: relative;
+  }
+  
+  .header__cart-count {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: #000;
+    color: #fff;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .header__mobile-nav {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+  }
+  
+  .header__mobile-nav.active {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  .header__mobile-inner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 80%;
+    max-width: 350px;
+    height: 100%;
+    background: #fff;
+    padding: 2rem;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+  }
+  
+  .header__mobile-nav.active .header__mobile-inner {
+    transform: translateX(0);
+  }
+  
+  .header__mobile-list {
+    list-style: none;
+    padding: 0;
+    margin: 2rem 0 0;
+  }
+  
+  .header__mobile-item {
+    margin-bottom: 1rem;
+  }
+  
+  .header__mobile-link {
+    display: block;
+    padding: 0.75rem 0;
+    color: #333;
+    text-decoration: none;
+    font-size: 1.1rem;
+  }
+  
+  @media (max-width: 1024px) {
+    .header__nav {
+      display: none;
+    }
+    
+    .header__menu-toggle {
+      display: block;
+    }
+    
+    .header__mobile-nav {
+      display: block;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .header__inner {
+      padding: 1rem;
+    }
+    
+    .header__logo-image {
+      max-height: 40px;
+    }
+    
+    .header__icon {
+      width: 36px;
+      height: 36px;
+      margin-left: 0.5rem;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const menuToggle = document.querySelector('.header__menu-toggle');
+    const mobileNav = document.querySelector('.header__mobile-nav');
+    
+    if (menuToggle && mobileNav) {
+      menuToggle.addEventListener('click', function() {
+        mobileNav.classList.toggle('active');
+        document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : '';
+      });
+      
+      // Close mobile menu when clicking outside
+      mobileNav.addEventListener('click', function(e) {
+        if (e.target === mobileNav) {
+          mobileNav.classList.remove('active');
+          document.body.style.overflow = '';
+        }
+      });
+    }
+    
+    // Update cart count
+    function updateCartCount() {
+      fetch('/cart.js')
+        .then(response => response.json())
+        .then(cart => {
+          const cartCount = document.querySelector('.header__cart-count');
+          if (cartCount) {
+            cartCount.textContent = cart.item_count;
+          }
+        });
+    }
+    
+    // Listen for cart updates
+    document.addEventListener('cart:updated', updateCartCount);
+    
+    // Initial cart count
+    updateCartCount();
+  });
+</script>

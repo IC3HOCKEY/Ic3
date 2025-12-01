@@ -1,0 +1,125 @@
+{%- if section.settings.show_announcement -%}
+  <div class="announcement-bar" style="background-color: {{ section.settings.bg_color }}; color: {{ section.settings.text_color }};">
+    <div class="announcement-bar__content">
+      {%- if section.settings.link != blank -%}
+        <a href="{{ section.settings.link }}" class="announcement-bar__link">
+      {%- endif -%}
+        
+      <p class="announcement-bar__message">{{ section.settings.text | escape }}</p>
+      
+      {%- if section.settings.link != blank -%}
+        </a>
+      {%- endif -%}
+      
+      <button type="button" class="announcement-bar__close" data-announcement-close aria-label="Close announcement">
+        &times;
+      </button>
+    </div>
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Announcement bar",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_announcement",
+      "label": "Show announcement",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Text",
+      "default": "Announce something here"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "Link"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#ffffff"
+    }
+  ]
+}
+{% endschema %}
+
+<style>
+  .announcement-bar {
+    padding: 10px 0;
+    text-align: center;
+    position: relative;
+    z-index: 10;
+  }
+  
+  .announcement-bar__content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+    position: relative;
+  }
+  
+  .announcement-bar__message {
+    margin: 0;
+    font-size: 1.4rem;
+    font-weight: 500;
+  }
+  
+  .announcement-bar__link {
+    color: inherit;
+    text-decoration: none;
+    display: block;
+  }
+  
+  .announcement-bar__close {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: inherit;
+    font-size: 2rem;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0 5px;
+    opacity: 0.7;
+  }
+  
+  .announcement-bar__close:hover {
+    opacity: 1;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const announcementBar = document.querySelector('.announcement-bar');
+    const closeButton = document.querySelector('.announcement-bar__close');
+    
+    if (closeButton) {
+      closeButton.addEventListener('click', function() {
+        if (announcementBar) {
+          announcementBar.style.display = 'none';
+          // Store in localStorage to keep it closed
+          localStorage.setItem('announcementClosed', 'true');
+        }
+      });
+    }
+    
+    // Check if announcement was previously closed
+    if (announcementBar && localStorage.getItem('announcementClosed') === 'true') {
+      announcementBar.style.display = 'none';
+    }
+  });
+</script>

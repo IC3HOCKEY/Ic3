@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IC3 DROP 01 – Face-Off Cap</title>
+  <style>
+    /* Basic Reset */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    /* Typography */
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      line-height: 1.6;
+      color: #333;
+    }
+    
+    /* Layout */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    /* Navigation */
+    nav {
+      background: #000;
+      padding: 15px 0;
+      border-bottom: 2px solid #333;
+    }
+    
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .logo {
+      color: white;
+      font-size: 24px;
+      font-weight: bold;
+      text-decoration: none;
+    }
+    
+    .cart-icon {
+      color: white;
+      text-decoration: none;
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+    
+    .cart-badge {
+      background: #ff4757;
+      color: white;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      position: absolute;
+      top: -8px;
+      right: -10px;
+      display: none;
+    }
+    
+    /* Product Section */
+    .product-section {
+      padding: 40px 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      align-items: flex-start;
+    }
+    
+    .product-image {
+      flex: 1;
+      min-width: 300px;
+    }
+    
+    .product-image img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    
+    .product-info {
+      flex: 1;
+      min-width: 300px;
+    }
+    
+    .product-title {
+      font-size: 32px;
+      margin-bottom: 10px;
+      color: #000;
+    }
+    
+    .product-tagline {
+      font-size: 18px;
+      color: #666;
+      margin-bottom: 20px;
+      font-style: italic;
+    }
+    
+    .price {
+      font-size: 24px;
+      font-weight: bold;
+      margin: 20px 0;
+      color: #000;
+    }
+    
+    .add-to-cart-btn {
+      background: #000;
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      font-size: 16px;
+      font-weight: bold;
+      border-radius: 4px;
+      cursor: pointer;
+      width: 100%;
+      max-width: 300px;
+      margin: 20px 0;
+      transition: background 0.3s;
+    }
+    
+    .add-to-cart-btn:hover:not(:disabled) {
+      background: #333;
+    }
+    
+    .add-to-cart-btn:disabled {
+      background: #999;
+      cursor: not-allowed;
+    }
+    
+    /* Notification */
+    .notification {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #4CAF50;
+      color: white;
+      padding: 15px 30px;
+      border-radius: 4px;
+      display: none;
+      z-index: 1000;
+      font-weight: bold;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
+    
+    .notification.error {
+      background: #ff4757;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="container nav-container">
+      <a href="/" class="logo">IC3</a>
+      <a href="#cart" class="cart-icon">
+        Varukorg
+        <span id="cart-badge" class="cart-badge"></span>
+      </a>
+    </div>
+  </nav>
+
+  <main class="container">
+    <section class="product-section">
+      <div class="product-image">
+        <img src="keps1.png" alt="IC3 DROP 01 – Face-Off Cap">
+      </div>
+      
+      <div class="product-info">
+        <h1 class="product-title">IC3 DROP 01 – Face-Off Cap</h1>
+        <p class="product-tagline">"Cold days. Hot drops."</p>
+        
+        <div style="background: #f8f8f8; padding: 15px; border-radius: 4px; margin: 20px 0; display: inline-block;">
+          Endast 200 exemplar
+        </div>
+        
+        <p class="price">399 SEK</p>
+        <p style="color: #666; margin-bottom: 20px;">+ Frakt: 39 SEK (Sverige)</p>
+        
+        <button id="add-to-cart" class="add-to-cart-btn">LÄGG I VARUKORG</button>
+        
+        <div style="margin-top: 40px;">
+          <h3>Produktinformation</h3>
+          <p style="margin: 10px 0 20px;">Välkommen till IC3 DROP 01 – Face-Off Cap, en exklusiv keps designad för hockeyentusiaster som värdesätter stil och funktion. Denna begränsade upplaga är tillverkad av högkvalitativ bomull med en klassisk 6-panelsdesign och justerbar styrband för perfekt passform.</p>
+          
+          <h3>Detaljer</h3>
+          <ul style="list-style: none; margin: 10px 0 20px;">
+            <li>• Material: 100% bomull</li>
+            <li>• Färg: Svart med broderade detaljer</li>
+            <li>• Enhetsstorlek (justerbart styrband)</li>
+            <li>• 6-panels design med böjt skärm</li>
+            <li>• Inkluderar IC3-märke framtill</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Notification Element -->
+  <div id="notification" class="notification"></div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Elements
+      const addToCartBtn = document.getElementById('add-to-cart');
+      const cartBadge = document.getElementById('cart-badge');
+      const notification = document.getElementById('notification');
+      
+      // Cart state
+      const CART_KEY = 'ic3_cart';
+      
+      // Check if item is in cart
+      function isInCart() {
+        return localStorage.getItem(CART_KEY) === 'true';
+      }
+      
+      // Update UI based on cart state
+      function updateUI() {
+        const inCart = isInCart();
+        
+        // Update button
+        if (inCart) {
+          addToCartBtn.disabled = true;
+          addToCartBtn.textContent = 'TILLAGD I VARUKORGEN';
+          cartBadge.textContent = '1';
+          cartBadge.style.display = 'flex';
+        } else {
+          addToCartBtn.disabled = false;
+          addToCartBtn.textContent = 'LÄGG I VARUKORG';
+          cartBadge.style.display = 'none';
+        }
+      }
+      
+      // Show notification
+      function showNotification(message, isError = false) {
+        notification.textContent = message;
+        notification.className = isError ? 'notification error' : 'notification';
+        notification.style.display = 'block';
+        
+        setTimeout(() => {
+          notification.style.display = 'none';
+        }, 3000);
+      }
+      
+      // Add to cart
+      addToCartBtn.addEventListener('click', function() {
+        if (isInCart()) {
+          showNotification('Du har redag lagt till denna produkt', true);
+          return;
+        }
+        
+        // Add to cart
+        localStorage.setItem(CART_KEY, 'true');
+        
+        // Update UI
+        updateUI();
+        showNotification('Tillagd i varukorgen!');
+        
+        // Optional: Redirect to cart after delay
+        setTimeout(() => {
+          window.location.href = 'cart.html';
+        }, 1000);
+      });
+      
+      // Initialize
+      updateUI();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,315 @@
+/* Theme Settings CSS */
+:root {
+  /* Färger */
+  --color-primary: {{ settings.primary_color | default: '#99dffb' }};
+  --color-primary-rgb: {{ settings.primary_color | default: '#99dffb' | color_to_rgb | remove: 'rgb(' | remove: ')' }};
+  --color-secondary: {{ settings.secondary_color | default: '#000000' }};
+  --color-secondary-rgb: {{ settings.secondary_color | default: '#000000' | color_to_rgb | remove: 'rgb(' | remove: ')' }};
+  --color-text: {{ settings.text_color | default: '#333333' }};
+  --color-text-rgb: {{ settings.text_color | default: '#333333' | color_to_rgb | remove: 'rgb(' | remove: ')' }};
+  --color-background: {{ settings.background_color | default: '#ffffff' }};
+  --color-background-rgb: {{ settings.background_color | default: '#ffffff' | color_to_rgb | remove: 'rgb(' | remove: ')' }};
+  
+  /* Typsnitt */
+  --font-heading: 'Barlow Condensed', sans-serif;
+  --font-body: 'Montserrat', sans-serif;
+  
+  /* Övriga färger */
+  --color-border: #e1e1e1;
+  --color-error: #ff3d3d;
+  --color-success: #4caf50;
+  --color-warning: #ff9800;
+  --color-info: #2196f3;
+  
+  /* Övertoningar */
+  --color-primary-light: {{ settings.primary_color | default: '#99dffb' | color_lighten: 10 }};
+  --color-primary-dark: {{ settings.primary_color | default: '#99dffb' | color_darken: 10 }};
+  --color-secondary-light: {{ settings.secondary_color | default: '#000000' | color_lighten: 10 }};
+  --color-secondary-dark: {{ settings.secondary_color | default: '#000000' | color_darken: 10 }};
+  
+  /* Genomskinlighet */
+  --color-primary-rgba-10: rgba(var(--color-primary-rgb), 0.1);
+  --color-primary-rgba-20: rgba(var(--color-primary-rgb), 0.2);
+  --color-primary-rgba-50: rgba(var(--color-primary-rgb), 0.5);
+  --color-primary-rgba-80: rgba(var(--color-primary-rgb), 0.8);
+  
+  /* Knappar */
+  --button-primary-bg: var(--color-primary);
+  --button-primary-text: {{ settings.primary_color | default: '#99dffb' | color_contrast: '#ffffff' | color_desaturate: 10 | color_lightness: 40 }};
+  --button-primary-hover: var(--color-primary-dark);
+  --button-secondary-bg: transparent;
+  --button-secondary-text: var(--color-text);
+  --button-secondary-border: var(--color-text);
+  --button-secondary-hover: var(--color-primary);
+  
+  /* Länkar */
+  --link-color: var(--color-primary);
+  --link-hover: var(--color-primary-dark);
+  
+  /* Rubriker */
+  --heading-color: var(--color-secondary);
+  --heading-font: var(--font-heading);
+  
+  /* Sidhuvud */
+  --header-bg: #ffffff;
+  --header-text: var(--color-text);
+  --header-border: var(--color-border);
+  
+  /* Sidfot */
+  --footer-bg: #111111;
+  --footer-text: #ffffff;
+  --footer-heading: #ffffff;
+  --footer-border: #333333;
+  
+  /* Produktkort */
+  --product-card-bg: #ffffff;
+  --product-card-text: var(--color-text);
+  --product-card-border: var(--color-border);
+  --product-card-hover: #f9f9f9;
+  
+  /* Priser */
+  --price-color: var(--color-text);
+  --sale-price-color: var(--color-error);
+  --compare-price-color: #999999;
+  
+  /* Formulär */
+  --input-bg: #ffffff;
+  --input-border: var(--color-border);
+  --input-text: var(--color-text);
+  --input-placeholder: #999999;
+  --input-focus: var(--color-primary);
+  
+  /* Meddelanden */
+  --success-bg: #e8f5e9;
+  --success-text: #2e7d32;
+  --error-bg: #ffebee;
+  --error-text: #c62828;
+  --warning-bg: #fff8e1;
+  --warning-text: #f57f17;
+  --info-bg: #e3f2fd;
+  --info-text: #1565c0;
+  
+  /* Övrigt */
+  --border-radius: 4px;
+  --box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  --transition: all 0.3s ease;
+}
+
+/* Använd temafärgerna på element */
+body {
+  color: var(--color-text);
+  background-color: var(--color-background);
+  font-family: var(--font-body);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  color: var(--heading-color);
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+a {
+  color: var(--link-color);
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+a:hover {
+  color: var(--link-hover);
+}
+
+/* Knappar */
+.btn {
+  display: inline-block;
+  padding: 1rem 2rem;
+  border-radius: var(--border-radius);
+  font-weight: 600;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: var(--transition);
+  border: 2px solid transparent;
+}
+
+.btn--primary {
+  background-color: var(--button-primary-bg);
+  color: var(--button-primary-text);
+}
+
+.btn--primary:hover {
+  background-color: var(--button-primary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.btn--outline {
+  background-color: var(--button-secondary-bg);
+  color: var(--button-secondary-text);
+  border: 2px solid var(--button-secondary-border);
+}
+
+.btn--outline:hover {
+  background-color: var(--button-secondary-hover);
+  color: #ffffff;
+  border-color: var(--button-secondary-hover);
+}
+
+/* Formulär */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="tel"],
+input[type="number"],
+textarea,
+select {
+  width: 100%;
+  padding: 1rem 1.5rem;
+  border: 1px solid var(--input-border);
+  border-radius: var(--border-radius);
+  background-color: var(--input-bg);
+  color: var(--input-text);
+  font-family: var(--font-body);
+  transition: var(--transition);
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="tel"]:focus,
+input[type="number"]:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: var(--input-focus);
+  box-shadow: 0 0 0 2px var(--color-primary-rgba-20);
+}
+
+/* Meddelanden */
+.message {
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  border-radius: var(--border-radius);
+  font-weight: 500;
+}
+
+.message--success {
+  background-color: var(--success-bg);
+  color: var(--success-text);
+}
+
+.message--error {
+  background-color: var(--error-bg);
+  color: var(--error-text);
+}
+
+.message--warning {
+  background-color: var(--warning-bg);
+  color: var(--warning-text);
+}
+
+.message--info {
+  background-color: var(--info-bg);
+  color: var(--info-text);
+}
+
+/* Responsiva brytpunkter */
+:root {
+  --gutter: 2rem;
+  
+  @media (max-width: 768px) {
+    --gutter: 1.5rem;
+  }
+  
+  @media (max-width: 480px) {
+    --gutter: 1rem;
+  }
+}
+
+/* Hjälpklasser */
+.text-center {
+  text-align: center;
+}
+
+.text-uppercase {
+  text-transform: uppercase;
+}
+
+.mb-0 {
+  margin-bottom: 0 !important;
+}
+
+.mt-0 {
+  margin-top: 0 !important;
+}
+
+.mb-1 {
+  margin-bottom: 1rem !important;
+}
+
+.mt-1 {
+  margin-top: 1rem !important;
+}
+
+.mb-2 {
+  margin-bottom: 2rem !important;
+}
+
+.mt-2 {
+  margin-top: 2rem !important;
+}
+
+.pb-1 {
+  padding-bottom: 1rem !important;
+}
+
+.pt-1 {
+  padding-top: 1rem !important;
+}
+
+.pb-2 {
+  padding-bottom: 2rem !important;
+}
+
+.pt-2 {
+  padding-top: 2rem !important;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  overflow: hidden;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  clip: rect(0 0 0 0);
+  word-wrap: normal !important;
+}
+
+/* Hjälpklasser för färger */
+.bg-primary {
+  background-color: var(--color-primary);
+  color: var(--button-primary-text);
+}
+
+.bg-secondary {
+  background-color: var(--color-secondary);
+  color: #ffffff;
+}
+
+.text-primary {
+  color: var(--color-primary);
+}
+
+.text-secondary {
+  color: var(--color-secondary);
+}
+
+/* Anpassningar för specifika komponenter */
+/* Lägg till anpassade stilar för header, footer, produktkort etc. här */

@@ -1,0 +1,221 @@
+/*!
+  IC3 Theme - Ett modernt och anpassningsbart Shopify-tema
+  Version: 1.0.0
+  Skapat av: IC3 Team
+*/
+
+/* Importera typsnitt */
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+/* Importera temainställningar */
+{{ 'theme-settings.css.liquid' | asset_url | stylesheet_tag }}
+
+/* Basstilar */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 62.5%; /* 1rem = 10px */
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: 1.6rem;
+  line-height: 1.6;
+  color: var(--color-text);
+  background-color: var(--color-background);
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+  border-style: none;
+}
+
+a {
+  color: var(--link-color);
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+a:hover {
+  color: var(--link-hover);
+  text-decoration: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+  color: var(--heading-color);
+  letter-spacing: 0.5px;
+}
+
+h1 { font-size: 4.8rem; }
+h2 { font-size: 3.6rem; }
+h3 { font-size: 2.8rem; }
+h4 { font-size: 2.4rem; }
+h5 { font-size: 2.0rem; }
+h6 { font-size: 1.8rem; }
+
+p {
+  margin-bottom: 1.5rem;
+}
+
+ul, ol {
+  margin-bottom: 1.5rem;
+  padding-left: 2rem;
+}
+
+/* Layout */
+.container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+.section {
+  padding: 6rem 0;
+}
+
+.section--gray {
+  background-color: #f9f9f9;
+}
+
+.section--dark {
+  background-color: var(--color-secondary);
+  color: #ffffff;
+}
+
+.section--dark h1,
+.section--dark h2,
+.section--dark h3,
+.section--dark h4,
+.section--dark h5,
+.section--dark h6 {
+  color: #ffffff;
+}
+
+/* Grid */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 calc(var(--gutter) * -1);
+}
+
+.col {
+  flex: 1 0 0%;
+  max-width: 100%;
+  padding: 0 var(--gutter);
+}
+
+/* Responsiva kolumner */
+.col-12 { flex: 0 0 100%; max-width: 100%; }
+.col-11 { flex: 0 0 91.666667%; max-width: 91.666667%; }
+.col-10 { flex: 0 0 83.333333%; max-width: 83.333333%; }
+.col-9 { flex: 0 0 75%; max-width: 75%; }
+.col-8 { flex: 0 0 66.666667%; max-width: 66.666667%; }
+.col-7 { flex: 0 0 58.333333%; max-width: 58.333333%; }
+.col-6 { flex: 0 0 50%; max-width: 50%; }
+.col-5 { flex: 0 0 41.666667%; max-width: 41.666667%; }
+.col-4 { flex: 0 0 33.333333%; max-width: 33.333333%; }
+.col-3 { flex: 0 0 25%; max-width: 25%; }
+.col-2 { flex: 0 0 16.666667%; max-width: 16.666667%; }
+.col-1 { flex: 0 0 8.333333%; max-width: 8.333333%; }
+
+/* Responsiva anpassningar */
+@media (max-width: 1199px) {
+  html { font-size: 58%; }
+  
+  .col-lg-12 { flex: 0 0 100%; max-width: 100%; }
+  .col-lg-11 { flex: 0 0 91.666667%; max-width: 91.666667%; }
+  .col-lg-10 { flex: 0 0 83.333333%; max-width: 83.333333%; }
+  .col-lg-9 { flex: 0 0 75%; max-width: 75%; }
+  .col-lg-8 { flex: 0 0 66.666667%; max-width: 66.666667%; }
+  .col-lg-7 { flex: 0 0 58.333333%; max-width: 58.333333%; }
+  .col-lg-6 { flex: 0 0 50%; max-width: 50%; }
+  .col-lg-5 { flex: 0 0 41.666667%; max-width: 41.666667%; }
+  .col-lg-4 { flex: 0 0 33.333333%; max-width: 33.333333%; }
+  .col-lg-3 { flex: 0 0 25%; max-width: 25%; }
+  .col-lg-2 { flex: 0 0 16.666667%; max-width: 16.666667%; }
+  .col-lg-1 { flex: 0 0 8.333333%; max-width: 8.333333%; }
+}
+
+@media (max-width: 991px) {
+  html { font-size: 56%; }
+  
+  .section {
+    padding: 5rem 0;
+  }
+  
+  .col-md-12 { flex: 0 0 100%; max-width: 100%; }
+  .col-md-11 { flex: 0 0 91.666667%; max-width: 91.666667%; }
+  .col-md-10 { flex: 0 0 83.333333%; max-width: 83.333333%; }
+  .col-md-9 { flex: 0 0 75%; max-width: 75%; }
+  .col-md-8 { flex: 0 0 66.666667%; max-width: 66.666667%; }
+  .col-md-7 { flex: 0 0 58.333333%; max-width: 58.333333%; }
+  .col-md-6 { flex: 0 0 50%; max-width: 50%; }
+  .col-md-5 { flex: 0 0 41.666667%; max-width: 41.666667%; }
+  .col-md-4 { flex: 0 0 33.333333%; max-width: 33.333333%; }
+  .col-md-3 { flex: 0 0 25%; max-width: 25%; }
+  .col-md-2 { flex: 0 0 16.666667%; max-width: 16.666667%; }
+  .col-md-1 { flex: 0 0 8.333333%; max-width: 8.333333%; }
+}
+
+@media (max-width: 767px) {
+  html { font-size: 54%; }
+  
+  .section {
+    padding: 4rem 0;
+  }
+  
+  .col-sm-12 { flex: 0 0 100%; max-width: 100%; }
+  .col-sm-11 { flex: 0 0 91.666667%; max-width: 91.666667%; }
+  .col-sm-10 { flex: 0 0 83.333333%; max-width: 83.333333%; }
+  .col-sm-9 { flex: 0 0 75%; max-width: 75%; }
+  .col-sm-8 { flex: 0 0 66.666667%; max-width: 66.666667%; }
+  .col-sm-7 { flex: 0 0 58.333333%; max-width: 58.333333%; }
+  .col-sm-6 { flex: 0 0 50%; max-width: 50%; }
+  .col-sm-5 { flex: 0 0 41.666667%; max-width: 41.666667%; }
+  .col-sm-4 { flex: 0 0 33.333333%; max-width: 33.333333%; }
+  .col-sm-3 { flex: 0 0 25%; max-width: 25%; }
+  .col-sm-2 { flex: 0 0 16.666667%; max-width: 16.666667%; }
+  .col-sm-1 { flex: 0 0 8.333333%; max-width: 8.333333%; }
+}
+
+@media (max-width: 575px) {
+  html { font-size: 52%; }
+  
+  .section {
+    padding: 3rem 0;
+  }
+  
+  .col-xs-12 { flex: 0 0 100%; max-width: 100%; }
+  .col-xs-11 { flex: 0 0 91.666667%; max-width: 91.666667%; }
+  .col-xs-10 { flex: 0 0 83.333333%; max-width: 83.333333%; }
+  .col-xs-9 { flex: 0 0 75%; max-width: 75%; }
+  .col-xs-8 { flex: 0 0 66.666667%; max-width: 66.666667%; }
+  .col-xs-7 { flex: 0 0 58.333333%; max-width: 58.333333%; }
+  .col-xs-6 { flex: 0 0 50%; max-width: 50%; }
+  .col-xs-5 { flex: 0 0 41.666667%; max-width: 41.666667%; }
+  .col-xs-4 { flex: 0 0 33.333333%; max-width: 33.333333%; }
+  .col-xs-3 { flex: 0 0 25%; max-width: 25%; }
+  .col-xs-2 { flex: 0 0 16.666667%; max-width: 16.666667%; }
+  .col-xs-1 { flex: 0 0 8.333333%; max-width: 8.333333%; }
+}
+
+/* Anpassningar för specifika komponenter */
+/* Header, footer, produktkort etc. har egna filer */

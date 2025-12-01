@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Limited Drop - IC3</title>
+  <link rel="icon" type="image/png" href="Loga.png">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Barlow+Condensed:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Your existing styles */
+    .product-info {
+      position: relative;
+    }
+    
+    /* Hide quantity selector */
+    .quantity-selector {
+      display: none !important;
+    }
+    
+    /* Style the buy button container */
+    #shopify-buy-button {
+      margin-top: 20px;
+    }
+
+    /* Carousel styles */
+    .carousel {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      border-radius: 12px;
+    }
+
+    .carousel-images {
+      display: flex;
+      transition: transform 0.3s ease-in-out;
+      width: 100%;
+    }
+
+    .carousel-image {
+      min-width: 100%;
+      transition: opacity 0.3s ease-in-out;
+    }
+
+    .carousel-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 12px;
+    }
+
+    .carousel-controls {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 15px;
+      transform: translateY(-50%);
+      pointer-events: none;
+    }
+
+    .carousel-control {
+      background: rgba(0, 0, 0, 0.5);
+      border: none;
+      color: white;
+      font-size: 24px;
+      padding: 10px 15px;
+      border-radius: 50%;
+      cursor: pointer;
+      pointer-events: auto;
+      transition: background 0.3s;
+    }
+
+    .carousel-control:hover {
+      background: rgba(0, 0, 0, 0.8);
+    }
+  </style>
+
+  <script>
+    // Wait for DOM to be fully loaded
+    document.addEventListener('DOMContentLoaded', function() {
+      let currentImageIndex = 0;
+      const carousel = document.querySelector('.carousel-images');
+      const images = document.querySelectorAll('.carousel-image');
+      const totalImages = images.length;
+      let slideInterval;
+
+      function updateCarousel() {
+        carousel.style.transform = `translateX(-${currentImageIndex * 100}%)`;
+      }
+
+      function nextImage() {
+        currentImageIndex = (currentImageIndex + 1) % totalImages;
+        updateCarousel();
+        resetInterval();
+      }
+
+      function prevImage() {
+        currentImageIndex = (currentImageIndex - 1 + totalImages) % totalImages;
+        updateCarousel();
+        resetInterval();
+      }
+
+      function resetInterval() {
+        clearInterval(slideInterval);
+        slideInterval = setInterval(nextImage, 5000);
+      }
+
+      // Initialize carousel
+      if (carousel && totalImages > 0) {
+        // Set initial position
+        updateCarousel();
+        
+        // Start auto-advancing
+        slideInterval = setInterval(nextImage, 5000);
+        
+        // Pause on hover
+        carousel.addEventListener('mouseenter', () => clearInterval(slideInterval));
+        carousel.addEventListener('mouseleave', () => slideInterval = setInterval(nextImage, 5000));
+      }
+    });
+  </script>
+</head>
+<body>
+  <!-- Your existing navigation -->
+  <nav>
+    <div class="nav-container">
+      <div class="logo-container">
+        <a href="index.html" class="logo">
+          <img src="loga.png" alt="IC3 Logo" class="logo-icon">
+        </a>
+      </div>
+      <div class="nav-links">
+        <a href="limited-drop.html">Limited Drop</a>
+        <a href="om-oss.html">Om oss</a>
+        <a href="kontakt.html">Kontakt</a>
+        <a href="cart.html" class="cart-icon">
+          <img src="m%C3%A5lbur.png" alt="Cart" style="height: 24px;">
+          <span id="cart-badge" class="cart-badge"></span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="product-section">
+    <div class="product-image">
+      <div class="carousel">
+        <div class="carousel-images" id="carouselImages">
+          <div class="carousel-image">
+            <img src="wetransfer_ic3-bilder_2025-11-14_1223%202/KepsD1.jpeg" alt="IC3 DROP 01 – Face-Off Cap Front View" class="product-img" loading="lazy">
+          </div>
+          <div class="carousel-image">
+            <img src="wetransfer_ic3-bilder_2025-11-14_1223%202/KepsD2.jpeg" alt="IC3 DROP 01 – Face-Off Cap Side View" class="product-img" loading="lazy">
+          </div>
+          <div class="carousel-image">
+            <img src="wetransfer_ic3-bilder_2025-11-14_1223%202/KepsD3.jpeg" alt="IC3 DROP 01 – Face-Off Cap Detail View" class="product-img" loading="lazy">
+          </div>
+          <div class="carousel-image">
+            <img src="wetransfer_ic3-bilder_2025-11-14_1223%202/KepsD4.jpeg" alt="IC3 DROP 01 – Face-Off Cap Back View" class="product-img" loading="lazy">
+          </div>
+          <div class="carousel-image">
+            <img src="wetransfer_ic3-bilder_2025-11-14_1223%202/KepsD5.jpeg" alt="IC3 DROP 01 – Face-Off Cap Worn View" class="product-img" loading="lazy">
+          </div>
+          <div class="carousel-image">
+            <img src="wetransfer_ic3-bilder_2025-11-14_1223%202/KepsD6.jpeg" alt="IC3 DROP 01 – Face-Off Cap Side Profile" class="product-img" loading="lazy">
+          </div>
+          <div class="carousel-image">
+            <img src="wetransfer_ic3-bilder_2025-11-14_1223%202/KepsD7.jpeg" alt="IC3 DROP 01 – Face-Off Cap Logo Detail" class="product-img" loading="lazy">
+          </div>
+        </div>
+        <div class="carousel-controls">
+          <button class="carousel-control prev" onclick="prevImage()">❮</button>
+          <button class="carousel-control next" onclick="nextImage()">❯</button>
+        </div>
+      </div>
+    </div>
+    
+    <div class="product-info">
+      <h1>IC3 DROP 01 – Face-Off Cap</h1>
+      <h2>"Cold days. Hot drops."</h2>  
+      <div class="exclusive-tag">Endast 200 exemplar</div>
+      <p class="price">Pris: 399 SEK</p>
+      <p class="shipping">+ Frakt: 39 SEK (Sverige)</p>
+      
+      <!-- Button removed -->
+      
+      <div class="product-description">
+        <p>Välkommen till IC3 DROP 01 – Face-Off Cap, en exklusiv keps designad för hockeyentusiaster som värdesätter stil och funktion. Denna begränsade upplaga är tillverkad av högkvalitativ bomull med en klassisk 6-panelsdesign och justerbar styrband för perfekt passform.</p>
+        <p>Limiterad upplaga på endast 200 exemplar. Varje keps är numrerad för att bekräfta dess äkthet och exklusivitet.</p>
+      </div>
+      
+      <!-- Shopify Buy Button -->
+      <div id='product-component-1760348522476'></div>
+      <!-- Fallback simple button -->
+      <button class="add-to-cart-btn" onclick="window.location.href='https://mffake-s0.myshopify.com/cart/15341655818613:1'">Köp nu</button>
+      
+      <div class="product-details">
+        <h3>Produktdetaljer:</h3>
+        <ul>
+          <li>Material: 100% bomull</li>
+          <li>Färg: Svart med broderade detaljer</li>
+          <li>Enhetsstorlek (justerbart styrband)</li>
+          <li>6-panels design med böjt skärm</li>
+          <li>Inkluderar IC3-märke framtill</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  {{ ... }}
+  <!-- Notification element -->
+  <div id="notification" class="notification"></div>
+  
+  <script type="text/javascript">
+/*<![CDATA[*/
+(function () {
+  var scriptURL = 'https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js';
+  if (window.ShopifyBuy) {
+    if (window.ShopifyBuy.UI) {
+      ShopifyBuyInit();
+    } else {
+      loadScript();
+    }
+  } else {
+    loadScript();
+  }
+  function loadScript() {
+    var script = document.createElement('script');
+    script.async = true;
+    script.src = scriptURL;
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(script);
+    script.onload = ShopifyBuyInit;
+  }
+  function ShopifyBuyInit() {
+    var client = ShopifyBuy.buildClient({
+      domain: 'mffake-s0.myshopify.com',
+      storefrontAccessToken: '83938ccb17c73d80e45d15b78e186976',
+    });
+    ShopifyBuy.UI.onReady(client).then(function (ui) {
+      ui.createComponent('product', {
+        id: '15341655818613',
+        node: document.getElementById('product-component-1760348522476'),
+        moneyFormat: '%7B%7Bamount_no_decimals%7D%7D%20kr',
+        options: {
+  "product": {
+    "styles": {
+      "product": {
+        "@media (min-width: 601px)": {
+          "max-width": "calc(25% - 20px)",
+          "margin-left": "20px",
+          "margin-bottom": "50px"
+        }
+      },
+      "title": {
+        "color": "#9796d6"
+      },
+      "button": {
+        "font-family": "Droid Sans, sans-serif",
+        "font-weight": "bold",
+        ":hover": {
+          "background-color": "#3c4170"
+        },
+        "background-color": "#232642",
+        ":focus": {
+          "background-color": "#3c4170"
+        },
+        "border-radius": "12px"
+      },
+      "price": {
+        "color": "#749ae2"
+      },
+      "compareAt": {
+        "color": "#749ae2"
+      },
+      "unitPrice": {
+        "color": "#749ae2"
+      },
+      "description": {
+        "font-size": "15px",
+        "color": "#859fda"
+      }
+    },
+    "contents": {
+      "img": false,
+      "title": false,
+      "price": false
+    },
+    "text": {
+      "button": "Köp nu"
+    },
+    "googleFonts": [
+      "Droid Sans"
+    ]
+  },
+  "productSet": {
+    "styles": {
+      "products": {
+        "@media (min-width: 601px)": {
+          "margin-left": "-20px"
+        }
+      }
+    }
+  },
+  "modalProduct": {
+    "contents": {
+      "img": false,
+      "imgWithCarousel": true,
+      "button": false,
+      "buttonWithQuantity": true
+    },
+    "styles": {
+      "product": {
+        "@media (min-width: 601px)": {
+          "max-width": "100%",
+          "margin-left": "0px",
+          "margin-bottom": "0px"
+        }
+      },
+      "button": {
+        "font-family": "Droid Sans, sans-serif",
+        "font-weight": "bold",
+        ":hover": {
+          "background-color": "#3c4170"
+        },
+        "background-color": "#232642",
+        ":focus": {
+          "background-color": "#3c4170"
+        },
+        "border-radius": "12px"
+      },
+      "title": {
+        "font-family": "Helvetica Neue, sans-serif",
+        "font-weight": "bold",
+        "font-size": "26px",
+        "color": "#4c4c4c"
+      },
+      "price": {
+        "font-family": "Helvetica Neue, sans-serif",
+        "font-weight": "normal",
+        "font-size": "18px",
+        "color": "#4c4c4c"
+      },
+      "compareAt": {
+        "font-family": "Helvetica Neue, sans-serif",
+        "font-weight": "normal",
+        "font-size": "15.299999999999999px",
+        "color": "#4c4c4c"
+      },
+      "unitPrice": {
+        "font-family": "Helvetica Neue, sans-serif",
+        "font-weight": "normal",
+        "font-size": "15.299999999999999px",
+        "color": "#4c4c4c"
+      },
+      "description": {
+        "font-family": "Helvetica Neue, sans-serif",
+        "font-weight": "normal",
+        "font-size": "14px",
+        "color": "#4c4c4c"
+      }
+    },
+    "googleFonts": [
+      "Droid Sans"
+    ],
+    "text": {
+      "button": "Add to cart"
+    }
+  },
+  "option": {},
+  "cart": {
+    "styles": {
+      "button": {
+        "font-family": "Droid Sans, sans-serif",
+        "font-weight": "bold",
+        ":hover": {
+          "background-color": "#3c4170"
+        },
+        "background-color": "#232642",
+        ":focus": {
+          "background-color": "#3c4170"
+        },
+        "border-radius": "12px"
+      }
+    },
+    "text": {
+      "title": "Varukorg",
+      "total": "Subtotal",
+      "notice": "Frakt och rabattkod läggs till vid utceckning",
+      "button": "Köp"
+    },
+    "googleFonts": [
+      "Droid Sans"
+    ]
+  },
+  "toggle": {
+    "styles": {
+      "toggle": {
+        "font-family": "Droid Sans, sans-serif",
+        "font-weight": "bold",
+        "background-color": "#232642",
+        ":hover": {
+          "background-color": "#3c4170"
+        },
+        ":focus": {
+          "background-color": "#3c4170"
+        }
+      }
+    },
+    "googleFonts": [
+      "Droid Sans"
+    ]
+  }
+},
+      });
+    });
+  }
+})(});
+});
+})();
+</script>
+</body>
+</html>
