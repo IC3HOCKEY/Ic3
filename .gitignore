@@ -1,6 +1,9 @@
 node_modules/
 dist/
 .cache/
+.next/
+out/
+public/build/
 .env
 .env.*
 
@@ -24,3 +27,6 @@ __pycache__/
 # Generated media
 *.mp4
 *.mov
+
+# Local transfer dumps
+wetransfer_*/
