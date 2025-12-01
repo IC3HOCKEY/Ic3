@@ -117,6 +117,23 @@ a {
   .nav-links a {
     font-size: 1rem;
   }
+
+  .cart-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 20px;
+    background: rgba(153, 223, 251, 0.1);
+  }
+
+  .cart-badge {
+    position: static;
+    transform: none;
+    background: #99dffb;
+    color: #000;
+  }
 }
 
 /* Sections */
