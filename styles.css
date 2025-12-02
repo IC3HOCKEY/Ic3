@@ -198,6 +198,7 @@ a {
   white-space: nowrap;
   align-self: center;
   line-height: 1;
+  margin-top: -1px;
 }
 
 .crew-login-btn:hover {
