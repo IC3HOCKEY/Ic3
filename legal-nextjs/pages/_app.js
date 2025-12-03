@@ -20,7 +20,7 @@ function MyApp({ Component, pageProps }) {
               "url": "https://ic3brand.se",
               "contactPoint": {
                 "@type": "ContactPoint",
-                "email": "kontakt@ic3brand.se",
+                "email": "ic3.kontakt@outlook.com",
               },
             }),
           }}

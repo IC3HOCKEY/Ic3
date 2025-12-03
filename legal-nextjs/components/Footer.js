@@ -8,7 +8,7 @@ export default function Footer() {
           <a href="/cookies">Cookies</a>
         </div>
         <div>
-          <p>Contact: kontakt@ic3brand.se</p>
+          <p>Contact: ic3.kontakt@outlook.com</p>
           <p>© IC3 “Cold days. Hot drops.”</p>
         </div>
       </div>

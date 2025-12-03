@@ -27,7 +27,7 @@ export const TERMS_CONTENT = `
 <p>Du har 14 dagars ångerrätt enligt svensk lag. Produkten ska vara i originalskick och oanvänd. Kunden står för returfrakt.</p>
 
 <h2>6. Garanti &amp; reklamation</h2>
-<p>Vid fel på vara följer vi svensk konsumentlagstiftning. Kontakta oss på <a href="mailto:kontakt@ic3brand.se">kontakt@ic3brand.se</a> om du vill reklamera en produkt.</p>
+<p>Vid fel på vara följer vi svensk konsumentlagstiftning. Kontakta oss på <a href="mailto:ic3.kontakt@outlook.com">ic3.kontakt@outlook.com</a> om du vill reklamera en produkt.</p>
 
 <h2>7. Ansvarsbegränsning</h2>
 <p>IC3 ansvarar inte för indirekta skador, datasäkerhetsproblem, leveransförseningar eller fel som ligger utanför vår kontroll.</p>
@@ -79,7 +79,7 @@ export const PRIVACY_CONTENT = `
   <li>invända mot behandling</li>
   <li>få dina uppgifter exporterade (dataportabilitet)</li>
 </ul>
-<p>Kontakta oss på <a href="mailto:kontakt@ic3brand.se">kontakt@ic3brand.se</a> för att utöva dina rättigheter.</p>
+<p>Kontakta oss på <a href="mailto:ic3.kontakt@outlook.com">ic3.kontakt@outlook.com</a> för att utöva dina rättigheter.</p>
 
 <h2>6. Säkerhet</h2>
 <p>Vi skyddar dina personuppgifter genom tekniska och organisatoriska säkerhetsåtgärder.</p>
