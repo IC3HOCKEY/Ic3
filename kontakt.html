@@ -370,9 +370,43 @@
     <div class="newsletter-section">
       <h3 class="newsletter-slogan">Join the crew – get early access to drops and deals.</h3>
       <p class="newsletter-text">Skriv upp dig för vårt nyhetsbrev och få exklusiva erbjudanden, nyheter och 10 % rabatt på ditt första köp.</p>
-      <form class="newsletter-form">
-        <input type="email" class="newsletter-input" placeholder="Din e-postadress" required>
-        <button type="submit" class="newsletter-btn">Sign up</button>
+      <form
+        action="https://manage.kmail-lists.com/subscriptions/subscribe"
+        method="POST"
+        style="display:flex; gap:0; max-width:1200px; margin:0 auto;"
+      >
+        <input type="hidden" name="g" value="SFBMwg">
+        <input
+          type="email"
+          name="email"
+          required
+          placeholder="Din e-postadress"
+          style="
+            flex:1;
+            padding:1rem 1.2rem;
+            border:none;
+            border-radius:6px 0 0 6px;
+            background:#111;
+            color:#fff;
+            font-size:1rem;
+          "
+        >
+        <button
+          type="submit"
+          style="
+            padding:1rem 2.2rem;
+            background:#ff4b4b;
+            border:none;
+            border-radius:0 6px 6px 0;
+            color:white;
+            font-weight:700;
+            text-transform:uppercase;
+            font-size:1rem;
+            cursor:pointer;
+          "
+        >
+          Sign up
+        </button>
       </form>
     </div>
   </section>
