@@ -640,20 +640,46 @@
     }
   </script>
   <script>
-    // Toggle body class on scroll so we can hide big logos on mobile after scrolling
+    // Toggle body classes on scroll: hide logos after scroll and hide entire nav when scrolling down on mobile
     (function () {
+      const TOP_THRESHOLD = 10;
       const SCROLL_THRESHOLD = 30;
+      let lastScrollY = window.scrollY;
 
       function handleScroll() {
-        if (window.innerWidth <= 768) {
-          if (window.scrollY > SCROLL_THRESHOLD) {
-            document.body.classList.add('nav-scrolled');
-          } else {
-            document.body.classList.remove('nav-scrolled');
-          }
+        const currentY = window.scrollY;
+        const isMobile = window.innerWidth <= 768;
+
+        if (!isMobile) {
+          document.body.classList.remove('nav-scrolled', 'nav-hidden');
+          lastScrollY = currentY;
+          return;
+        }
+
+        // At very top: show full header with logos
+        if (currentY <= TOP_THRESHOLD) {
+          document.body.classList.remove('nav-scrolled', 'nav-hidden');
+          lastScrollY = currentY;
+          return;
+        }
+
+        // Past threshold: hide logos but keep slim nav bar
+        if (currentY > SCROLL_THRESHOLD) {
+          document.body.classList.add('nav-scrolled');
         } else {
           document.body.classList.remove('nav-scrolled');
         }
+
+        // Scroll direction: down -> hide nav, up -> show nav
+        if (currentY > lastScrollY + 5) {
+          // Scrolling down
+          document.body.classList.add('nav-hidden');
+        } else if (currentY < lastScrollY - 5) {
+          // Scrolling up
+          document.body.classList.remove('nav-hidden');
+        }
+
+        lastScrollY = currentY;
       }
 
       window.addEventListener('scroll', handleScroll, { passive: true });

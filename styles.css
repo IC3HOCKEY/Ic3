@@ -200,6 +200,21 @@ a {
   body.nav-scrolled .logo-icon-container {
     display: none;
   }
+
+  /* When user scrolls down on mobile, hide the whole nav bar */
+  body.nav-hidden nav {
+    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.2s ease-out, opacity 0.2s ease-out;
+  }
+
+  /* Ensure nav is visible when not hidden */
+  nav {
+    transform: translateY(0);
+    opacity: 1;
+    transition: transform 0.2s ease-out, opacity 0.2s ease-out;
+  }
 }
 
 .crew-login-btn {
