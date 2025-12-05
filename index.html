@@ -258,7 +258,7 @@
         grid-template-columns: 1fr;
       }
       .hero {
-        height: 45vh;
+        height: auto;
       }
       .hero-top-content h1,
       .hero h1 {
@@ -279,11 +279,13 @@
         bottom: 60px;
       }
       .video-container {
-        height: 45vh;
+        position: relative;
+        height: auto;
       }
       .hero video {
-        height: 100%;
-        object-fit: contain;
+        width: 100%;
+        height: auto;
+        object-fit: cover;
         background: #0a1c2c; /* match site background to avoid hårda svarta kanter */
       }
       /* On mobile, place the bottom text below the video instead of overlaying it */
