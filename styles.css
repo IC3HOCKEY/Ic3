@@ -7,12 +7,39 @@
   font-style: normal;
 }
 
+@media (max-width: 768px) {
+  .footer .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+  .footer-links {
+    display: flex;
+    gap: 2rem;
+  }
+  .footer .container p {
+    margin: 0.15rem 0;
+  }
+  .footer {
+    text-align: left;
+  }
+  .footer-links {
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+}
+
 body {
   margin: 0;
-  font-family: 'Anonymous Pro', 'Montserrat', 'Barlow Condensed', monospace, sans-serif;
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   background-color: #0a1c2c;
   color: white;
   line-height: 1.6;
+  overflow-x: hidden;
 }
 
 /* Navigation */
@@ -294,8 +321,8 @@ span,
 input,
 textarea {
   color: white;
-  font-family: 'Anonymous Pro', 'Montserrat', 'Barlow Condensed', monospace, sans-serif;
-  font-weight: 300;
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-weight: 400;
 }
 
 /* Forms */
