@@ -455,6 +455,28 @@
     #modal-body p {
       margin-bottom: 1rem;
     }
+    @media (max-width: 768px) {
+      .logo-row {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 0.75rem;
+      }
+      .logo-icon-container {
+        position: static;
+        transform: none;
+      }
+      .logo-text {
+        height: 70px;
+      }
+      .logo img {
+        height: 60px;
+      }
+      .logo-icon {
+        height: 26px;
+      }
+    }
   </style>
   <script>
     // Update cart badge function
