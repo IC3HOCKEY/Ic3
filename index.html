@@ -273,10 +273,10 @@
       .hero-bottom-content {
         padding: 0.75rem 1rem;
       }
-      /* Place heading on top of the video near the top edge */
+      /* Place heading on top of the video but slightly further down inside the frame */
       .hero-top-content {
         position: absolute;
-        top: 20px;
+        top: 50px;
         left: 50%;
         transform: translateX(-50%);
         width: 100%;
@@ -296,11 +296,14 @@
       .hero-bottom-content {
         position: static;
         transform: none;
-        background: rgba(255, 255, 255, 0.35);
+        background: transparent;
         padding: 0.75rem 1rem;
         margin-top: 0.5rem;
         width: 100%;
         box-sizing: border-box;
+      }
+      .hero-bottom-content p {
+        color: #fff;
       }
     }
     .intro {
