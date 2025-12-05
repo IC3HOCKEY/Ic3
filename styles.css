@@ -121,12 +121,6 @@ a {
     width: 100%;
   }
 
-  /* Hide large logos so they don't cover the screen on mobile */
-  .logo-container,
-  .logo-icon-container {
-    display: none;
-  }
-
   .nav-links {
     width: 100%;
     justify-content: center;
@@ -175,6 +169,12 @@ a {
     justify-content: center;
     font-size: 0.85rem;
     font-weight: 700;
+  }
+
+  /* When page is scrolled on mobile, hide large logos so they don't cover the screen */
+  body.nav-scrolled .logo-container,
+  body.nav-scrolled .logo-icon-container {
+    display: none;
   }
 }
 
