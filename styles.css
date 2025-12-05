@@ -64,6 +64,13 @@ nav {
   position: relative;
 }
 
+.logo-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+}
+
 .logo-container {
   flex: 0 0 auto;
 }
@@ -148,6 +155,15 @@ a {
     width: 100%;
   }
 
+  .logo-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    width: auto;
+  }
+
   /* Make logos smaller and place them above the links on mobile */
   .logo-container {
     align-self: center;
@@ -207,9 +223,15 @@ a {
     height: 20px;
   }
 
+  .nav-links .cart-link {
+    position: relative;
+  }
+
   .nav-links .cart-badge {
     position: absolute;
-    transform: translateY(-50%) translateX(100%);
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -70%);
     background: #99dffb;
     color: #000;
     min-width: 18px;
