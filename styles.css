@@ -9,7 +9,7 @@
 
 body {
   margin: 0;
-  font-family: 'Montserrat', 'Barlow Condensed', sans-serif;
+  font-family: 'Anonymous Pro', 'Montserrat', 'Barlow Condensed', monospace, sans-serif;
   background-color: #0a1c2c;
   color: white;
   line-height: 1.6;
@@ -294,7 +294,7 @@ span,
 input,
 textarea {
   color: white;
-  font-family: 'Montserrat', 'Barlow Condensed', sans-serif;
+  font-family: 'Anonymous Pro', 'Montserrat', 'Barlow Condensed', monospace, sans-serif;
   font-weight: 300;
 }
 
