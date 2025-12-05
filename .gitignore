@@ -24,9 +24,5 @@ __pycache__/
 *.ai
 *.psd
 
-# Generated media
-*.mp4
-*.mov
-
 # Local transfer dumps
 wetransfer_*/
