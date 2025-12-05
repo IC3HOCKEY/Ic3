@@ -134,8 +134,9 @@
       z-index: 2;
       color: #000;
       text-align: center;
-      padding: 2rem;
+      padding: 0.75rem 1.5rem;
       width: 100%;
+      background: rgba(255, 255, 255, 0.35);
     }
     .hero-bottom-content p {
       font-size: 1.2rem;
@@ -284,6 +285,14 @@
         height: 100%;
         object-fit: contain;
         background: #0a1c2c; /* match site background to avoid hårda svarta kanter */
+      }
+      /* On mobile, place the bottom text below the video instead of overlaying it */
+      .hero-bottom-content {
+        position: static;
+        transform: none;
+        background: rgba(255, 255, 255, 0.35);
+        padding: 0.75rem 1.5rem;
+        margin-top: 0.5rem;
       }
     }
     .intro {
