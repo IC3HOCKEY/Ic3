@@ -9,7 +9,7 @@
 
 body {
   margin: 0;
-  font-family: 'IC3Font', 'Barlow Condensed', sans-serif;
+  font-family: 'Barlow Condensed', sans-serif;
   background-color: #0a1c2c;
   color: white;
   line-height: 1.6;
@@ -267,8 +267,12 @@ header, section {
 }
 
 /* Typography */
-h1, h2, h3 {
+h1, h2, h3, h4, h5, h6 {
   color: #99dffb;
+  font-family: 'IC3Font', 'Barlow Condensed', sans-serif;
+  font-weight: normal;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 h1 {
@@ -286,8 +290,15 @@ h3 {
   margin-bottom: 1rem;
 }
 
-p {
+p,
+li,
+span,
+input,
+textarea {
   color: white;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 300;
+  text-transform: lowercase;
 }
 
 /* Forms */
