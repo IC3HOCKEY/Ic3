@@ -259,6 +259,9 @@
       }
       .hero {
         height: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
       }
       .hero-top-content h1,
       .hero h1 {
@@ -273,14 +276,15 @@
         padding: 0.75rem 1rem;
       }
       .hero-top-content {
-        top: 80px;
-      }
-      .hero-bottom-content {
-        bottom: 60px;
+        position: static;
+        top: auto;
+        transform: none;
+        order: 1;
       }
       .video-container {
         position: relative;
         height: auto;
+        order: 2;
       }
       .hero video {
         width: 100%;
@@ -295,6 +299,7 @@
         background: rgba(255, 255, 255, 0.35);
         padding: 0.75rem 1.5rem;
         margin-top: 0.5rem;
+        order: 3;
       }
     }
     .intro {
