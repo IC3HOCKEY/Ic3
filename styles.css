@@ -343,6 +343,12 @@ a {
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
 }
 
+/* Footer social icons */
+.footer-social a svg {
+  width: 18px;
+  height: 18px;
+}
+
 @media (max-width: 768px) {
   .crew-login-btn {
     padding: 0.25rem 0.7rem;
