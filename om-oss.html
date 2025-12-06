@@ -247,6 +247,11 @@
         flex-direction: column-reverse;
       }
 
+      /* Only for Vision on mobile: image above text */
+      .section-vision .section-content {
+        flex-direction: column-reverse;
+      }
+
       .section-image {
         position: relative;
       }
@@ -255,20 +260,6 @@
         width: 100%;
         height: auto;
         display: block;
-      }
-
-      .section-image h2 {
-        position: absolute;
-        top: 8%;
-        left: 50%;
-        transform: translateX(-50%);
-        margin: 0;
-        text-align: center;
-        font-size: 1.8rem;
-        color: #99dffb;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-        width: 100%;
-        padding: 0 0.5rem;
       }
 
       .section-text {
@@ -506,6 +497,7 @@
     <section class="section section-background">
       <div class="section-content">
         <div class="section-text">
+          <h2>Bakgrund</h2>
           <p>Namnet IC3 står för tre grundare – tre personligheter, ett gemensamt mål.</p>
           <p>Vi har olika roller i dag – design, marknadsföring och vision – men vi har alltid varit ett lag.</p>
           <p>Vi kommer från olika bakgrunder men delar samma minnen: kalla morgnar, slitna handskar och drömmen om att skapa något som lever längre än sista perioden.</p>
@@ -514,7 +506,6 @@
         </div>
         <div class="section-image">
           <img src="Hemsida-3.png" alt="Bakgrundsbild" loading="lazy">
-          <h2 class="section-heading-overlay">Bakgrund</h2>
         </div>
       </div>
     </section>
@@ -523,7 +514,6 @@
       <div class="section-content">
         <div class="section-image">
           <img src="BilderHemsida-Drop1/Drop1-6.jpeg" alt="Missionbild" loading="lazy">
-          <h2 class="section-heading-overlay">Mission</h2>
         </div>
         <div class="section-text">
           <h2>Mission</h2>
@@ -536,7 +526,7 @@
       </div>
     </section>
 
-    <section class="section">
+    <section class="section section-vision">
       <div class="section-content">
         <div class="section-text">
           <h2>Vision</h2>
@@ -548,7 +538,6 @@
         </div>
         <div class="section-image">
           <img src="BilderHemsida-Drop1/Drop1-5.jpeg" alt="Visionbild" loading="lazy">
-          <h2 class="section-heading-overlay">Vision</h2>
         </div>
       </div>
     </section>
