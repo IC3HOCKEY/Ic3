@@ -242,6 +242,11 @@
         gap: 1.5rem;
       }
 
+      /* Only for Bakgrund on mobile: image above text */
+      .section-background .section-content {
+        flex-direction: column-reverse;
+      }
+
       .section-image {
         position: relative;
       }
@@ -498,10 +503,9 @@
       </div>
     </section>
 
-    <section class="section">
+    <section class="section section-background">
       <div class="section-content">
         <div class="section-text">
-          <h2>Bakgrund</h2>
           <p>Namnet IC3 står för tre grundare – tre personligheter, ett gemensamt mål.</p>
           <p>Vi har olika roller i dag – design, marknadsföring och vision – men vi har alltid varit ett lag.</p>
           <p>Vi kommer från olika bakgrunder men delar samma minnen: kalla morgnar, slitna handskar och drömmen om att skapa något som lever längre än sista perioden.</p>
