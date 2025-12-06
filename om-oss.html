@@ -182,9 +182,6 @@
       margin-top: 0.5rem;
       font-size: 1.2rem;
       line-height: 1.8;
-      background: rgba(0, 0, 0, 0.5);
-      padding: 1rem;
-      border-radius: 12px;
     }
 
     .hero-content .story p {
@@ -227,9 +224,7 @@
       }
 
       .hero-content .story {
-        background: none;
         padding: 1rem 1.25rem;
-        border-radius: 0;
         font-size: 1.05rem;
         max-width: 100%;
       }
@@ -240,10 +235,28 @@
         gap: 1.5rem;
       }
 
+      .section-image {
+        position: relative;
+      }
+
       .section-image img {
         width: 100%;
         height: auto;
         display: block;
+      }
+
+      .section-image h2 {
+        position: absolute;
+        top: 8%;
+        left: 50%;
+        transform: translateX(-50%);
+        margin: 0;
+        text-align: center;
+        font-size: 1.8rem;
+        color: #99dffb;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        width: 100%;
+        padding: 0 0.5rem;
       }
 
       .section-text {
@@ -490,6 +503,7 @@
         </div>
         <div class="section-image">
           <img src="Hemsida-3.png" alt="Bakgrundsbild" loading="lazy">
+          <h2 class="section-heading-overlay">Bakgrund</h2>
         </div>
       </div>
     </section>
@@ -498,6 +512,7 @@
       <div class="section-content">
         <div class="section-image">
           <img src="BilderHemsida-Drop1/Drop1-6.jpeg" alt="Missionbild" loading="lazy">
+          <h2 class="section-heading-overlay">Mission</h2>
         </div>
         <div class="section-text">
           <h2>Mission</h2>
@@ -522,6 +537,7 @@
         </div>
         <div class="section-image">
           <img src="BilderHemsida-Drop1/Drop1-5.jpeg" alt="Visionbild" loading="lazy">
+          <h2 class="section-heading-overlay">Vision</h2>
         </div>
       </div>
     </section>
