@@ -202,6 +202,15 @@ a {
     font-size: 0.95rem;
   }
 
+  /* Center IC3 Crew Logga in button on its own row in mobile nav */
+  .nav-links .crew-login-btn {
+    order: 2;
+    flex-basis: 100%;
+    display: inline-flex;
+    justify-content: center;
+    margin: 0.25rem auto 0.1rem auto;
+  }
+
   .nav-links .cart-link,
   .nav-links .cart-icon {
     width: auto;
