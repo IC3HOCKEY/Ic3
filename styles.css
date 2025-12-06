@@ -160,7 +160,7 @@ a {
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    gap: 0.75rem;
+    gap: 1.1rem;
     width: auto;
     flex-wrap: nowrap;
   }
@@ -171,7 +171,7 @@ a {
   }
 
   .logo-text {
-    height: 80px;
+    height: 90px;
   }
 
   .logo-icon-container {
@@ -180,11 +180,11 @@ a {
   }
 
   .logo img {
-    height: 70px;
+    height: 80px;
   }
 
   .logo-icon {
-    height: 30px;
+    height: 36px;
   }
 
   .nav-links {
