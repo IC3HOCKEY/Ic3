@@ -252,6 +252,41 @@
       transition: background 0.3s ease;
       width: fit-content;
     }
+
+    .quantity-selector {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-top: 1rem;
+      margin-right: 1rem;
+    }
+
+    .qty-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      border: 1px solid #99dffb;
+      background: transparent;
+      color: #99dffb;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+
+    .qty-btn:hover {
+      background: #99dffb;
+      color: #000;
+    }
+
+    .quantity-value {
+      min-width: 24px;
+      text-align: center;
+      font-weight: 600;
+    }
     
     .add-to-cart {
       margin-top: 1rem;
@@ -610,6 +645,11 @@
         Stilren, självsäker och full av attityd, precis som communityn bakom märket.
       </p>
       <div class="buy-options">
+        <div class="quantity-selector">
+          <button type="button" class="qty-btn" onclick="changeLimitedQuantity(-1)">-</button>
+          <span id="limited-quantity" class="quantity-value">1</span>
+          <button type="button" class="qty-btn" onclick="changeLimitedQuantity(1)">+</button>
+        </div>
         <button class="add-to-cart" onclick="addToCartLimited()">Lägg i varukorg</button>
       </div>
     </div>
@@ -682,12 +722,22 @@
       updateCartBadge();
     });
 
+    let limitedQuantity = 1;
+
     function updateCartBadge() {
       const cart = JSON.parse(localStorage.getItem('cart')) || [];
       const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
       const badge = document.getElementById('cart-badge');
       if (badge) {
         badge.textContent = totalItems;
+      }
+    }
+
+    function changeLimitedQuantity(delta) {
+      limitedQuantity = Math.max(1, limitedQuantity + delta);
+      const qtyEl = document.getElementById('limited-quantity');
+      if (qtyEl) {
+        qtyEl.textContent = limitedQuantity;
       }
     }
 
@@ -698,14 +748,14 @@
         name: 'IC3 DROP 01 – Face-Off Cap',
         price: 399,
         image: 'keps1.png',
-        quantity: 1
+        quantity: limitedQuantity
       };
 
       let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
       const existingItem = cart.find(item => item.id === product.id);
       if (existingItem) {
-        existingItem.quantity += 1;
+        existingItem.quantity += limitedQuantity;
       } else {
         cart.push(product);
       }
