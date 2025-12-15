@@ -279,6 +279,18 @@
       background: #666;
       cursor: not-allowed;
     }
+
+    /* Temporarily hide local add-to-cart button on limited drop */
+    .add-to-cart {
+      display: none !important;
+    }
+
+    .out-of-stock {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #ff7373;
+      margin-bottom: 1rem;
+    }
     
     .product-info h1 {
       font-size: 2.5rem;
@@ -556,8 +568,7 @@
   </nav>
 
   <section class="countdown-section">
-    <h2 class="countdown-title">Drop starts in...</h2>
-    <div id="timer">Laddar nedräkning...</div>
+    <h2 class="countdown-title">Fler drop innom kort</h2>
   </section>
 
   <section class="product-section">
@@ -597,6 +608,7 @@
       <h2>"Cold days. Hot drops."</h2>  
       <div class="exclusive-tag">Endast 250 exemplar</div>
       <p class="price">Pris: 399 SEK</p>
+      <p class="out-of-stock">Slut i lager</p>
       <p>
         Den icke-officiella, officiella kepsen för hockeykulturen. 
         Skapad för dig som lever för hockeylivet – även utan hjälm.
@@ -675,28 +687,6 @@
       updateCartBadge();
     });
 
-    // Countdown functionality
-    const dropTarget = new Date('December 12, 2025 19:00:00 GMT+01:00').getTime();
-    const countdown = () => {
-      const now = new Date().getTime();
-      const distance = dropTarget - now;
-
-      if (distance <= 0) {
-        document.getElementById('timer').textContent = 'Drop är nu aktivt!';
-        return;
-      }
-
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-      document.getElementById('timer').textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-    };
-
-    countdown();
-    setInterval(countdown, 1000);
-
     function updateCartBadge() {
       const cart = JSON.parse(localStorage.getItem('cart')) || [];
       const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
@@ -706,7 +696,7 @@
       }
     }
 
-    // Add to Cart functionality - limited to one product
+    // Add to Cart functionality - allow multiple of the same product
     function addToCartLimited() {
       const product = {
         id: 'ic3-drop-01',
@@ -717,11 +707,14 @@
       };
 
       let cart = JSON.parse(localStorage.getItem('cart')) || [];
-      
-      // Remove any existing items with the same ID and add only one
-      cart = cart.filter(item => item.id !== product.id);
-      cart.push(product);
-      
+
+      const existingItem = cart.find(item => item.id === product.id);
+      if (existingItem) {
+        existingItem.quantity += 1;
+      } else {
+        cart.push(product);
+      }
+
       localStorage.setItem('cart', JSON.stringify(cart));
       updateCartBadge();
       alert('Produkt har lagts till i varukorgen!');
