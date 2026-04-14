@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IC3 - Limited Drop</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    .product {
+      border: 1px solid #ddd;
+      padding: 20px;
+      margin: 20px 0;
+      text-align: center;
+    }
+    .add-to-cart {
+      background: #000;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    .add-to-cart:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+    }
+    .cart-badge {
+      background: red;
+      color: white;
+      border-radius: 50%;
+      padding: 2px 6px;
+      font-size: 12px;
+      position: absolute;
+      top: -5px;
+      right: -5px;
+    }
+    .cart-icon {
+      position: relative;
+      display: inline-block;
+      margin-left: 20px;
+    }
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid #eee;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <h1>IC3</h1>
+    <div class="cart-icon">
+      <a href="#cart">Varukorg</a>
+      <span id="cart-count" class="cart-badge" style="display: none;">0</span>
+    </div>
+  </nav>
+
+  <div class="product">
+    <h2>IC3 DROP 01 – Face-Off Cap</h2>
+    <p>Pris: 399 SEK</p>
+    <button id="add-to-cart" class="add-to-cart">LÄGG I VARUKORG</button>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const addToCartBtn = document.getElementById('add-to-cart');
+      const cartCount = document.getElementById('cart-count');
+      
+      // Check if item is in cart
+      function isInCart() {
+        return localStorage.getItem('ic3_cart') === 'added';
+      }
+      
+      // Update button and cart count
+      function updateUI() {
+        if (isInCart()) {
+          addToCartBtn.disabled = true;
+          addToCartBtn.textContent = 'TILLAGD I VARUKORGEN';
+          cartCount.textContent = '1';
+          cartCount.style.display = 'inline-block';
+        } else {
+          addToCartBtn.disabled = false;
+          addToCartBtn.textContent = 'LÄGG I VARUKORG';
+          cartCount.style.display = 'none';
+        }
+      }
+      
+      // Add to cart
+      addToCartBtn.addEventListener('click', function() {
+        if (isInCart()) return;
+        
+        localStorage.setItem('ic3_cart', 'added');
+        updateUI();
+        
+        // Optional: Redirect to cart after adding
+        setTimeout(() => {
+          window.location.href = 'cart.html';
+        }, 1000);
+      });
+      
+      // Initialize
+      updateUI();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-KQSC0P2YV6"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-KQSC0P2YV6');
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vilka är vi? - IC3</title>
+  <link rel="icon" type="image/png" href="Loga-ic3.png">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Montserrat:wght@400;700&family=Barlow+Condensed:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script async src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=SS4inN"></script>
+  <style>
+    @media (min-width: 769px) {
+      nav {
+        background-color: #111;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1rem 2rem;
+        border-bottom: 1px solid #333;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+      .nav-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex: 1;
+        gap: 4rem;
+        position: relative;
+      }
+      .cart-badge {
+        position: absolute;
+        top: 50%;
+        right: 0;
+        transform: translateY(-50%) translateX(100%);
+        background: #99dffb;
+        color: #000;
+        border-radius: 4px;
+        padding: 2px 6px;
+        font-size: 12px;
+        font-weight: bold;
+        line-height: 1;
+      }
+      .logo-container {
+        flex: 0 0 auto;
+      }
+      .logo-text {
+        height: 200px;
+      }
+      .nav-links {
+        display: flex;
+        gap: 2rem;
+        justify-content: flex-end;
+        margin-left: auto;
+      }
+      .logo-icon-container {
+        position: absolute;
+        right: 50%;
+        transform: translateX(50%);
+      }
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .logo img {
+        height: 150px;
+      }
+      .logo-icon {
+        height: 60px;
+        width: auto;
+      }
+      .logo .logo-image {
+        height: 60px;
+      }
+      .nav-links a {
+        color: #99dffb;
+        font-weight: bold;
+        text-decoration: none;
+        font-size: 1.1rem;
+      }
+      a {
+        color: #99dffb;
+        text-decoration: none;
+      }
+    }
+    .main-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    h1 {
+      font-size: 3rem;
+      text-align: center;
+      margin-bottom: 3rem;
+      color: #99dffb;
+    }
+
+    .section {
+      margin-bottom: 4rem;
+    }
+
+    .section h2 {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      color: #99dffb;
+    }
+
+    .section-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .section-text {
+      max-width: 600px;
+    }
+
+    .section-image {
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .section-image img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+    }
+
+    @media (max-width: 768px) {
+      .section-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+    }
+
+    .story {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .hero {
+      position: relative;
+      height: auto;
+      overflow: hidden;
+      margin-bottom: 2rem;
+    }
+
+    .hero img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      display: block;
+    }
+
+    .hero-content {
+      position: static;
+      transform: none;
+      text-align: center;
+      color: white;
+      z-index: 1;
+      width: 80%;
+      max-width: 800px;
+      margin: 1.5rem auto 0 auto;
+    }
+
+    .hero-content .story {
+      margin-top: 0.5rem;
+      font-size: 1.2rem;
+      line-height: 1.8;
+    }
+
+    .hero-content .story p {
+      margin-bottom: 1.5rem;
+      color: #ffffff;
+    }
+
+    .hero-content h1 {
+      font-size: 4rem;
+      margin: 0;
+      color: #99dffb;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      position: absolute;
+      top: 5%;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      width: 100%;
+    }
+
+    @media (max-width: 768px) {
+      .main-content {
+        max-width: 100%;
+        margin: 0;
+        padding: 0;
+      }
+
+      .hero {
+        margin-bottom: 1.5rem;
+        padding: 0;
+      }
+
+      .hero img {
+        width: 100%;
+        height: auto;
+      }
+
+      .hero-content {
+        width: 100%;
+        max-width: 100%;
+        margin: 0 auto;
+      }
+
+      .hero-content h1 {
+        font-size: 2.4rem;
+        top: 0.5%;
+      }
+
+      .hero-content .story {
+        padding: 0.75rem 1rem;
+        font-size: 1.05rem;
+        max-width: 100%;
+      }
+
+      .section-content {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+
+      /* Only for Bakgrund on mobile: image above text */
+      .section-background .section-content {
+        flex-direction: column-reverse;
+      }
+
+      /* Only for Vision on mobile: image above text */
+      .section-vision .section-content {
+        flex-direction: column-reverse;
+      }
+
+      .section-image {
+        position: relative;
+      }
+
+      .section-image img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      .section-text {
+        max-width: 100%;
+      }
+
+      .cookie-banner .container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+      }
+      .cookie-banner span {
+        display: block;
+      }
+      .cookie-banner .container > div {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        justify-content: flex-start;
+      }
+    }
+  </style>
+
+  <!-- Footer and Cookie Banner Styles -->
+  <style>
+    .footer {
+      background-color: #1f2839;
+      color: white;
+      text-align: center;
+      padding: 2rem 0;
+      border-top: 3px solid #99dffb;
+    }
+    .footer a {
+      color: white;
+    }
+    .footer .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+    .footer-links {
+      display: flex;
+      gap: 2rem;
+    }
+    .cookie-banner {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: #253042;
+      color: white;
+      padding: 1rem;
+      z-index: 1000;
+      display: none;
+      border-top: 3px solid #99dffb;
+    }
+    .cookie-banner .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .cookie-banner button {
+      background: #1f2839;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .cookie-banner .primary {
+      background: #99dffb;
+      color: #000;
+    }
+    .cookie-settings {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 2000;
+      display: none;
+    }
+    .cookie-settings.show {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .cookie-settings .modal {
+      background: white;
+      padding: 2rem;
+      border-radius: 8px;
+      max-width: 600px;
+      width: 90%;
+    }
+    .cookie-settings h2 {
+      margin-top: 0;
+    }
+    .cookie-settings .category {
+      margin: 1rem 0;
+    }
+    .cookie-settings label {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    /* Legal Modal Styles */
+    .legal-modal {
+      display: none;
+      position: fixed;
+      z-index: 3000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+    .legal-modal.show {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-content {
+      background-color: #fefefe;
+      margin: 5% auto;
+      padding: 2rem;
+      padding-top: 3rem;
+      border: 1px solid #888;
+      width: 80%;
+      max-width: 800px;
+      position: relative;
+      border-radius: 8px;
+      max-height: 80vh;
+      overflow-y: auto;
+    }
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      position: absolute;
+      top: 0;
+      right: 0;
+      cursor: pointer;
+      padding: 1rem;
+    }
+    .close:hover,
+    .close:focus {
+      color: black;
+      text-decoration: none;
+    }
+    #modal-body h1 {
+      color: #253042;
+      margin-bottom: 1rem;
+    }
+    #modal-body h2 {
+      color: #253042;
+      margin-top: 1.5rem;
+    }
+    #modal-body p {
+      margin-bottom: 1rem;
+    }
+  </style>
+</head>
+  <script>
+    // Update cart badge function
+    function updateCartBadge() {
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+      const badge = document.getElementById('cart-badge');
+      if (badge) {
+        badge.textContent = totalItems;
+      }
+    }
+
+    // Initialize cart badge when page loads
+    document.addEventListener('DOMContentLoaded', () => {
+      updateCartBadge();
+    });
+  </script>
+</head>
+<body>
+  <nav>
+    <div class="nav-container">
+      <div class="logo-row">
+        <div class="logo-container">
+          <div class="logo">
+            <img src="Ic3-loga.png" alt="IC3 text logo" class="logo-text">
+          </div>
+        </div>
+        <div class="logo-icon-container">
+          <img src="Loga-ic3.png" alt="IC3 logo" class="logo-icon">
+        </div>
+      </div>
+      <div class="nav-links">
+        <a href="index.html">Hem</a>
+        <a href="limited-drop.html">Limited Drop</a>
+        <a href="om-oss.html">Om oss</a>
+        <a href="kontakt.html">Kontakt</a>
+        <a href="https://shop.ic3sweden.se/account/login" class="crew-login-btn">IC3 Crew Logga in</a>
+        <a href="cart.html" class="cart-link">
+          <img src="hockey-goal.png" alt="Shopping Cart" width="24" height="24" style="filter: brightness(0) invert(1);">
+          <span class="cart-badge" id="cart-badge">0</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="main-content">
+    <section class="hero">
+      <img src="Hemsida-1.JPG" alt="IC3 founders">
+      <div class="hero-content">
+        <h1>Vilka är vi?</h1>
+        <div class="story">
+          <p>IC3 föddes ur kalla hallar, sena kvällar och slitna skridskor.</p>
+          <p>Vi är tre barndomsvänner som växte upp med hockey som vår gemensamma drivkraft. Vi delade allt – morgonpass på frusna isar, bussresor till bortamatcher och timmar i omklädningsrum som luktade tejp, svett och framtidsdrömmar. Där lärde vi oss vad lojalitet, disciplin och gemenskap verkligen betyder.</p>
+          <p>Men när vi klev av isen saknades något.</p>
+          <p>Det fanns tröjor med klubbmärken och jackor med sponsorer – men inget som speglade hockeylivet på riktigt.</p>
+          <p>Inget som fångade känslan av att vara en del av kulturen, utan att stå på isen.</p>
+          <p>Så vi skapade IC3.</p>
+          <p>Ett varumärke byggt på vår bakgrund, men riktat mot framtiden. Där hockeyns själ möter en modern, urban estetik.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-background">
+      <div class="section-content">
+        <div class="section-text">
+          <h2>Bakgrund</h2>
+          <p>Namnet IC3 står för tre grundare – tre personligheter, ett gemensamt mål.</p>
+          <p>Vi har olika roller i dag – design, marknadsföring och vision – men vi har alltid varit ett lag.</p>
+          <p>Vi kommer från olika bakgrunder men delar samma minnen: kalla morgnar, slitna handskar och drömmen om att skapa något som lever längre än sista perioden.</p>
+          <p>Med IC3 vill vi översätta känslan av hockeylivet – intensiteten, gemenskapen och karaktären – till kläder som bärs med samma stolthet utanför isen.</p>
+          <p>Plagg som känns lika rätt på läktaren som på gatan.</p>
+        </div>
+        <div class="section-image">
+          <img src="Hemsida-3.png" alt="Bakgrundsbild" loading="lazy">
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-content">
+        <div class="section-image">
+          <img src="BilderHemsida-Drop1/Drop1-6.jpeg" alt="Missionbild" loading="lazy">
+        </div>
+        <div class="section-text">
+          <h2>Mission</h2>
+          <p>Vi bygger inte bara kläder – vi bygger en kultur.</p>
+          <p>IC3 är mer än ett varumärke, det är en identitet för nästa generations hockeyälskare.</p>
+          <p>Vi vill förena hockeyns rötter med ett modernt uttryck – där varje plagg bär på känslan av att tillhöra något större.</p>
+          <p>Vår mission är att skapa en stil och ett community för dem som lever hockey, även när de inte har skridskorna på sig.</p>
+          <p>Kläder som låter dig bära ditt hockeyhjärta med stolthet – oavsett om du är på väg till match, träning eller stan.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-vision">
+      <div class="section-content">
+        <div class="section-text">
+          <h2>Vision</h2>
+          <p>IC3 ska vara det självklara valet för den urbana hockeygenerationen.</p>
+          <p>Vi vill inte bara klä spelare – vi vill klä kulturen.</p>
+          <p>Vår vision är att bygga ett internationellt varumärke där unga människor känner sig sedda, inspirerade och representerade.</p>
+          <p>För oss handlar det om gemenskap, stil och att aldrig vika sig.</p>
+          <p>IC3 är för dem som förstår att hockey inte bara är en sport – det är ett sätt att leva.</p>
+        </div>
+        <div class="section-image">
+          <img src="BilderHemsida-Drop1/Drop1-5.jpeg" alt="Visionbild" loading="lazy">
+        </div>
+      </div>
+    </section>
+
+    <!-- Founders section removed per request -->
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-links">
+        <a href="#" onclick="openModal('terms')">Terms</a>
+        <a href="#" onclick="openModal('privacy')">Integritet</a>
+        <a href="#" onclick="openModal('cookies')">Cookies</a>
+      </div>
+      <div class="footer-contact">
+        <p>Contact: ic3.kontakt@outlook.com</p>
+        <p>© IC3 "Cold days. Hot drops."</p>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/ic3sweden/" target="_blank" rel="noopener noreferrer" aria-label="IC3 Sweden på Instagram">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="3" y="3" width="18" height="18" rx="5" ry="5" fill="none" stroke="currentColor" stroke-width="2"/>
+              <circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/>
+              <circle cx="17" cy="7" r="1.2" fill="currentColor"/>
+            </svg>
+          </a>
+          <a href="https://www.tiktok.com/@ic3sweden?lang=sv-SE" target="_blank" rel="noopener noreferrer" aria-label="IC3 Sweden på TikTok">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M16 4c.3 1.3 1.2 2.3 2.4 2.7V9c-1.1-.1-2.1-.5-3-1.1v6.1A4.99 4.99 0 0 1 10.5 19 5 5 0 0 1 8 9.6v2.2A2.5 2.5 0 0 0 10.5 17c1.1 0 2-.7 2.3-1.7V5h3.2z" fill="currentColor"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Legal Content Modal -->
+  <div id="legal-modal" class="legal-modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <div id="modal-body">
+        <!-- Content will be inserted here -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Cookie Consent Banner -->
+  <div id="cookie-banner" class="cookie-banner">
+    <div class="container">
+      <span>Vi använder cookies för att förbättra din upplevelse. Välj vad som passar dig.</span>
+      <div>
+        <button onclick="acceptAllCookies()">Acceptera alla</button>
+        <button onclick="acceptNecessaryCookies()">Endast nödvändiga</button>
+        <button onclick="openCookieSettings()">Inställningar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cookie Settings Modal -->
+  <div id="cookie-settings" class="cookie-settings">
+    <div class="modal">
+      <h2>Cookieinställningar</h2>
+      <div class="category">
+        <label>
+          <input type="checkbox" id="necessary" checked disabled /> Nödvändiga cookies
+        </label>
+        <p>Nödvändiga för att webbplatsen ska fungera.</p>
+      </div>
+      <div class="category">
+        <label>
+          <input type="checkbox" id="analytics" /> Analyscookies
+        </label>
+        <p>Hjälper oss att förstå hur besökare använder webbplatsen.</p>
+      </div>
+      <div class="category">
+        <label>
+          <input type="checkbox" id="marketing" /> Marknadsföringscookies
+        </label>
+        <p>Används för att visa relevanta annonser.</p>
+      </div>
+      <button onclick="saveCookieSettings()">Spara inställningar</button>
+    </div>
+  </div>
+
+  <script>
+    // Cookie consent logic
+    document.addEventListener('DOMContentLoaded', () => {
+      const consent = localStorage.getItem('ic3.cookies');
+      if (!consent) {
+        document.getElementById('cookie-banner').style.display = 'block';
+      }
+    });
+
+    function acceptAllCookies() {
+      const prefs = { necessary: true, analytics: true, marketing: true };
+      localStorage.setItem('ic3.cookies', JSON.stringify(prefs));
+      document.getElementById('cookie-banner').style.display = 'none';
+    }
+
+    function acceptNecessaryCookies() {
+      const prefs = { necessary: true, analytics: false, marketing: false };
+      localStorage.setItem('ic3.cookies', JSON.stringify(prefs));
+      document.getElementById('cookie-banner').style.display = 'none';
+    }
+
+    function openCookieSettings() {
+      document.getElementById('cookie-banner').style.display = 'none';
+      document.getElementById('cookie-settings').style.display = 'flex';
+    }
+
+    function saveCookieSettings() {
+      const prefs = {
+        necessary: true,
+        analytics: document.getElementById('analytics').checked,
+        marketing: document.getElementById('marketing').checked,
+      };
+      localStorage.setItem('ic3.cookies', JSON.stringify(prefs));
+      document.getElementById('cookie-settings').style.display = 'none';
+    }
+  </script>
+
+  <script>
+    // Legal Modal Functions
+    function openModal(type) {
+      const modal = document.getElementById('legal-modal');
+      const body = document.getElementById('modal-body');
+      
+      let content = '';
+      if (type === 'terms') {
+        content = `
+          <h1>IC3 – Terms of Service (Användarvillkor)</h1>
+          <p>Senast uppdaterad: 2025-12-01</p>
+          <p>Välkommen till IC3. Genom att besöka vår webbplats eller genomföra ett köp godkänner du dessa användarvillkor. Läs dem noggrant innan du använder sidan.</p>
+          <h2>1. Allmänt</h2>
+          <p>IC3 drivs av FerdinSweden AB. Alla produkter, tjänster och allt innehåll på webbplatsen tillhör IC3.</p>
+          <h2>2. Beställning &amp; köp</h2>
+          <ul>
+            <li>du är minst 18 år, eller har målsmans godkännande</li>
+            <li>de uppgifter du lämnar är korrekta</li>
+            <li>du godkänner våra priser, leveransvillkor och betalningsmetoder</li>
+          </ul>
+          <p>En order är bindande först när den bekräftats via e-post.</p>
+          <h2>3. Priser &amp; betalning</h2>
+          <p>Alla priser anges i SEK och inkluderar moms om inget annat anges. Vi accepterar betalning via de metoder som visas i kassan.</p>
+          <h2>4. Leverans</h2>
+          <p>Leveranstider varierar beroende på produkt och destination. Förseningar kan uppstå vid hög belastning eller leverantörshinder.</p>
+          <h2>5. Ångerrätt &amp; returer</h2>
+          <p>Du har 14 dagars ångerrätt enligt svensk lag. Produkten ska vara i originalskick och oanvänd. Kunden står för returfrakt.</p>
+          <h2>6. Garanti &amp; reklamation</h2>
+          <p>Vid fel på vara följer vi svensk konsumentlagstiftning. Kontakta oss på <a href="mailto:ic3.kontakt@outlook.com">ic3.kontakt@outlook.com</a> om du vill reklamera en produkt.</p>
+          <h2>7. Ansvarsbegränsning</h2>
+          <p>IC3 ansvarar inte för indirekta skador, datasäkerhetsproblem, leveransförseningar eller fel som ligger utanför vår kontroll.</p>
+          <h2>8. Ändringar</h2>
+          <p>Vi kan uppdatera dessa villkor när som helst. Den senaste versionen finns alltid på webbplatsen.</p>
+        `;
+      } else if (type === 'privacy') {
+        content = `
+          <h1>IC3 – Integritetspolicy (GDPR)</h1>
+          <p>Senast uppdaterad: 2025-12-01</p>
+          <p>Vi värnar om din integritet. Denna policy beskriver hur vi samlar in, använder och skyddar dina personuppgifter enligt GDPR.</p>
+          <h2>1. Vilka uppgifter vi samlar in</h2>
+          <ul>
+            <li>namn, adress, telefonnummer</li>
+            <li>e-postadress</li>
+            <li>betalningsinformation (hanteras säkert av våra betalpartners)</li>
+            <li>IP-adress och användardata (via cookies)</li>
+          </ul>
+          <h2>2. Varför vi samlar in uppgifter</h2>
+          <p>Vi behandlar dina uppgifter för att:</p>
+          <ul>
+            <li>hantera beställningar och leveranser</li>
+            <li>kommunicera med dig om order, frågor eller support</li>
+            <li>skicka nyhetsbrev (endast om du aktivt godkänner det)</li>
+            <li>förbättra webbplatsens funktionalitet</li>
+          </ul>
+          <h2>3. Delning av uppgifter</h2>
+          <p>Vi delar aldrig dina uppgifter med tredje part utanför:</p>
+          <ul>
+            <li>betaltjänster</li>
+            <li>logistik- och fraktpartners</li>
+            <li>webbleverantörer (endast för drift)</li>
+          </ul>
+          <p>Alla samarbetspartner följer GDPR.</p>
+          <h2>4. Lagringstid</h2>
+          <p>Vi sparar dina uppgifter så länge det krävs enligt bokföringslag eller för att hantera kundrelationen.</p>
+          <h2>5. Dina rättigheter</h2>
+          <p>Du har rätt att:</p>
+          <ul>
+            <li>få tillgång till dina uppgifter</li>
+            <li>begära rättning eller radering</li>
+            <li>invända mot behandling</li>
+            <li>få dina uppgifter exporterade (dataportabilitet)</li>
+          </ul>
+          <p>Kontakta oss på <a href="mailto:ic3.kontakt@outlook.com">ic3.kontakt@outlook.com</a> för att utöva dina rättigheter.</p>
+          <h2>6. Säkerhet</h2>
+          <p>Vi skyddar dina personuppgifter genom tekniska och organisatoriska säkerhetsåtgärder.</p>
+        `;
+      } else if (type === 'cookies') {
+        content = `
+          <h1>IC3 – Cookie Policy</h1>
+          <p>Senast uppdaterad: 2025-12-01</p>
+          <p>IC3 använder cookies för att webbplatsen ska fungera optimalt och för att ge dig en bättre upplevelse.</p>
+          <h2>1. Vad är cookies?</h2>
+          <p>Cookies är små textfiler som lagras i din webbläsare. De är ofarliga och hjälper oss att förstå hur sidan används.</p>
+          <h2>2. Vilka cookies vi använder</h2>
+          <ul>
+            <li><strong>Nödvändiga cookies:</strong> krävs för att sidan ska fungera (t.ex. varukorg).</li>
+            <li><strong>Analys-cookies:</strong> anonyma data som hjälper oss förbättra webbplatsen.</li>
+            <li><strong>Marknadsföringscookies:</strong> används endast om du godkänner dem.</li>
+          </ul>
+          <h2>3. Hur du kan kontrollera cookies</h2>
+          <p>Du kan när som helst blockera eller ta bort cookies i webbläsarinställningarna.</p>
+          <h2>4. Samtycke</h2>
+          <p>Vid första besöket visar vi en cookie-banner där du kan välja vilka cookies du godkänner.</p>
+        `;
+      }
+      
+      body.innerHTML = content;
+      modal.classList.add('show');
+      
+      // Ensure close button works
+      const closeBtn = modal.querySelector('.close');
+      if (closeBtn) {
+        closeBtn.addEventListener('click', closeModal);
+      }
+      
+      // Add event listeners for closing
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+          closeModal();
+        }
+      });
+      
+      // Close on escape key
+      const escapeHandler = (e) => {
+        if (e.key === 'Escape') {
+          closeModal();
+          document.removeEventListener('keydown', escapeHandler);
+        }
+      };
+      document.addEventListener('keydown', escapeHandler);
+    }
+
+    function closeModal() {
+      const modal = document.getElementById('legal-modal');
+      modal.classList.remove('show');
+    }
+  </script>
+  <script>
+    // Toggle body classes on scroll: hide logos after scroll and hide entire nav when scrolling down on mobile
+    (function () {
+      const TOP_THRESHOLD = 10;
+      const SCROLL_THRESHOLD = 30;
+      let lastScrollY = window.scrollY;
+
+      function handleScroll() {
+        const currentY = window.scrollY;
+        const isMobile = window.innerWidth <= 768;
+
+        if (!isMobile) {
+          document.body.classList.remove('nav-scrolled', 'nav-hidden');
+          lastScrollY = currentY;
+          return;
+        }
+
+        // At very top: show full header with logos
+        if (currentY <= TOP_THRESHOLD) {
+          document.body.classList.remove('nav-scrolled', 'nav-hidden');
+          lastScrollY = currentY;
+          return;
+        }
+
+        // Past threshold: hide logos but keep slim nav bar
+        if (currentY > SCROLL_THRESHOLD) {
+          document.body.classList.add('nav-scrolled');
+        } else {
+          document.body.classList.remove('nav-scrolled');
+        }
+
+        // Scroll direction: down -> hide nav, up -> show nav
+        if (currentY > lastScrollY + 5) {
+          // Scrolling down
+          document.body.classList.add('nav-hidden');
+        } else if (currentY < lastScrollY - 5) {
+          // Scrolling up
+          document.body.classList.remove('nav-hidden');
+        }
+
+        lastScrollY = currentY;
+      }
+
+      window.addEventListener('scroll', handleScroll, { passive: true });
+      window.addEventListener('resize', handleScroll);
+      document.addEventListener('DOMContentLoaded', handleScroll);
+    })();
+  </script>
+</body>
+</html>
