@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 
+import { TiltCard } from "@/components/fx/tilt-card";
 import { formatMoney } from "@/lib/format";
 import type { Product } from "@/lib/types";
 
@@ -30,45 +31,47 @@ export function ProductCard({ product, priority, index = 0 }: ProductCardProps) 
       }}
       className="group relative flex flex-col"
     >
-      <Link
-        href={`/products/${product.handle}`}
-        className="relative block aspect-[4/5] overflow-hidden bg-white/5"
-      >
-        {primary ? (
-          <Image
-            src={primary.url}
-            alt={primary.altText ?? product.title}
-            fill
-            sizes="(min-width: 1280px) 25vw, (min-width: 768px) 33vw, 100vw"
-            priority={priority}
-            className="object-cover transition duration-700 will-change-transform group-hover:scale-[1.04]"
-          />
-        ) : null}
-        {secondary && secondary !== primary ? (
-          <Image
-            src={secondary.url}
-            alt=""
-            fill
-            sizes="(min-width: 1280px) 25vw, (min-width: 768px) 33vw, 100vw"
-            className="absolute inset-0 object-cover opacity-0 transition duration-500 group-hover:opacity-100"
-          />
-        ) : null}
-        <div className="absolute inset-0 bg-gradient-to-t from-ink/70 via-transparent to-transparent opacity-70" />
-        {soldOut ? (
-          <span className="absolute left-4 top-4 rounded-full bg-ink/75 px-3 py-1 font-display text-[0.65rem] tracking-[0.3em] text-ember">
-            Slut i lager
+      <TiltCard intensity={8} className="relative">
+        <Link
+          href={`/products/${product.handle}`}
+          className="relative block aspect-[4/5] overflow-hidden bg-white/5"
+        >
+          {primary ? (
+            <Image
+              src={primary.url}
+              alt={primary.altText ?? product.title}
+              fill
+              sizes="(min-width: 1280px) 25vw, (min-width: 768px) 33vw, 100vw"
+              priority={priority}
+              className="object-cover transition duration-700 will-change-transform group-hover:scale-[1.04]"
+            />
+          ) : null}
+          {secondary && secondary !== primary ? (
+            <Image
+              src={secondary.url}
+              alt=""
+              fill
+              sizes="(min-width: 1280px) 25vw, (min-width: 768px) 33vw, 100vw"
+              className="absolute inset-0 object-cover opacity-0 transition duration-500 group-hover:opacity-100"
+            />
+          ) : null}
+          <div className="absolute inset-0 bg-gradient-to-t from-ink/70 via-transparent to-transparent opacity-70" />
+          {soldOut ? (
+            <span className="absolute left-4 top-4 rounded-full bg-ink/75 px-3 py-1 font-display text-[0.65rem] tracking-[0.3em] text-ember">
+              Slut i lager
+            </span>
+          ) : null}
+          {product.tags.includes("limited") ? (
+            <span className="absolute right-4 top-4 rounded-full border border-ice/50 bg-ink/70 px-3 py-1 font-display text-[0.65rem] tracking-[0.3em] text-ice">
+              Limited
+            </span>
+          ) : null}
+          <span className="pointer-events-none absolute inset-x-4 bottom-4 flex translate-y-3 items-center justify-between text-xs uppercase tracking-[0.25em] text-ice-50/80 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+            Visa produkt
+            <span aria-hidden>→</span>
           </span>
-        ) : null}
-        {product.tags.includes("limited") ? (
-          <span className="absolute right-4 top-4 rounded-full border border-ice/50 bg-ink/70 px-3 py-1 font-display text-[0.65rem] tracking-[0.3em] text-ice">
-            Limited
-          </span>
-        ) : null}
-        <span className="pointer-events-none absolute inset-x-4 bottom-4 flex translate-y-3 items-center justify-between text-xs uppercase tracking-[0.25em] text-ice-50/80 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
-          Visa produkt
-          <span aria-hidden>→</span>
-        </span>
-      </Link>
+        </Link>
+      </TiltCard>
       <div className="mt-4 flex items-center justify-between gap-4">
         <div>
           <Link
