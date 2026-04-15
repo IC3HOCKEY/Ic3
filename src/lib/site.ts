@@ -21,13 +21,7 @@ export const siteConfig = {
     { href: "/om-oss", label: "Om oss" },
     { href: "/kontakt", label: "Kontakt" },
   ],
-  productCategories: [
-    { handle: "drop-01", label: "Drop 01" },
-    { handle: "hats", label: "Headwear" },
-    { handle: "hoodies", label: "Hoodies & Crews" },
-    { handle: "tees", label: "Tees" },
-    { handle: "accessories", label: "Accessories" },
-  ],
+  productCategories: [{ handle: "drop-01", label: "Drop 01" }],
 } as const;
 
 export type SiteConfig = typeof siteConfig;

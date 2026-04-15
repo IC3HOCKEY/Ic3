@@ -9,7 +9,19 @@ export const metadata: Metadata = {
     "Historien bakom IC3 — tre barndomsvänner som översatte hockeykulturen till svensk streetwear.",
 };
 
-const sections = [
+type Section = {
+  badge: string;
+  title: string;
+  body: string[];
+  image: string;
+  align: "left" | "right";
+  /** "cover" = fyll bildrutan (croppar), "contain" = visa hela bilden */
+  fit?: "cover" | "contain";
+  /** Custom aspect ratio class — default is aspect-[4/5] */
+  aspect?: string;
+};
+
+const sections: Section[] = [
   {
     badge: "Vår historia",
     title: "Från hockeytejp till streetwear",
@@ -19,7 +31,10 @@ const sections = [
       "Men när vi klev av isen saknades något. Det fanns tröjor med klubbmärken och jackor med sponsorer — men inget som speglade hockeylivet på riktigt. Så vi skapade IC3.",
     ],
     image: "/images/brand/Hemsida-1.JPG",
-    align: "left" as const,
+    align: "left",
+    // Mindre inzoomad — bredare format + contain så hela bilden syns
+    aspect: "aspect-[4/3]",
+    fit: "contain",
   },
   {
     badge: "Bakgrund",
@@ -29,8 +44,8 @@ const sections = [
       "Vi har olika roller idag — design, marknadsföring och vision — men vi har alltid varit ett lag.",
       "Vi delar minnet av kalla morgnar, slitna handskar och drömmen om att skapa något som lever längre än sista perioden.",
     ],
-    image: "/images/brand/missionbild.png",
-    align: "right" as const,
+    image: "/images/om-oss/team-1.jpg",
+    align: "right",
   },
   {
     badge: "Mission",
@@ -40,8 +55,8 @@ const sections = [
       "Vi vill förena hockeyns rötter med ett modernt uttryck — där varje plagg bär på känslan av att tillhöra något större.",
       "Kläder som låter dig bära ditt hockeyhjärta med stolthet, oavsett om du är på väg till match, träning eller stan.",
     ],
-    image: "/images/brand/visionbild.png",
-    align: "left" as const,
+    image: "/images/om-oss/team-2.jpg",
+    align: "left",
   },
   {
     badge: "Vision",
@@ -51,8 +66,8 @@ const sections = [
       "Vår vision är att bygga ett internationellt varumärke där unga människor känner sig sedda, inspirerade och representerade.",
       "För oss handlar det om gemenskap, stil och att aldrig vika sig. IC3 är för dem som förstår att hockey inte bara är en sport — det är ett sätt att leva.",
     ],
-    image: "/images/brand/om.oss.png",
-    align: "right" as const,
+    image: "/images/om-oss/team-3.jpg",
+    align: "right",
   },
 ];
 
@@ -72,47 +87,53 @@ export default function AboutPage() {
         </header>
 
         <div className="mt-24 flex flex-col gap-24">
-          {sections.map((sec) => (
-            <RevealSection
-              key={sec.title}
-              className="grid gap-10 md:grid-cols-12 md:items-center"
-            >
-              <div
-                className={
-                  sec.align === "left"
-                    ? "md:col-span-5 md:order-1"
-                    : "md:col-span-5 md:order-2"
-                }
+          {sections.map((sec) => {
+            const aspect = sec.aspect ?? "aspect-[4/5]";
+            const fit = sec.fit === "contain" ? "object-contain" : "object-cover";
+            return (
+              <RevealSection
+                key={sec.title}
+                className="grid gap-10 md:grid-cols-12 md:items-center"
               >
-                <div className="relative aspect-[4/5] overflow-hidden rounded-sm">
-                  <Image
-                    src={sec.image}
-                    alt={sec.title}
-                    fill
-                    sizes="(min-width: 768px) 40vw, 100vw"
-                    className="object-cover"
-                  />
+                <div
+                  className={
+                    sec.align === "left"
+                      ? "md:col-span-5 md:order-1"
+                      : "md:col-span-5 md:order-2"
+                  }
+                >
+                  <div
+                    className={`relative ${aspect} overflow-hidden rounded-sm bg-white/5`}
+                  >
+                    <Image
+                      src={sec.image}
+                      alt={sec.title}
+                      fill
+                      sizes="(min-width: 768px) 40vw, 100vw"
+                      className={fit}
+                    />
+                  </div>
                 </div>
-              </div>
-              <div
-                className={
-                  sec.align === "left"
-                    ? "md:col-span-7 md:order-2"
-                    : "md:col-span-7 md:order-1"
-                }
-              >
-                <span className="chip">{sec.badge}</span>
-                <h2 className="mt-5 display-heading text-4xl leading-tight text-ice-50 md:text-6xl">
-                  {sec.title}
-                </h2>
-                <div className="mt-6 flex flex-col gap-4 text-base leading-relaxed text-ice-50/75 md:text-lg">
-                  {sec.body.map((p) => (
-                    <p key={p}>{p}</p>
-                  ))}
+                <div
+                  className={
+                    sec.align === "left"
+                      ? "md:col-span-7 md:order-2"
+                      : "md:col-span-7 md:order-1"
+                  }
+                >
+                  <span className="chip">{sec.badge}</span>
+                  <h2 className="mt-5 display-heading text-4xl leading-tight text-ice-50 md:text-6xl">
+                    {sec.title}
+                  </h2>
+                  <div className="mt-6 flex flex-col gap-4 text-base leading-relaxed text-ice-50/75 md:text-lg">
+                    {sec.body.map((p) => (
+                      <p key={p}>{p}</p>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            </RevealSection>
-          ))}
+              </RevealSection>
+            );
+          })}
         </div>
       </div>
     </div>

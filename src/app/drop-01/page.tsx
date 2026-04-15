@@ -99,8 +99,8 @@ export default async function Drop01Page() {
             "/images/limited-drop/KepsD5.jpeg",
             "/images/limited-drop/KepsD6.jpeg",
             "/images/limited-drop/KepsD7.jpeg",
-            "/images/drop1/Drop1-4.jpeg",
-            "/images/drop1/Drop1-7.jpeg",
+            "/images/limited-drop/KepsD.jpeg",
+            "/images/limited-drop/KepsD1.jpeg",
           ].map((src, i) => (
             <RevealSection
               key={src}
@@ -123,14 +123,15 @@ export default async function Drop01Page() {
         <div className="container-x px-6 md:px-10">
           <RevealSection className="mx-auto max-w-3xl rounded border border-white/10 bg-white/5 p-10 text-center">
             <h2 className="display-heading text-4xl text-ice-50 md:text-5xl">
-              Drop 02 — redan i produktion
+              Inget Drop 02 — men möjlig restock
             </h2>
             <p className="mt-4 text-sm leading-relaxed text-ice-50/70 md:text-base">
-              Nästa kapitel laddar. Anmäl dig till nyhetsbrevet och få 48h
-              early access innan den publika releasen.
+              Vi planerar inget Drop 02 i nuläget. Däremot utvärderar vi en
+              restock av Face-Off Cap. Anmäl ditt intresse så hör vi av oss
+              först om kepsen kommer tillbaka.
             </p>
             <Link href="/kontakt" className="btn btn-primary mt-8">
-              Gå med i väntelistan
+              Anmäl intresse för restock
             </Link>
           </RevealSection>
         </div>
