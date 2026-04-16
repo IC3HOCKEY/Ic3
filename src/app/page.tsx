@@ -1,7 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import { FrostCard } from "@/components/fx/frost-card";
 import { Magnetic } from "@/components/fx/magnetic";
+import { ScrambleText } from "@/components/fx/scramble-text";
 import { TiltCard } from "@/components/fx/tilt-card";
 import { Hero } from "@/components/hero/hero";
 import { Marquee } from "@/components/marquee";
@@ -37,7 +39,7 @@ export default async function HomePage() {
               <div>
                 <span className="chip">Vår första modell</span>
                 <h2 className="mt-4 display-heading text-4xl text-ice-50 md:text-6xl">
-                  Face-Off Cap
+                  <ScrambleText duration={1000}>Face-Off Cap</ScrambleText>
                 </h2>
                 <p className="mt-3 max-w-xl text-sm text-ice-50/60 md:text-base">
                   En limiterad premiärkeps — just nu vår enda modell. Inget
@@ -56,11 +58,12 @@ export default async function HomePage() {
           {featured ? (
             <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
               <ProductCard product={featured} priority index={0} />
-              <RevealSection className="lg:col-span-2 flex flex-col justify-between rounded-sm border border-white/10 bg-white/5 p-8">
+              <RevealSection className="lg:col-span-2">
+                <FrostCard blur="lg" className="flex h-full flex-col justify-between p-8">
                 <div>
                   <span className="chip">Status</span>
                   <h3 className="mt-4 display-heading text-3xl text-ice-50 md:text-4xl">
-                    Slutsåld — håll utkik efter restock
+                    <ScrambleText duration={1200} delay={300}>Slutsåld — håll utkik efter restock</ScrambleText>
                   </h3>
                   <p className="mt-4 text-sm leading-relaxed text-ice-50/70 md:text-base">
                     Drop 01 släpptes i 250 numrerade exemplar och är helt
@@ -81,6 +84,7 @@ export default async function HomePage() {
                     </Link>
                   </Magnetic>
                 </div>
+                </FrostCard>
               </RevealSection>
             </div>
           ) : null}
@@ -161,9 +165,11 @@ export default async function HomePage() {
           <RevealSection className="md:col-span-7 flex flex-col justify-center">
             <span className="chip">Manifestet</span>
             <h2 className="mt-6 display-heading text-5xl text-ice-50 md:text-6xl">
-              Vi klär inte bara spelare.
+              <ScrambleText duration={900}>Vi klär inte bara spelare.</ScrambleText>
               <br />
-              <span className="shimmer-text">Vi klär kulturen.</span>
+              <span className="shimmer-text">
+                <ScrambleText duration={900} delay={400}>Vi klär kulturen.</ScrambleText>
+              </span>
             </h2>
             <p className="mt-6 text-base leading-relaxed text-ice-50/70 md:text-lg">
               IC3 står för tre grundare — tre personligheter, ett lag. Vi

@@ -3,6 +3,7 @@ import { Bebas_Neue, Inter, JetBrains_Mono } from "next/font/google";
 
 import { CartProvider } from "@/components/cart/cart-provider";
 import { CartDrawer } from "@/components/cart/cart-drawer";
+import { GlobalFX } from "@/components/fx/global-fx";
 import { Footer } from "@/components/layout/footer";
 import { Navbar } from "@/components/layout/navbar";
 import { siteConfig } from "@/lib/site";
@@ -102,6 +103,7 @@ export default function RootLayout({
             <Footer />
           </div>
           <CartDrawer />
+          <GlobalFX />
         </CartProvider>
         <script
           type="application/ld+json"

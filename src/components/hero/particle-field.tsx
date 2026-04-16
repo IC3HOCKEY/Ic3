@@ -2,6 +2,12 @@
 
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { Points, PointMaterial, Float, Environment } from "@react-three/drei";
+import {
+  EffectComposer,
+  Bloom,
+  ChromaticAberration,
+} from "@react-three/postprocessing";
+import { BlendFunction } from "postprocessing";
 import { useMemo, useRef } from "react";
 import * as THREE from "three";
 
@@ -205,6 +211,18 @@ export function ParticleField() {
         <FloatingIcosahedron />
         <IceShards count={16} />
         <HockeyPuck />
+        <EffectComposer>
+          <Bloom
+            intensity={1.2}
+            luminanceThreshold={0.2}
+            luminanceSmoothing={0.9}
+            mipmapBlur
+          />
+          <ChromaticAberration
+            blendFunction={BlendFunction.NORMAL}
+            offset={new THREE.Vector2(0.0006, 0.0006)}
+          />
+        </EffectComposer>
       </Canvas>
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(5,11,20,0)_0%,rgba(5,11,20,0.85)_70%)]" />
     </div>
