@@ -2,12 +2,6 @@
 
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { Points, PointMaterial, Float, Environment } from "@react-three/drei";
-import {
-  EffectComposer,
-  Bloom,
-  ChromaticAberration,
-} from "@react-three/postprocessing";
-import { BlendFunction } from "postprocessing";
 import { useMemo, useRef } from "react";
 import * as THREE from "three";
 
@@ -90,7 +84,7 @@ function HockeyPuck() {
             metalness={0.75}
             roughness={0.25}
             emissive="#99dffb"
-            emissiveIntensity={0.08}
+            emissiveIntensity={0.35}
           />
         </mesh>
       </Float>
@@ -145,7 +139,7 @@ function IceShards({ count = 14 }: { count?: number }) {
             <meshStandardMaterial
               color="#cfeefc"
               emissive="#4b9bc7"
-              emissiveIntensity={0.4}
+              emissiveIntensity={0.7}
               roughness={0.15}
               metalness={0.7}
               transparent
@@ -211,19 +205,9 @@ export function ParticleField() {
         <FloatingIcosahedron />
         <IceShards count={16} />
         <HockeyPuck />
-        <EffectComposer>
-          <Bloom
-            intensity={1.2}
-            luminanceThreshold={0.2}
-            luminanceSmoothing={0.9}
-            mipmapBlur
-          />
-          <ChromaticAberration
-            blendFunction={BlendFunction.NORMAL}
-            offset={new THREE.Vector2(0.0006, 0.0006)}
-          />
-        </EffectComposer>
       </Canvas>
+      {/* Soft CSS bloom — radial glow in center mimics post-processing bloom */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(153,223,251,0.06)_0%,transparent_50%)]" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(5,11,20,0)_0%,rgba(5,11,20,0.85)_70%)]" />
     </div>
   );
