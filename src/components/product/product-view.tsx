@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import { useCart } from "@/components/cart/cart-provider";
 import { Turntable } from "@/components/product/turntable";
 import { formatMoney, cx } from "@/lib/format";
+import { isReleased } from "@/lib/site";
 import type { Product } from "@/lib/types";
 
 type Props = {
@@ -41,7 +42,9 @@ export function ProductView({ product }: Props) {
   const turntableImages = product.turntableImages ?? product.images;
   const galleryImages = product.images;
   const price = currentVariant?.price ?? product.priceRange.minVariantPrice;
+  const preRelease = !isReleased();
   const soldOut = !currentVariant?.availableForSale;
+  const buyDisabled = preRelease || soldOut;
 
   function onAdd() {
     if (!currentVariant) return;
@@ -193,12 +196,18 @@ export function ProductView({ product }: Props) {
           <motion.button
             type="button"
             onClick={onAdd}
-            disabled={soldOut}
+            disabled={buyDisabled}
             animate={addedPulse ? { scale: [1, 1.03, 1] } : { scale: 1 }}
             transition={{ duration: 0.4 }}
-            className={cx("btn flex-1", soldOut ? "btn-ghost" : "btn-primary")}
+            className={cx("btn flex-1", buyDisabled ? "btn-ghost" : "btn-primary")}
           >
-            {soldOut ? "Slut i lager" : addedPulse ? "Tillagd ✓" : "Lägg i varukorg"}
+            {preRelease
+              ? "Släpps 1 augusti"
+              : soldOut
+                ? "Slut i lager"
+                : addedPulse
+                  ? "Tillagd ✓"
+                  : "Lägg i varukorg"}
           </motion.button>
         </div>
 

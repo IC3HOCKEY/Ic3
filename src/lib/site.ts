@@ -1,3 +1,8 @@
+/** Face-Off Cap restock — buying is locked until this moment (Swedish time). */
+export const RELEASE_DATE = new Date("2026-08-01T00:00:00+02:00");
+
+export const isReleased = () => Date.now() >= RELEASE_DATE.getTime();
+
 export const siteConfig = {
   name: "IC3SWEDEN",
   shortName: "IC3",

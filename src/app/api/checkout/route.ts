@@ -5,6 +5,7 @@ import {
   createCart,
   isShopifyConfigured,
 } from "@/lib/shopify";
+import { isReleased } from "@/lib/site";
 
 export const runtime = "nodejs";
 
@@ -20,6 +21,12 @@ export async function POST(req: Request) {
           "Shopify är inte konfigurerat ännu. Lägg in SHOPIFY_STORE_DOMAIN och SHOPIFY_STOREFRONT_ACCESS_TOKEN i .env.local.",
       },
       { status: 503 },
+    );
+  }
+  if (!isReleased()) {
+    return NextResponse.json(
+      { error: "Face-Off Cap släpps 1 augusti — det går inte att beställa ännu." },
+      { status: 403 },
     );
   }
   try {
