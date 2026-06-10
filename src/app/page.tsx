@@ -27,7 +27,7 @@ export default async function HomePage() {
           "Cold days. Hot drops.",
           "Drop 01 · Face-Off Cap",
           "Made in Sweden",
-          "Slutsåld — möjlig restock",
+          "Restock 1 augusti",
           "Hockey roots, urban edge",
         ]}
       />
@@ -42,8 +42,8 @@ export default async function HomePage() {
                   <ScrambleText duration={1000}>Face-Off Cap</ScrambleText>
                 </h2>
                 <p className="mt-3 max-w-xl text-sm text-ice-50/60 md:text-base">
-                  En limiterad premiärkeps — just nu vår enda modell. Inget
-                  Drop 02 är planerat, men en restock av Drop 01 kan komma.
+                  En limiterad premiärkeps — just nu vår enda modell.
+                  Restock 1 augusti.
                 </p>
               </div>
               <Link
@@ -63,13 +63,12 @@ export default async function HomePage() {
                 <div>
                   <span className="chip">Status</span>
                   <h3 className="mt-4 display-heading text-3xl text-ice-50 md:text-4xl">
-                    <ScrambleText duration={1200} delay={300}>Slutsåld — håll utkik efter restock</ScrambleText>
+                    <ScrambleText duration={1200} delay={300}>Restock 1 augusti</ScrambleText>
                   </h3>
                   <p className="mt-4 text-sm leading-relaxed text-ice-50/70 md:text-base">
-                    Drop 01 släpptes i 250 numrerade exemplar och är helt
-                    slutsåld. Vi planerar inget Drop 02 just nu, men
-                    utvärderar en restock av Face-Off Cap. Anmäl dig via
-                    kontaktsidan så hör vi av oss först.
+                    Drop 01 släpptes i 250 numrerade exemplar och sålde slut.
+                    Den 1 augusti är Face-Off Cap tillbaka — nu för 299 kr.
+                    Anmäl dig via kontaktsidan så håller vi dig uppdaterad.
                   </p>
                 </div>
                 <div className="mt-8 flex flex-wrap gap-3">

@@ -123,12 +123,12 @@ export default async function Drop01Page() {
         <div className="container-x px-6 md:px-10">
           <RevealSection className="mx-auto max-w-3xl rounded border border-white/10 bg-white/5 p-10 text-center">
             <h2 className="display-heading text-4xl text-ice-50 md:text-5xl">
-              Inget Drop 02 — men möjlig restock
+              Restock 1 augusti
             </h2>
             <p className="mt-4 text-sm leading-relaxed text-ice-50/70 md:text-base">
-              Vi planerar inget Drop 02 i nuläget. Däremot utvärderar vi en
-              restock av Face-Off Cap. Anmäl ditt intresse så hör vi av oss
-              först om kepsen kommer tillbaka.
+              Den 1 augusti är Face-Off Cap tillbaka i lager — 299 kr,
+              exklusive frakt. Anmäl ditt intresse så hör vi av oss när
+              kepsen släpps.
             </p>
             <Link href="/kontakt" className="btn btn-primary mt-8">
               Anmäl intresse för restock

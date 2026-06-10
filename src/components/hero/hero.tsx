@@ -30,7 +30,7 @@ export function Hero() {
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="md:col-span-7"
           >
-            <span className="chip">Drop 01 · Face-Off Cap · Slutsåld</span>
+            <span className="chip">Drop 01 · Face-Off Cap · Restock 1 augusti</span>
             <h1 className="mt-6 display-heading text-[clamp(3rem,9vw,8rem)] leading-none text-ice-50">
               {lines.map((line, idx) => (
                 <motion.span
@@ -58,7 +58,7 @@ export function Hero() {
             >
               IC3 är klädmärket för dig som lever för hockeykulturen — på och
               utanför isen. En limiterad premiärkeps, byggd i Sverige. Face-Off
-              Cap är just nu slutsåld — vi utvärderar en restock.
+              Cap — restock 1 augusti, 299 kr.
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 20 }}

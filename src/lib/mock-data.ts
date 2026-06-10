@@ -26,12 +26,12 @@ export const mockProducts: Product[] = [
     handle: "face-off-cap",
     title: "IC3 Drop 01 — Face-Off Cap",
     description:
-      "Den limiterade premiärkepsen från IC3. Strukturerad 6-panel med broderad frontlogga, curved brim och metallspänne. Producerad i en upplaga om 250 exemplar. Stilren, självsäker och full av attityd. Just nu slutsåld — en eventuell restock annonseras via nyhetsbrevet.",
+      "Den limiterade premiärkepsen från IC3. Strukturerad 6-panel med broderad frontlogga, curved brim och metallspänne. Producerad i en upplaga om 250 exemplar. Stilren, självsäker och full av attityd. Restock 1 augusti.",
     tags: ["hats", "drop-01", "limited"],
     collectionHandles: ["drop-01"],
     priceRange: {
-      minVariantPrice: sek("499.00"),
-      maxVariantPrice: sek("499.00"),
+      minVariantPrice: sek("299.00"),
+      maxVariantPrice: sek("299.00"),
     },
     featuredImage: makeImage(dropImages[0], "IC3 Face-Off Cap front"),
     images: dropImages.map((src, i) =>
@@ -45,16 +45,16 @@ export const mockProducts: Product[] = [
       {
         id: "mock-variant-face-off-cap-one",
         title: "One size",
-        price: sek("499.00"),
-        availableForSale: false,
+        price: sek("299.00"),
+        availableForSale: true,
         selectedOptions: [{ name: "Size", value: "One size" }],
         image: makeImage(dropImages[0], "IC3 Face-Off Cap"),
       },
     ],
-    availableForSale: false,
+    availableForSale: true,
     createdAt: "2025-12-01T00:00:00Z",
     story:
-      "Född ur kalla hallar och sena kvällar på isen. Drop 01 är vår kärleksförklaring till hockeykulturen — översatt till gatan. Inget Drop 02 är planerat, men håll utkik: vi utvärderar en restock av Face-Off Cap.",
+      "Född ur kalla hallar och sena kvällar på isen. Drop 01 är vår kärleksförklaring till hockeykulturen — översatt till gatan. Restock av Face-Off Cap 1 augusti.",
   },
 ];
 

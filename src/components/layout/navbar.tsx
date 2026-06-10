@@ -38,7 +38,7 @@ export function Navbar() {
     >
       <div className="bg-ice/10 text-[0.72rem] uppercase tracking-[0.3em] text-ice-50/90 py-2 text-center font-display">
         <span className="inline-block px-4">
-          Fri frakt över 799 kr · Face-Off Cap slutsåld — möjlig restock
+          Fri frakt över 799 kr · Face-Off Cap — restock 1 augusti
         </span>
       </div>
 
