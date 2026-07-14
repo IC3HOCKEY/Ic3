@@ -235,42 +235,14 @@ export function ProductView({ product }: Props) {
           </details>
           <details className="group">
             <summary className="flex cursor-pointer items-center justify-between font-display text-sm uppercase tracking-[0.3em] text-ice-50/80 hover:text-ice">
-              Storleksguide
+              Storlek & passform
               <span className="ml-auto transition group-open:rotate-45">+</span>
             </summary>
-            <div className="mt-4 overflow-hidden rounded border border-white/5">
-              <table className="w-full text-left text-xs uppercase tracking-[0.18em] text-ice-50/70">
-                <thead className="bg-white/5 text-ice">
-                  <tr>
-                    <th className="px-4 py-2">Storlek</th>
-                    <th className="px-4 py-2">Bröst (cm)</th>
-                    <th className="px-4 py-2">Längd (cm)</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr className="border-t border-white/5">
-                    <td className="px-4 py-2">S</td>
-                    <td className="px-4 py-2">104</td>
-                    <td className="px-4 py-2">70</td>
-                  </tr>
-                  <tr className="border-t border-white/5">
-                    <td className="px-4 py-2">M</td>
-                    <td className="px-4 py-2">110</td>
-                    <td className="px-4 py-2">72</td>
-                  </tr>
-                  <tr className="border-t border-white/5">
-                    <td className="px-4 py-2">L</td>
-                    <td className="px-4 py-2">116</td>
-                    <td className="px-4 py-2">74</td>
-                  </tr>
-                  <tr className="border-t border-white/5">
-                    <td className="px-4 py-2">XL</td>
-                    <td className="px-4 py-2">122</td>
-                    <td className="px-4 py-2">76</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+            <p className="mt-4 text-sm leading-relaxed text-ice-50/70">
+              One size — justerbart metallspänne bak gör att kepsen passar de
+              flesta huvuden (ca 54–62 cm omkrets). Strukturerad 6-panel med
+              curved brim.
+            </p>
           </details>
         </div>
       </section>
