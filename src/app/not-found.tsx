@@ -12,9 +12,28 @@ export default function NotFound() {
           Sidan du letar efter finns inte — eller så har den sålts slut. Gå
           tillbaka till startsidan och upptäck nästa drop.
         </p>
-        <Link href="/" className="btn btn-primary mt-8">
-          Tillbaka till start
-        </Link>
+        <div className="mt-8 flex flex-wrap justify-center gap-3">
+          <Link href="/" className="btn btn-primary">
+            Tillbaka till start
+          </Link>
+          <Link href="/shop" className="btn btn-ghost">
+            Till shopen
+          </Link>
+        </div>
+        <nav
+          aria-label="Genvägar"
+          className="mt-10 flex flex-wrap justify-center gap-x-6 gap-y-2 font-display text-xs uppercase tracking-[0.25em] text-ice-50/50"
+        >
+          <Link href="/drop-01" className="hover:text-ice">
+            Drop 01
+          </Link>
+          <Link href="/om-oss" className="hover:text-ice">
+            Om oss
+          </Link>
+          <Link href="/kontakt" className="hover:text-ice">
+            Kontakt
+          </Link>
+        </nav>
       </div>
     </div>
   );

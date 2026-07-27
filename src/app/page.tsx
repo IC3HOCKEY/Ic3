@@ -17,10 +17,13 @@ export const revalidate = 60;
 export default async function HomePage() {
   const products = await getProducts();
   const featured = products[0];
+  // Länka mot katalogens faktiska handle — hårdkodade handles blir 404 så fort
+  // produkten byter namn i Shopify.
+  const featuredHref = featured ? `/products/${featured.handle}` : "/shop";
 
   return (
     <>
-      <Hero />
+      <Hero productHandle={featured?.handle} />
 
       <Marquee
         items={[
@@ -47,7 +50,7 @@ export default async function HomePage() {
                 </p>
               </div>
               <Link
-                href="/products/face-off-cap"
+                href={featuredHref}
                 className="inline-flex items-center gap-2 font-display text-sm uppercase tracking-[0.25em] text-ice hover:text-ice-200"
               >
                 Se produkten <span aria-hidden>→</span>
@@ -111,7 +114,7 @@ export default async function HomePage() {
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
               <Magnetic>
-                <Link href="/products/face-off-cap" className="btn btn-primary">
+                <Link href={featuredHref} className="btn btn-primary">
                   Utforska Face-Off Cap
                 </Link>
               </Magnetic>

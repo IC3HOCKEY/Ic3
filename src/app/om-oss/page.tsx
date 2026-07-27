@@ -14,6 +14,8 @@ type Section = {
   title: string;
   body: string[];
   image: string;
+  /** Beskriver bilden — inte en upprepning av rubriken. */
+  alt: string;
   align: "left" | "right";
   /** "cover" = fyll bildrutan (croppar), "contain" = visa hela bilden */
   fit?: "cover" | "contain";
@@ -31,10 +33,10 @@ const sections: Section[] = [
       "Men när vi klev av isen saknades något. Det fanns tröjor med klubbmärken och jackor med sponsorer — men inget som speglade hockeylivet på riktigt. Så vi skapade IC3.",
     ],
     image: "/images/brand/Hemsida-1.JPG",
+    alt: "IC3:s tre grundare i gula hockeytröjor och IC3-kepsar med Stockholm i bakgrunden",
     align: "left",
-    // Mindre inzoomad — bredare format + contain så hela bilden syns
-    aspect: "aspect-[4/3]",
-    fit: "contain",
+    // Bildrutan matchar filens 16:9 — hela bilden syns utan crop eller grå kanter
+    aspect: "aspect-[16/9]",
   },
   {
     badge: "Bakgrund",
@@ -44,8 +46,11 @@ const sections: Section[] = [
       "Vi har olika roller idag — design, marknadsföring och vision — men vi har alltid varit ett lag.",
       "Vi delar minnet av kalla morgnar, slitna handskar och drömmen om att skapa något som lever längre än sista perioden.",
     ],
-    image: "/images/om-oss/team-1.jpg",
+    image: "/images/brand/om.oss.png",
+    alt: "IC3 Face-Off Cap och pucks på sargkanten vid rinken",
     align: "right",
+    // Filen är 3:2 — matchande bildruta ger full bild utan crop
+    aspect: "aspect-[3/2]",
   },
   {
     badge: "Mission",
@@ -55,8 +60,10 @@ const sections: Section[] = [
       "Vi vill förena hockeyns rötter med ett modernt uttryck — där varje plagg bär på känslan av att tillhöra något större.",
       "Kläder som låter dig bära ditt hockeyhjärta med stolthet, oavsett om du är på väg till match, träning eller stan.",
     ],
-    image: "/images/om-oss/team-2.jpg",
+    image: "/images/brand/missionbild.png",
+    alt: "Person i mörkblå IC3-hoodie och keps på en gata i vinterljus",
     align: "left",
+    aspect: "aspect-square",
   },
   {
     badge: "Vision",
@@ -66,8 +73,10 @@ const sections: Section[] = [
       "Vår vision är att bygga ett internationellt varumärke där unga människor känner sig sedda, inspirerade och representerade.",
       "För oss handlar det om gemenskap, stil och att aldrig vika sig. IC3 är för dem som förstår att hockey inte bara är en sport — det är ett sätt att leva.",
     ],
-    image: "/images/om-oss/team-3.jpg",
+    image: "/images/brand/visionbild.png",
+    alt: "Ungdomar med hockeyklubbor på en stadsgata under neonskylt med IC3-loggan",
     align: "right",
+    aspect: "aspect-square",
   },
 ];
 
@@ -107,7 +116,7 @@ export default function AboutPage() {
                   >
                     <Image
                       src={sec.image}
-                      alt={sec.title}
+                      alt={sec.alt}
                       fill
                       sizes="(min-width: 768px) 40vw, 100vw"
                       className={fit}

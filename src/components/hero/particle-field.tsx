@@ -1,9 +1,17 @@
 "use client";
 
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { Points, PointMaterial, Float, Environment } from "@react-three/drei";
+import {
+  Points,
+  PointMaterial,
+  Float,
+  Environment,
+  Lightformer,
+} from "@react-three/drei";
 import { useMemo, useRef } from "react";
 import * as THREE from "three";
+
+import { CanvasBoundary } from "@/components/fx/canvas-boundary";
 
 /** Drifting ice particle field with parallax */
 function FrostField({ count = 1800 }: { count?: number }) {
@@ -181,31 +189,62 @@ export function ParticleField() {
       aria-hidden="true"
       className="absolute inset-0 -z-10 pointer-events-none"
     >
-      <Canvas
-        dpr={[1, 1.6]}
-        camera={{ position: [0, 0, 4.5], fov: 55 }}
-        gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
-      >
-        <color attach="background" args={["#050b14"]} />
-        <fog attach="fog" args={["#050b14", 3.5, 11]} />
-        <ambientLight intensity={0.35} />
-        <directionalLight
-          position={[2, 3, 2]}
-          intensity={1.4}
-          color="#99dffb"
-        />
-        <directionalLight
-          position={[-3, -1, 1]}
-          intensity={0.5}
-          color="#4b9bc7"
-        />
-        <pointLight position={[0, 0, 2]} intensity={0.8} color="#99dffb" />
-        <Environment preset="night" />
-        <FrostField count={1800} />
-        <FloatingIcosahedron />
-        <IceShards count={16} />
-        <HockeyPuck />
-      </Canvas>
+      <CanvasBoundary>
+        <Canvas
+          dpr={[1, 1.6]}
+          camera={{ position: [0, 0, 4.5], fov: 55 }}
+          gl={{
+            antialias: true,
+            alpha: true,
+            powerPreference: "high-performance",
+          }}
+        >
+          <color attach="background" args={["#050b14"]} />
+          <fog attach="fog" args={["#050b14", 3.5, 11]} />
+          <ambientLight intensity={0.35} />
+          <directionalLight
+            position={[2, 3, 2]}
+            intensity={1.4}
+            color="#99dffb"
+          />
+          <directionalLight
+            position={[-3, -1, 1]}
+            intensity={0.5}
+            color="#4b9bc7"
+          />
+          <pointLight position={[0, 0, 2]} intensity={0.8} color="#99dffb" />
+          {/*
+            Reflektionerna byggs lokalt av Lightformers. Ett `preset` hade
+            hämtat en HDR-fil på flera megabyte från drei:s CDN — ett externt
+            beroende på startsidan som kraschade renderingen när hämtningen
+            misslyckades.
+          */}
+          <Environment resolution={64}>
+            <Lightformer
+              intensity={2}
+              color="#99dffb"
+              position={[0, 2, -3]}
+              scale={[8, 4, 1]}
+            />
+            <Lightformer
+              intensity={0.8}
+              color="#4b9bc7"
+              position={[-3, -1, 2]}
+              scale={[6, 3, 1]}
+            />
+            <Lightformer
+              intensity={0.4}
+              color="#050b14"
+              position={[0, -3, 0]}
+              scale={[10, 4, 1]}
+            />
+          </Environment>
+          <FrostField count={1800} />
+          <FloatingIcosahedron />
+          <IceShards count={16} />
+          <HockeyPuck />
+        </Canvas>
+      </CanvasBoundary>
       {/* Soft CSS bloom — radial glow in center mimics post-processing bloom */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(153,223,251,0.06)_0%,transparent_50%)]" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(5,11,20,0)_0%,rgba(5,11,20,0.85)_70%)]" />
