@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 import { ProductCard } from "@/components/product-card";
 import { ProductView } from "@/components/product/product-view";
 import { getProduct, getProducts } from "@/lib/shopify";
-import { siteConfig } from "@/lib/site";
+import { RELEASE_DATE, isReleased, siteConfig } from "@/lib/site";
 
 type PageProps = {
   params: { handle: string };
@@ -26,6 +26,7 @@ export async function generateMetadata({
   return {
     title: product.title,
     description: product.description,
+    alternates: { canonical: `/products/${product.handle}` },
     openGraph: {
       title: product.title,
       description: product.description,
@@ -72,9 +73,14 @@ export default async function ProductPage({ params }: PageProps) {
       url: `${siteConfig.url}/products/${product.handle}`,
       priceCurrency: product.priceRange.minVariantPrice.currencyCode,
       price: product.priceRange.minVariantPrice.amount,
-      availability: product.availableForSale
-        ? "https://schema.org/InStock"
-        : "https://schema.org/OutOfStock",
+      // Före releasen går det inte att beställa — då är "InStock" felaktigt och
+      // kan ge en straffad rich-result i Google. PreOrder speglar väntelistan.
+      availability: !isReleased()
+        ? "https://schema.org/PreOrder"
+        : product.availableForSale
+          ? "https://schema.org/InStock"
+          : "https://schema.org/OutOfStock",
+      availabilityStarts: RELEASE_DATE.toISOString(),
     },
   };
 

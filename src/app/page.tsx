@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -10,17 +11,24 @@ import { Marquee } from "@/components/marquee";
 import { ProductCard } from "@/components/product-card";
 import { RevealSection } from "@/components/reveal-section";
 import { getProducts } from "@/lib/shopify";
-import { siteConfig } from "@/lib/site";
+import { FEATURED_PRODUCT_HANDLE, siteConfig } from "@/lib/site";
 
 export const revalidate = 60;
 
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
+
 export default async function HomePage() {
   const products = await getProducts();
-  const featured = products[0];
+  const featured =
+    products.find((p) => p.handle === FEATURED_PRODUCT_HANDLE) ?? products[0];
+  // Länka alltid till en handle som faktiskt finns i katalogen.
+  const featuredHref = `/products/${featured?.handle ?? FEATURED_PRODUCT_HANDLE}`;
 
   return (
     <>
-      <Hero />
+      <Hero productHandle={featured?.handle} />
 
       <Marquee
         items={[
@@ -47,7 +55,7 @@ export default async function HomePage() {
                 </p>
               </div>
               <Link
-                href="/products/face-off-cap"
+                href={featuredHref}
                 className="inline-flex items-center gap-2 font-display text-sm uppercase tracking-[0.25em] text-ice hover:text-ice-200"
               >
                 Se produkten <span aria-hidden>→</span>
@@ -111,7 +119,7 @@ export default async function HomePage() {
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
               <Magnetic>
-                <Link href="/products/face-off-cap" className="btn btn-primary">
+                <Link href={featuredHref} className="btn btn-primary">
                   Utforska Face-Off Cap
                 </Link>
               </Magnetic>

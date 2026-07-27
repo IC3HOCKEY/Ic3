@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Integritetspolicy",
+  alternates: { canonical: "/legal/integritet" },
 };
 
 export default function PrivacyPage() {

@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: "Kontakt",
   description:
     "Kontakta IC3 — frågor om order, samarbeten eller press. Vi svarar inom 24h på vardagar.",
+  alternates: { canonical: "/kontakt" },
 };
 
 const faqItems = [

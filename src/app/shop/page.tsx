@@ -9,6 +9,7 @@ export const metadata: Metadata = {
   title: "Shop",
   description:
     "Utforska hela IC3-kollektionen — headwear, hoodies, tees och accessoarer. Byggt i Sverige, släppt i limiterade droppar.",
+  alternates: { canonical: "/shop" },
 };
 
 export default async function ShopPage({

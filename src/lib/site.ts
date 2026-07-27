@@ -3,6 +3,16 @@ export const RELEASE_DATE = new Date("2026-08-01T00:00:00+02:00");
 
 export const isReleased = () => Date.now() >= RELEASE_DATE.getTime();
 
+/**
+ * Handle of the product the marketing pages link to. This MUST match the
+ * product handle in Shopify (admin → product → "Sökmotorlistning" → URL-handtag),
+ * otherwise every hardcoded product link 404:ar. Keep mock-data.ts in sync too.
+ *
+ * Server components should prefer the handle from the fetched product and fall
+ * back to this constant — only client components need the constant directly.
+ */
+export const FEATURED_PRODUCT_HANDLE = "drop-01-face-off-cap";
+
 export const siteConfig = {
   name: "IC3SWEDEN",
   shortName: "IC3",

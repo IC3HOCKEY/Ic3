@@ -23,8 +23,10 @@ const makeImage = (url: string, alt: string, w = 1200, h = 1200) => ({
 export const mockProducts: Product[] = [
   {
     id: "mock-face-off-cap",
-    handle: "face-off-cap",
-    title: "IC3 Drop 01 — Face-Off Cap",
+    // Must match FEATURED_PRODUCT_HANDLE and the real Shopify handle so that
+    // hardcoded product links resolve in both mock and live mode.
+    handle: "drop-01-face-off-cap",
+    title: "DROP 01 – Face-Off Cap",
     description:
       "Den limiterade premiärkepsen från IC3. Strukturerad 6-panel med broderad frontlogga, curved brim och metallspänne. Producerad i en upplaga om 250 exemplar. Stilren, självsäker och full av attityd. Restock 1 augusti.",
     tags: ["hats", "drop-01", "limited"],
@@ -65,6 +67,6 @@ export const mockCollections: Collection[] = [
     title: "Drop 01",
     description:
       "Premiärdroppen. En limiterad keps som firar hockeylivet utanför isen.",
-    productHandles: ["face-off-cap"],
+    productHandles: ["drop-01-face-off-cap"],
   },
 ];

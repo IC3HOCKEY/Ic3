@@ -6,6 +6,7 @@ import dynamic from "next/dynamic";
 
 import { Magnetic } from "@/components/fx/magnetic";
 import { TiltCard } from "@/components/fx/tilt-card";
+import { FEATURED_PRODUCT_HANDLE } from "@/lib/site";
 
 const ParticleField = dynamic(
   () => import("./particle-field").then((m) => m.ParticleField),
@@ -14,7 +15,12 @@ const ParticleField = dynamic(
 
 const lines = ["Cold days.", "Hot drops."];
 
-export function Hero() {
+type Props = {
+  /** Handle från den hämtade produkten — faller tillbaka på konstanten. */
+  productHandle?: string;
+};
+
+export function Hero({ productHandle = FEATURED_PRODUCT_HANDLE }: Props) {
   return (
     <section
       aria-label="Hero"
@@ -67,7 +73,10 @@ export function Hero() {
               className="mt-10 flex flex-wrap gap-4"
             >
               <Magnetic>
-                <Link href="/products/face-off-cap" className="btn btn-primary">
+                <Link
+                  href={`/products/${productHandle}`}
+                  className="btn btn-primary"
+                >
                   Se Face-Off Cap
                 </Link>
               </Magnetic>

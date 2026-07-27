@@ -56,9 +56,9 @@ export const metadata: Metadata = {
     description: siteConfig.description,
     images: [
       {
-        url: "/images/brand/Hemsida-1.JPG",
-        width: 1200,
-        height: 1200,
+        url: "/images/om-oss/grundarna.jpg",
+        width: 1560,
+        height: 878,
         alt: siteConfig.name,
       },
     ],
@@ -67,7 +67,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: `${siteConfig.name} — ${siteConfig.tagline}`,
     description: siteConfig.description,
-    images: ["/images/brand/Hemsida-1.JPG"],
+    images: ["/images/om-oss/grundarna.jpg"],
   },
   icons: {
     icon: "/images/brand/Loga-ic3.png",
@@ -75,7 +75,8 @@ export const metadata: Metadata = {
     apple: "/images/brand/Loga-ic3.png",
   },
   robots: { index: true, follow: true },
-  alternates: { canonical: siteConfig.url },
+  // OBS: sätt INTE alternates.canonical här — root-layoutens värde ärvs av alla
+  // undersidor, vilket pekade varje sida mot startsidan. Varje sida sätter sin egen.
 };
 
 export const viewport: Viewport = {

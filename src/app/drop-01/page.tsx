@@ -4,19 +4,25 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { RevealSection } from "@/components/reveal-section";
-import { getProduct } from "@/lib/shopify";
+import { getProducts } from "@/lib/shopify";
 import { formatMoney } from "@/lib/format";
+import { FEATURED_PRODUCT_HANDLE } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Drop 01 — Face-Off Cap",
   description:
     "Drop 01 är IC3:s premiärdropp — den limiterade Face-Off Cap. 250 exemplar, designat i Stockholm, inspirerat av den svenska hockeykulturen.",
+  alternates: { canonical: "/drop-01" },
 };
 
 export const revalidate = 60;
 
 export default async function Drop01Page() {
-  const product = await getProduct("face-off-cap");
+  // Hämta hela katalogen istället för en enskild handle: kampanjsidan ska aldrig
+  // bli en 404 bara för att produktens handle har ändrats i Shopify.
+  const products = await getProducts();
+  const product =
+    products.find((p) => p.handle === FEATURED_PRODUCT_HANDLE) ?? products[0];
   if (!product) notFound();
 
   return (
