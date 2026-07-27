@@ -47,6 +47,21 @@ export async function POST(req: Request) {
     if (!lines.length) {
       return NextResponse.json({ error: "Korgen är tom." }, { status: 400 });
     }
+    // Placeholder-produkter (lokal katalog) har inga riktiga Shopify-id:n.
+    // Utan den här kontrollen svarar Shopify med ett kryptiskt GraphQL-fel.
+    if (
+      !lines.every((l) =>
+        l.merchandiseId.startsWith("gid://shopify/ProductVariant/"),
+      )
+    ) {
+      return NextResponse.json(
+        {
+          error:
+            "Produkten är inte släppt för köp ännu. Töm varukorgen och försök igen efter releasen.",
+        },
+        { status: 409 },
+      );
+    }
     const cart = await createCart();
     const updated = await addCartLines(cart.id, lines);
     return NextResponse.json({ checkoutUrl: updated.checkoutUrl });

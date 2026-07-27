@@ -44,10 +44,13 @@ export function ProductView({ product }: Props) {
   const price = currentVariant?.price ?? product.priceRange.minVariantPrice;
   const preRelease = !isReleased();
   const soldOut = !currentVariant?.availableForSale;
-  const buyDisabled = preRelease || soldOut;
+  // Placeholder = produkten kommer från den lokala katalogen, inte Shopify.
+  // Varianterna saknar riktiga id:n, så kassan får aldrig öppnas för dem.
+  const placeholder = product.isPlaceholder === true;
+  const buyDisabled = placeholder || preRelease || soldOut;
 
   function onAdd() {
-    if (!currentVariant) return;
+    if (!currentVariant || buyDisabled) return;
     addLine({
       variantId: currentVariant.id,
       productHandle: product.handle,
@@ -201,7 +204,7 @@ export function ProductView({ product }: Props) {
             transition={{ duration: 0.4 }}
             className={cx("btn flex-1", buyDisabled ? "btn-ghost" : "btn-primary")}
           >
-            {preRelease
+            {preRelease || placeholder
               ? "Släpps 1 augusti"
               : soldOut
                 ? "Slut i lager"

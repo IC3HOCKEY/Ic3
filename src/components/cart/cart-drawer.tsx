@@ -7,6 +7,7 @@ import { useState } from "react";
 
 import { useCart } from "@/components/cart/cart-provider";
 import { formatMoney } from "@/lib/format";
+import { isReleased } from "@/lib/site";
 
 export function CartDrawer() {
   const {
@@ -21,9 +22,12 @@ export function CartDrawer() {
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  // Kassan är stängd till releasen. API:t avvisar den ändå, men en låst knapp
+  // är tydligare än ett felmeddelande för den som har en sparad varukorg.
+  const preRelease = !isReleased();
 
   async function onCheckout() {
-    if (!lines.length) return;
+    if (!lines.length || preRelease) return;
     setLoading(true);
     setError(null);
     try {
@@ -211,10 +215,14 @@ export function CartDrawer() {
                   <button
                     type="button"
                     onClick={onCheckout}
-                    disabled={loading}
-                    className="btn btn-primary w-full"
+                    disabled={loading || preRelease}
+                    className={`btn w-full ${preRelease ? "btn-ghost" : "btn-primary"}`}
                   >
-                    {loading ? "Laddar kassan…" : "Till kassan"}
+                    {preRelease
+                      ? "Kassan öppnar 1 augusti"
+                      : loading
+                        ? "Laddar kassan…"
+                        : "Till kassan"}
                   </button>
                 </footer>
               ) : null}

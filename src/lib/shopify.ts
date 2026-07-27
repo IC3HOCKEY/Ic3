@@ -190,6 +190,24 @@ const PRODUCT_FRAGMENT = /* GraphQL */ `
   }
 `;
 
+/**
+ * Visar den lokala katalogen när Shopify inte har någon publicerad produkt.
+ *
+ * Storefront API returnerar en tom lista både för en tom butik och för en
+ * produkt som inte är publicerad till försäljningskanalen token:en läser. Utan
+ * det här hamnade sajtens enda produkt på 404-sidan medan butiken gjordes
+ * klar. Produkterna markeras som placeholders och kan aldrig köpas — deras
+ * variant-id:n finns inte i Shopify, så kassan måste vara stängd.
+ */
+function placeholderCatalog(): Product[] {
+  return mockProducts.map((p) => ({
+    ...p,
+    availableForSale: false,
+    variants: p.variants.map((v) => ({ ...v, availableForSale: false })),
+    isPlaceholder: true,
+  }));
+}
+
 export async function getProducts(): Promise<Product[]> {
   if (!isShopifyConfigured) return mockProducts;
   const data = await shopifyFetch<{
@@ -208,7 +226,16 @@ export async function getProducts(): Promise<Product[]> {
       }
     `,
   );
-  return data.products.edges.map(({ node }) => normalizeProduct(node));
+  const products = data.products.edges.map(({ node }) => normalizeProduct(node));
+  if (!products.length) {
+    console.warn(
+      "[shopify] Butiken returnerade inga produkter — visar den lokala katalogen " +
+        "utan köpmöjlighet. Kontrollera att produkten är publicerad till den " +
+        "försäljningskanal Storefront-token:en läser.",
+    );
+    return placeholderCatalog();
+  }
+  return products;
 }
 
 /** Strips separators so "face-off-cap" and "ic3_faceoffcap" compare equal. */
@@ -248,6 +275,8 @@ export async function getProduct(handle: string): Promise<Product | null> {
 
   const wanted = slugKey(handle);
   if (wanted.length < 4) return null;
+  // getProducts() faller tillbaka till placeholder-katalogen för en tom butik,
+  // så den här sökningen täcker både omdöpta och ännu opublicerade produkter.
   const all = await getProducts();
   return (
     all.find((p) => slugKey(p.handle) === wanted) ??

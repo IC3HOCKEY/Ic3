@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   title: "Om oss",
   description:
     "Historien bakom IC3 — tre barndomsvänner som översatte hockeykulturen till svensk streetwear.",
+  alternates: { canonical: "/om-oss" },
 };
 
 type Section = {
@@ -46,7 +47,7 @@ const sections: Section[] = [
       "Vi har olika roller idag — design, marknadsföring och vision — men vi har alltid varit ett lag.",
       "Vi delar minnet av kalla morgnar, slitna handskar och drömmen om att skapa något som lever längre än sista perioden.",
     ],
-    image: "/images/brand/om.oss.png",
+    image: "/images/om-oss/bakgrund.png",
     alt: "IC3 Face-Off Cap och pucks på sargkanten vid rinken",
     align: "right",
     // Filen är 3:2 — matchande bildruta ger full bild utan crop
@@ -60,7 +61,7 @@ const sections: Section[] = [
       "Vi vill förena hockeyns rötter med ett modernt uttryck — där varje plagg bär på känslan av att tillhöra något större.",
       "Kläder som låter dig bära ditt hockeyhjärta med stolthet, oavsett om du är på väg till match, träning eller stan.",
     ],
-    image: "/images/brand/missionbild.png",
+    image: "/images/om-oss/mission.png",
     alt: "Person i mörkblå IC3-hoodie och keps på en gata i vinterljus",
     align: "left",
     aspect: "aspect-square",
@@ -73,7 +74,7 @@ const sections: Section[] = [
       "Vår vision är att bygga ett internationellt varumärke där unga människor känner sig sedda, inspirerade och representerade.",
       "För oss handlar det om gemenskap, stil och att aldrig vika sig. IC3 är för dem som förstår att hockey inte bara är en sport — det är ett sätt att leva.",
     ],
-    image: "/images/brand/visionbild.png",
+    image: "/images/om-oss/vision.png",
     alt: "Ungdomar med hockeyklubbor på en stadsgata under neonskylt med IC3-loggan",
     align: "right",
     aspect: "aspect-square",

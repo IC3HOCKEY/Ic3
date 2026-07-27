@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 
+import { clientKey, rateLimit } from "@/lib/rate-limit";
 import { isAdminConfigured, recordContactMessage } from "@/lib/shopify-admin";
 
 export const runtime = "nodejs";
@@ -9,9 +10,18 @@ type Body = {
   email?: unknown;
   message?: unknown;
   topic?: unknown;
+  /** Dolt fält som bara ifylls av bottar. */
+  company?: unknown;
 };
 
 export async function POST(req: Request) {
+  const limit = rateLimit(clientKey(req, "contact"), 5, 60_000);
+  if (!limit.allowed) {
+    return NextResponse.json(
+      { error: "För många försök. Vänta en stund och försök igen." },
+      { status: 429, headers: { "Retry-After": String(limit.retryAfter) } },
+    );
+  }
   if (!isAdminConfigured) {
     return NextResponse.json(
       { error: "Kontaktformuläret är inte konfigurerat ännu. Mejla oss direkt på ic3.kontakt@outlook.com." },
@@ -20,6 +30,11 @@ export async function POST(req: Request) {
   }
   try {
     const body = (await req.json()) as Body;
+    // Honeypot: osynligt för besökare, så ifyllt = bot. Svara ok så att boten
+    // inte lär sig vilket fält som avslöjade den.
+    if (typeof body.company === "string" && body.company.trim()) {
+      return NextResponse.json({ ok: true });
+    }
     const name = typeof body.name === "string" ? body.name.trim() : "";
     const email = typeof body.email === "string" ? body.email.trim() : "";
     const message =
@@ -35,7 +50,13 @@ export async function POST(req: Request) {
         { status: 400 },
       );
     }
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    if (name.length > 120) {
+      return NextResponse.json(
+        { error: "Namnet är för långt." },
+        { status: 400 },
+      );
+    }
+    if (email.length > 254 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       return NextResponse.json(
         { error: "Ogiltig e-postadress." },
         { status: 400 },
