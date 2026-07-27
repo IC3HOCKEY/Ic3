@@ -33,11 +33,12 @@ const sections: Section[] = [
       "Vi är tre barndomsvänner som växte upp med hockey som vår gemensamma drivkraft. Vi delade allt — morgonpass på frusna isar, bussresor till bortamatcher och timmar i omklädningsrum som luktade tejp, svett och framtidsdrömmar.",
       "Men när vi klev av isen saknades något. Det fanns tröjor med klubbmärken och jackor med sponsorer — men inget som speglade hockeylivet på riktigt. Så vi skapade IC3.",
     ],
-    image: "/images/brand/Hemsida-1.JPG",
-    alt: "IC3:s tre grundare i gula hockeytröjor och IC3-kepsar med Stockholm i bakgrunden",
+    // Omklädningsrummet matchar texten ovan bokstavligt: tejp, svett och
+    // slitna skridskor. Filen är 2:3 stående.
+    image: "/images/om-oss/historia.png",
+    alt: "Mörkt omklädningsrum med IC3-keps och hoodie på bänken, skridskor och en IC3-flagga på väggen",
     align: "left",
-    // Bildrutan matchar filens 16:9 — hela bilden syns utan crop eller grå kanter
-    aspect: "aspect-[16/9]",
+    aspect: "aspect-[2/3]",
   },
   {
     badge: "Bakgrund",
@@ -47,11 +48,12 @@ const sections: Section[] = [
       "Vi har olika roller idag — design, marknadsföring och vision — men vi har alltid varit ett lag.",
       "Vi delar minnet av kalla morgnar, slitna handskar och drömmen om att skapa något som lever längre än sista perioden.",
     ],
-    image: "/images/om-oss/bakgrund.png",
-    alt: "IC3 Face-Off Cap och pucks på sargkanten vid rinken",
+    // Grundarbilden hör hemma vid "tre personligheter, ett lag" — det är den
+    // enda bilden som faktiskt visar de tre. Filen är 16:9.
+    image: "/images/brand/Hemsida-1.JPG",
+    alt: "IC3:s tre grundare tillsammans i gula hockeytröjor med Stockholm i bakgrunden",
     align: "right",
-    // Filen är 3:2 — matchande bildruta ger full bild utan crop
-    aspect: "aspect-[3/2]",
+    aspect: "aspect-[16/9]",
   },
   {
     badge: "Mission",
