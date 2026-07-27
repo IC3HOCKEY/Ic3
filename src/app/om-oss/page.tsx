@@ -51,9 +51,9 @@ const sections: Section[] = [
       "Vi delar minnet av kalla morgnar, slitna handskar och drömmen om att skapa något som lever längre än sista perioden.",
     ],
     image: "/images/om-oss/laget.jpg",
-    alt: "IC3 Face-Off Cap och tre pucks med IC3-logotypen på båset i en tom ishall.",
+    alt: "En av IC3:s grundare i profil med Face-Off Cap på isen i en ishall.",
     align: "right",
-    aspect: "aspect-[3/2]",
+    aspect: "aspect-[16/9]",
   },
   {
     badge: "Mission",
@@ -64,9 +64,9 @@ const sections: Section[] = [
       "Kläder som låter dig bära ditt hockeyhjärta med stolthet, oavsett om du är på väg till match, träning eller stan.",
     ],
     image: "/images/om-oss/mission.jpg",
-    alt: "Person i mörkblå IC3-hoodie och keps på en gata i vinterljus.",
+    alt: "IC3-grundare bakifrån i hoodie och Face-Off Cap inne i ishallen.",
     align: "left",
-    aspect: "aspect-square",
+    aspect: "aspect-[16/9]",
   },
   {
     badge: "Vision",
@@ -77,9 +77,9 @@ const sections: Section[] = [
       "För oss handlar det om gemenskap, stil och att aldrig vika sig. IC3 är för dem som förstår att hockey inte bara är en sport — det är ett sätt att leva.",
     ],
     image: "/images/om-oss/vision.jpg",
-    alt: "Ungdomar med hockeyklubbor på en upplyst gata på kvällen, IC3-logotypen i neon på tegelväggen.",
+    alt: "IC3-grundare i Face-Off Cap blickar ut över isen i hallen.",
     align: "right",
-    aspect: "aspect-square",
+    aspect: "aspect-[16/9]",
   },
 ];
 
