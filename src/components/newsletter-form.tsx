@@ -6,6 +6,8 @@ type Status = "idle" | "submitting" | "ok" | "error";
 
 export function NewsletterForm() {
   const [email, setEmail] = useState("");
+  // Honeypot — dolt för besökare, ifyllt av bottar.
+  const [company, setCompany] = useState("");
   const [status, setStatus] = useState<Status>("idle");
   const [message, setMessage] = useState<string | null>(null);
 
@@ -18,9 +20,16 @@ export function NewsletterForm() {
       const res = await fetch("/api/newsletter", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email, company }),
       });
-      if (!res.ok) throw new Error("Registrering misslyckades");
+      if (!res.ok) {
+        // Servern skickar ett läsbart felmeddelande (ogiltig adress, för många
+        // försök) — visa det istället för en generisk text.
+        const json = (await res.json().catch(() => null)) as {
+          error?: string;
+        } | null;
+        throw new Error(json?.error ?? "Registrering misslyckades");
+      }
       setStatus("ok");
       setMessage("Du är på listan. Varmare dagar väntar.");
       setEmail("");
@@ -44,6 +53,21 @@ export function NewsletterForm() {
       >
         Få nästa drop först
       </label>
+      <div
+        aria-hidden="true"
+        className="pointer-events-none h-0 w-0 overflow-hidden opacity-0"
+      >
+        <label htmlFor="footer-company">Företag (lämna tomt)</label>
+        <input
+          id="footer-company"
+          name="company"
+          type="text"
+          tabIndex={-1}
+          autoComplete="off"
+          value={company}
+          onChange={(e) => setCompany(e.target.value)}
+        />
+      </div>
       <div className="flex w-full overflow-hidden rounded-full border border-white/10 bg-white/5 focus-within:border-ice">
         <input
           id="footer-email"

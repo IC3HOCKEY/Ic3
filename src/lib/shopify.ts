@@ -190,6 +190,24 @@ const PRODUCT_FRAGMENT = /* GraphQL */ `
   }
 `;
 
+/**
+ * Visar den lokala katalogen när Shopify inte har någon publicerad produkt.
+ *
+ * Storefront API returnerar en tom lista både för en tom butik och för en
+ * produkt som inte är publicerad till försäljningskanalen token:en läser. Utan
+ * det här hamnade sajtens enda produkt på 404-sidan medan butiken gjordes
+ * klar. Produkterna markeras som placeholders och kan aldrig köpas — deras
+ * variant-id:n finns inte i Shopify, så kassan måste vara stängd.
+ */
+function placeholderCatalog(): Product[] {
+  return mockProducts.map((p) => ({
+    ...p,
+    availableForSale: false,
+    variants: p.variants.map((v) => ({ ...v, availableForSale: false })),
+    isPlaceholder: true,
+  }));
+}
+
 export async function getProducts(): Promise<Product[]> {
   if (!isShopifyConfigured) return mockProducts;
   const data = await shopifyFetch<{
@@ -208,9 +226,36 @@ export async function getProducts(): Promise<Product[]> {
       }
     `,
   );
-  return data.products.edges.map(({ node }) => normalizeProduct(node));
+  const products = data.products.edges.map(({ node }) => normalizeProduct(node));
+  if (!products.length) {
+    console.warn(
+      "[shopify] Butiken returnerade inga produkter — visar den lokala katalogen " +
+        "utan köpmöjlighet. Kontrollera att produkten är publicerad till den " +
+        "försäljningskanal Storefront-token:en läser.",
+    );
+    return placeholderCatalog();
+  }
+  return products;
 }
 
+/** Strips separators so "face-off-cap" and "ic3_faceoffcap" compare equal. */
+function slugKey(value: string): string {
+  return value.toLowerCase().replace(/[^a-z0-9]/g, "");
+}
+
+/**
+ * Resolves a product by handle.
+ *
+ * Shopify rewrites handles on rename and appends suffixes on duplicate titles,
+ * so a handle linked from the site can drift out of sync with the store (e.g.
+ * `face-off-cap` becomes `face-off-cap-1`). An exact miss therefore falls back
+ * to a separator-insensitive match over the catalog before giving up, so a
+ * renamed product degrades to the right page instead of a 404.
+ *
+ * The fallback only widens to a *suffixed* handle — the direction Shopify
+ * actually generates. Matching the other way round would let a short handle
+ * swallow unrelated requests (`/products/face-off-cap-black` → `face`).
+ */
 export async function getProduct(handle: string): Promise<Product | null> {
   if (!isShopifyConfigured) {
     return mockProducts.find((p) => p.handle === handle) ?? null;
@@ -226,7 +271,18 @@ export async function getProduct(handle: string): Promise<Product | null> {
     `,
     { handle },
   );
-  return data.product ? normalizeProduct(data.product) : null;
+  if (data.product) return normalizeProduct(data.product);
+
+  const wanted = slugKey(handle);
+  if (wanted.length < 4) return null;
+  // getProducts() faller tillbaka till placeholder-katalogen för en tom butik,
+  // så den här sökningen täcker både omdöpta och ännu opublicerade produkter.
+  const all = await getProducts();
+  return (
+    all.find((p) => slugKey(p.handle) === wanted) ??
+    all.find((p) => slugKey(p.handle).startsWith(wanted)) ??
+    null
+  );
 }
 
 export async function getCollections(): Promise<Collection[]> {

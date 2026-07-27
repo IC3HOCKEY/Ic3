@@ -16,6 +16,8 @@ export function ContactForm() {
   const [email, setEmail] = useState("");
   const [topic, setTopic] = useState(topics[0]);
   const [message, setMessage] = useState("");
+  // Honeypot — dolt för besökare, ifyllt av bottar.
+  const [company, setCompany] = useState("");
   const [status, setStatus] = useState<Status>("idle");
   const [feedback, setFeedback] = useState<string | null>(null);
 
@@ -27,7 +29,7 @@ export function ContactForm() {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, topic, message }),
+        body: JSON.stringify({ name, email, topic, message, company }),
       });
       if (!res.ok) {
         const json = (await res.json().catch(() => ({}))) as { error?: string };
@@ -49,6 +51,21 @@ export function ContactForm() {
 
   return (
     <form onSubmit={onSubmit} className="flex flex-col gap-5">
+      <div
+        aria-hidden="true"
+        className="pointer-events-none h-0 w-0 overflow-hidden opacity-0"
+      >
+        <label htmlFor="contact-company">Företag (lämna tomt)</label>
+        <input
+          id="contact-company"
+          name="company"
+          type="text"
+          tabIndex={-1}
+          autoComplete="off"
+          value={company}
+          onChange={(e) => setCompany(e.target.value)}
+        />
+      </div>
       <label className="flex flex-col gap-2 text-xs uppercase tracking-[0.25em] text-ice-50/70">
         Namn
         <input

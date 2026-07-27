@@ -44,6 +44,11 @@ export type Product = {
   availableForSale: boolean;
   createdAt?: string;
   story?: string;
+  /**
+   * Sant när produkten visas från den lokala katalogen istället för Shopify.
+   * Den kan visas men aldrig köpas — varianterna saknar riktiga Shopify-id:n.
+   */
+  isPlaceholder?: boolean;
 };
 
 export type Collection = {

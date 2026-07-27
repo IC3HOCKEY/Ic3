@@ -14,7 +14,14 @@ const ParticleField = dynamic(
 
 const lines = ["Cold days.", "Hot drops."];
 
-export function Hero() {
+type HeroProps = {
+  /** Handle på produkten CTA:n pekar mot — hämtas från katalogen av sidan. */
+  productHandle?: string;
+};
+
+export function Hero({ productHandle }: HeroProps) {
+  const productHref = productHandle ? `/products/${productHandle}` : "/shop";
+
   return (
     <section
       aria-label="Hero"
@@ -67,7 +74,7 @@ export function Hero() {
               className="mt-10 flex flex-wrap gap-4"
             >
               <Magnetic>
-                <Link href="/products/face-off-cap" className="btn btn-primary">
+                <Link href={productHref} className="btn btn-primary">
                   Se Face-Off Cap
                 </Link>
               </Magnetic>

@@ -11,6 +11,7 @@ export const metadata: Metadata = {
   title: "Drop 01 — Face-Off Cap",
   description:
     "Drop 01 är IC3:s premiärdropp — den limiterade Face-Off Cap. 250 exemplar, designat i Stockholm, inspirerat av den svenska hockeykulturen.",
+  alternates: { canonical: "/drop-01" },
 };
 
 export const revalidate = 60;

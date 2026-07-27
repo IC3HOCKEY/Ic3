@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 
 import { ProductCard } from "@/components/product-card";
 import { ProductView } from "@/components/product/product-view";
@@ -26,6 +26,7 @@ export async function generateMetadata({
   return {
     title: product.title,
     description: product.description,
+    alternates: { canonical: `/products/${product.handle}` },
     openGraph: {
       title: product.title,
       description: product.description,
@@ -42,6 +43,11 @@ export default async function ProductPage({ params }: PageProps) {
     getProducts(),
   ]);
   if (!product) notFound();
+  // getProduct kan lösa en omdöpt produkt via närmaste matchning — skicka
+  // besökaren vidare till den kanoniska URL:en istället för att svara på båda.
+  if (product.handle !== params.handle) {
+    redirect(`/products/${product.handle}`);
+  }
   const related = all
     .filter(
       (p) =>

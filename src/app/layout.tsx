@@ -57,9 +57,11 @@ export const metadata: Metadata = {
     images: [
       {
         url: "/images/brand/Hemsida-1.JPG",
-        width: 1200,
-        height: 1200,
-        alt: siteConfig.name,
+        // Filens faktiska mått — felaktiga värden får Facebook och LinkedIn
+        // att beskära delningsbilden fel.
+        width: 1560,
+        height: 878,
+        alt: `${siteConfig.name} — ${siteConfig.tagline}`,
       },
     ],
   },
@@ -75,7 +77,10 @@ export const metadata: Metadata = {
     apple: "/images/brand/Loga-ic3.png",
   },
   robots: { index: true, follow: true },
-  alternates: { canonical: siteConfig.url },
+  // Ingen canonical här: ett värde i root-layouten ärvs av varje sida och
+  // pekade då /shop, /om-oss och alla andra sidor mot startsidan, vilket ber
+  // Google att avindexera dem. Varje sida sätter sin egen relativa canonical.
+  alternates: { canonical: "/" },
 };
 
 export const viewport: Viewport = {
