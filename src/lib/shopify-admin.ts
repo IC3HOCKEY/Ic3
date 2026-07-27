@@ -107,7 +107,9 @@ async function findCustomerByEmail(
         }
       }
     `,
-    { query: `email:'${email.replace(/'/g, "")}'` },
+    // Backslash-escapa citattecken istället för att tysta bort dem, så att
+    // ingen del av adressen kan bryta ut ur strängen i Shopifys sökspråk.
+    { query: `email:'${email.replace(/(['\\])/g, "\\$1")}'` },
   );
   return data.customers.edges[0]?.node ?? null;
 }
