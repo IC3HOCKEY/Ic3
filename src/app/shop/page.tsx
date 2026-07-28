@@ -8,7 +8,7 @@ export const revalidate = 60;
 export const metadata: Metadata = {
   title: "Shop",
   description:
-    "Utforska hela IC3-kollektionen — headwear, hoodies, tees och accessoarer. Byggt i Sverige, släppt i limiterade droppar.",
+    "Utforska hela IC3-kollektionen — headwear, hoodies, tees och accessoarer. Designat i Sverige, släppt i droppar.",
   alternates: { canonical: "/shop" },
 };
 
@@ -28,7 +28,7 @@ export default async function ShopPage({
             Shop IC3
           </h1>
           <p className="mt-4 text-base text-ice-50/70 md:text-lg">
-            Limiterade droppar och kärnplagg. Ju längre ner du scrollar desto
+            Droppar och kärnplagg. Ju längre ner du scrollar desto
             djupare in i kulturen. Filtrera kategorin eller sortera efter pris
             för att hitta ditt nästa plagg.
           </p>

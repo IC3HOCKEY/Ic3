@@ -11,7 +11,7 @@ import { FEATURED_PRODUCT_HANDLE } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Drop 01 — Face-Off Cap",
   description:
-    "Drop 01 är IC3:s premiärdropp — den limiterade Face-Off Cap. 250 exemplar, designat i Stockholm, inspirerat av den svenska hockeykulturen.",
+    "Drop 01 är IC3:s premiärdropp — Face-Off Cap. Designad i Stockholm, inspirerad av den svenska hockeykulturen.",
   alternates: { canonical: "/drop-01" },
 };
 
@@ -38,7 +38,7 @@ export default async function Drop01Page() {
         />
         <div className="absolute inset-0 -z-10 bg-gradient-to-b from-ink/30 via-ink/60 to-ink" />
         <div className="container-x px-6 md:px-10">
-          <span className="chip">Drop 01 · 250 numrerade</span>
+          <span className="chip">Drop 01 · Face-Off Cap</span>
           <h1 className="mt-6 display-heading text-[clamp(3rem,12vw,9rem)] leading-none text-ice-50">
             Face-Off
             <br />
@@ -46,9 +46,8 @@ export default async function Drop01Page() {
           </h1>
           <p className="mt-8 max-w-xl text-base leading-relaxed text-ice-50/80 md:text-lg">
             Vår premiärkeps är en kärleksförklaring till hockeyns kultur. En
-            strukturerad 6-panel, broderad IC3-logotyp, curved brim och
-            metallspänne i borstat stål. Numrerad, signerad och byggd för att
-            hålla.
+            strukturerad 6-panel med broderad IC3-logotyp, curved brim och
+            justerbar passform bak. Byggd för att hålla.
           </p>
           <div className="mt-8 flex flex-wrap items-center gap-6">
             <p className="font-mono text-xl text-ice">
@@ -75,12 +74,12 @@ export default async function Drop01Page() {
             {
               k: "02",
               t: "Byggt",
-              d: "100 % bomullstwill, broderad frontpatch och nickelfritt metallspänne.",
+              d: "100 % bomullstwill, broderad frontpatch och justerbar passform bak.",
             },
             {
               k: "03",
-              t: "Limiterat",
-              d: "250 exemplar. När de är slut släpps kepsen aldrig igen i samma färg.",
+              t: "Tillgängligt",
+              d: "Släpps 1 augusti och går att köpa som vanligt — så länge lagret räcker.",
             },
           ].map((item) => (
             <RevealSection key={item.k} className="border-t border-white/10 pt-6">

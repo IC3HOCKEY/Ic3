@@ -112,9 +112,7 @@ export function ProductView({ product }: Props) {
       <section className="flex flex-col gap-8">
         <header>
           <span className="chip">
-            {product.tags.includes("limited")
-              ? "Limited drop"
-              : "IC3 core"}
+            {product.tags.includes("drop-01") ? "Drop 01" : "IC3 core"}
           </span>
           <h1 className="mt-5 display-heading text-4xl leading-tight text-ice-50 md:text-6xl">
             {product.title}
@@ -242,7 +240,7 @@ export function ProductView({ product }: Props) {
               <span className="ml-auto transition group-open:rotate-45">+</span>
             </summary>
             <p className="mt-4 text-sm leading-relaxed text-ice-50/70">
-              One size — justerbart metallspänne bak gör att kepsen passar de
+              One size — justerbar passform bak gör att kepsen passar de
               flesta huvuden (ca 54–62 cm omkrets). Strukturerad 6-panel med
               curved brim.
             </p>

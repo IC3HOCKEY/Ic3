@@ -28,8 +28,8 @@ export const mockProducts: Product[] = [
     handle: "drop-01-face-off-cap",
     title: "DROP 01 – Face-Off Cap",
     description:
-      "Den limiterade premiärkepsen från IC3. Strukturerad 6-panel med broderad frontlogga, curved brim och metallspänne. Producerad i en upplaga om 250 exemplar. Stilren, självsäker och full av attityd. Restock 1 augusti.",
-    tags: ["hats", "drop-01", "limited"],
+      "Premiärkepsen från IC3. Strukturerad 6-panel med broderad frontlogga, curved brim och justerbar passform bak. Stilren, självsäker och full av attityd. Restock 1 augusti.",
+    tags: ["hats", "drop-01"],
     collectionHandles: ["drop-01"],
     priceRange: {
       minVariantPrice: sek("299.00"),
@@ -66,7 +66,7 @@ export const mockCollections: Collection[] = [
     handle: "drop-01",
     title: "Drop 01",
     description:
-      "Premiärdroppen. En limiterad keps som firar hockeylivet utanför isen.",
+      "Premiärdroppen. En keps som firar hockeylivet utanför isen.",
     productHandles: ["drop-01-face-off-cap"],
   },
 ];

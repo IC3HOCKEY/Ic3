@@ -63,7 +63,7 @@ export function Hero({ productHandle = FEATURED_PRODUCT_HANDLE }: Props) {
               className="mt-8 max-w-xl text-base leading-relaxed text-ice-50/80 md:text-lg"
             >
               IC3 är klädmärket för dig som lever för hockeykulturen — på och
-              utanför isen. En limiterad premiärkeps, byggd i Sverige. Face-Off
+              utanför isen. Vår premiärkeps, byggd i Sverige. Face-Off
               Cap — restock 1 augusti, 299 kr.
             </motion.p>
             <motion.div
@@ -94,9 +94,9 @@ export function Hero({ productHandle = FEATURED_PRODUCT_HANDLE }: Props) {
               className="mt-16 grid max-w-xl grid-cols-3 gap-6"
             >
               {[
-                { k: "250", v: "Exemplar / drop" },
+                { k: "299 kr", v: "Face-Off Cap" },
                 { k: "100 %", v: "Svenskt ägt" },
-                { k: "1", v: "Limiterad modell" },
+                { k: "1 aug", v: "Release" },
               ].map((item) => (
                 <div key={item.v} className="border-l border-white/10 pl-4">
                   <p className="display-heading text-3xl text-ice">{item.k}</p>

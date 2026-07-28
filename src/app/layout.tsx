@@ -43,7 +43,6 @@ export const metadata: Metadata = {
     "streetwear",
     "hockey streetwear",
     "Swedish streetwear",
-    "limited drop",
     "face-off cap",
   ],
   authors: [{ name: siteConfig.legalEntity }],

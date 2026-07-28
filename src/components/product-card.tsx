@@ -61,11 +61,6 @@ export function ProductCard({ product, priority, index = 0 }: ProductCardProps) 
               Slut i lager
             </span>
           ) : null}
-          {product.tags.includes("limited") ? (
-            <span className="absolute right-4 top-4 rounded-full border border-ice/50 bg-ink/70 px-3 py-1 font-display text-[0.65rem] tracking-[0.3em] text-ice">
-              Limited
-            </span>
-          ) : null}
           <span className="pointer-events-none absolute inset-x-4 bottom-4 flex translate-y-3 items-center justify-between text-xs uppercase tracking-[0.25em] text-ice-50/80 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
             Visa produkt
             <span aria-hidden>→</span>

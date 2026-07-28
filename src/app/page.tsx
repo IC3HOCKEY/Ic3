@@ -50,7 +50,7 @@ export default async function HomePage() {
                   <ScrambleText duration={1000}>Face-Off Cap</ScrambleText>
                 </h2>
                 <p className="mt-3 max-w-xl text-sm text-ice-50/60 md:text-base">
-                  En limiterad premiärkeps — just nu vår enda modell.
+                  Vår premiärkeps — just nu vår enda modell.
                   Restock 1 augusti.
                 </p>
               </div>
@@ -74,9 +74,10 @@ export default async function HomePage() {
                     <ScrambleText duration={1200} delay={300}>Restock 1 augusti</ScrambleText>
                   </h3>
                   <p className="mt-4 text-sm leading-relaxed text-ice-50/70 md:text-base">
-                    Drop 01 släpptes i 250 numrerade exemplar och sålde slut.
-                    Den 1 augusti är Face-Off Cap tillbaka — nu för 299 kr.
-                    Anmäl dig via kontaktsidan så håller vi dig uppdaterad.
+                    Drop 01 sålde slut. Den 1 augusti är Face-Off Cap
+                    tillbaka för 299 kr — och den här gången går den att köpa
+                    som vanligt. Anmäl dig via kontaktsidan så håller vi dig
+                    uppdaterad.
                   </p>
                 </div>
                 <div className="mt-8 flex flex-wrap gap-3">
@@ -108,10 +109,10 @@ export default async function HomePage() {
               kalla hallar
             </h2>
             <p className="mt-6 text-base leading-relaxed text-ice-50/70 md:text-lg">
-              Drop 01 — Face-Off Cap är vår första, och just nu enda,
-              limiterade keps. Strukturerad 6-panel, broderad frontlogga,
-              metallspänne. Producerad i en upplaga om 250 exemplar, numrerad
-              för varje bärare.
+              Drop 01 — Face-Off Cap är vår första, och just nu enda, keps.
+              Strukturerad 6-panel, broderad frontlogga och justerbar passform
+              bak. Byggd för att bäras varje dag — på läktaren, på isen och på
+              stan.
             </p>
             <p className="mt-4 text-base leading-relaxed text-ice-50/70 md:text-lg">
               Stilren, självsäker och full av attityd — precis som communityn
@@ -198,8 +199,8 @@ export default async function HomePage() {
                 },
                 {
                   k: "03",
-                  t: "Limited by design",
-                  d: "Droppar släpps i numrerade upplagor.",
+                  t: "Built for the culture",
+                  d: "Plagg som bärs lika rätt på läktaren som på stan.",
                 },
               ].map((item) => (
                 <div key={item.k} className="border-t border-white/10 pt-4">

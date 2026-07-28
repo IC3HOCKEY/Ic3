@@ -19,7 +19,7 @@ export const siteConfig = {
   tagline: "Cold days. Hot drops.",
   subtagline: "Swedish streetwear forged in the rink.",
   description:
-    "IC3SWEDEN är klädmärket för dig som lever för hockeykulturen – på och utanför isen. Limiterade droppar, byggda i Sverige.",
+    "IC3SWEDEN är klädmärket för dig som lever för hockeykulturen – på och utanför isen. Designat i Sverige, släppt i droppar.",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://ic3sweden.se",
   email: "ic3.kontakt@outlook.com",
   legalEntity: "FerdinSweden AB",
