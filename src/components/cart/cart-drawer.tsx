@@ -5,6 +5,7 @@ import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 
+import { trackEvent } from "@/components/analytics";
 import { useCart } from "@/components/cart/cart-provider";
 import { formatMoney } from "@/lib/format";
 import { isReleased } from "@/lib/site";
@@ -30,6 +31,20 @@ export function CartDrawer() {
     if (!lines.length || preRelease) return;
     setLoading(true);
     setError(null);
+    // Sista steget vi äger — efter detta tar Shopify-kassan över och GA på
+    // vår domän ser inget mer. Utan detta event går vår del av tratten
+    // inte att mäta mot Shopifys orderdata.
+    trackEvent("begin_checkout", {
+      currency: subtotal.currencyCode,
+      value: Number(subtotal.amount),
+      items: lines.map((l) => ({
+        item_id: l.productHandle,
+        item_name: l.title,
+        item_variant: l.variantTitle,
+        price: Number(l.price.amount),
+        quantity: l.quantity,
+      })),
+    });
     try {
       const res = await fetch("/api/checkout", {
         method: "POST",

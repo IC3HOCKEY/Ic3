@@ -18,7 +18,7 @@ const faqItems = [
   },
   {
     q: "Vad kostar frakt?",
-    a: "Fri frakt inom Sverige vid order över 799 kr. Under det är standardfrakt 49 kr. Just nu skickar vi endast inom Sverige.",
+    a: "Frakt inom Sverige kostar 49 kr, oavsett ordervärde. Just nu skickar vi endast inom Sverige.",
   },
   {
     q: "Har ni retur?",

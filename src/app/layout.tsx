@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Bebas_Neue, Inter, JetBrains_Mono } from "next/font/google";
 
+import { Analytics } from "@/components/analytics";
 import { CartProvider } from "@/components/cart/cart-provider";
 import { CartDrawer } from "@/components/cart/cart-drawer";
 import { GlobalFX } from "@/components/fx/global-fx";
@@ -105,6 +106,7 @@ export default function RootLayout({
           <CartDrawer />
           <GlobalFX />
         </CartProvider>
+        <Analytics />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

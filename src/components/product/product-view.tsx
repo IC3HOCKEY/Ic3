@@ -1,9 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
 
+import { trackEvent } from "@/components/analytics";
 import { useCart } from "@/components/cart/cart-provider";
 import { Turntable } from "@/components/product/turntable";
 import { formatMoney, cx } from "@/lib/format";
@@ -30,6 +31,16 @@ export function ProductView({ product }: Props) {
   const [quantity, setQuantity] = useState(1);
   const [view, setView] = useState<"gallery" | "turntable">("turntable");
   const [addedPulse, setAddedPulse] = useState(false);
+
+  // view_item — utan detta går det inte att se hur många som tittar på
+  // produkten men inte köper, alltså var vi tappar folk.
+  useEffect(() => {
+    trackEvent("view_item", {
+      currency: product.priceRange.minVariantPrice.currencyCode,
+      value: Number(product.priceRange.minVariantPrice.amount),
+      items: [{ item_id: product.handle, item_name: product.title }],
+    });
+  }, [product.handle, product.title, product.priceRange]);
 
   const currentVariant = useMemo(() => {
     return (
@@ -64,6 +75,19 @@ export function ProductView({ product }: Props) {
         product.featuredImage ??
         product.images[0] ??
         null,
+    });
+    trackEvent("add_to_cart", {
+      currency: currentVariant.price.currencyCode,
+      value: Number(currentVariant.price.amount) * quantity,
+      items: [
+        {
+          item_id: product.handle,
+          item_name: product.title,
+          item_variant: currentVariant.title,
+          price: Number(currentVariant.price.amount),
+          quantity,
+        },
+      ],
     });
     setAddedPulse(true);
     window.setTimeout(() => setAddedPulse(false), 1000);
@@ -230,8 +254,9 @@ export function ProductView({ product }: Props) {
               <span className="ml-auto transition group-open:rotate-45">+</span>
             </summary>
             <p className="mt-4 text-sm leading-relaxed text-ice-50/70">
-              Fri frakt på order över 799 kr inom Sverige. 14 dagars ångerrätt
-              enligt svensk lag. Returfrakt bekostas av kunden.
+              Frakt 49 kr inom Sverige, oavsett ordervärde. Levereras med
+              PostNord på 2–4 arbetsdagar. 14 dagars ångerrätt enligt svensk
+              lag. Returfrakt bekostas av kunden.
             </p>
           </details>
           <details className="group">
